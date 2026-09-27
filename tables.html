@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>HTML Tables - Tutorial Bahasa Indonesia</title>
+  <style>
+    body { font-family: 'Segoe UI', sans-serif; margin: 0; background: #f9f9f9; color: #333; }
+    nav { background: #04AA6D; padding: 10px 20px; display: flex; align-items: center; flex-wrap: wrap; gap: 8px; }
+    nav a { color: white; text-decoration: none; margin-right: 15px; font-weight: 500; }
+    nav a:hover { text-decoration: underline; }
+    .content { max-width: 900px; margin: 30px auto; background: white; padding: 30px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+    h1 { color: #04AA6D; border-left: 5px solid #04AA6D; padding-left: 15px; }
+    h2 { color: #333; margin-top: 30px; border-bottom: 2px solid #f0f0f0; padding-bottom: 6px; }
+    h3 { color: #04AA6D; }
+    .example { background: #f1f1f1; border-left: 4px solid #04AA6D; padding: 15px; margin: 15px 0; border-radius: 4px; font-family: monospace; white-space: pre-wrap; font-size: 14px; }
+    .result { background: #fff; border: 2px dashed #04AA6D; padding: 15px; margin: 10px 0 20px 0; border-radius: 4px; }
+    .note { background: #ffffcc; padding: 12px; border-left: 4px solid #ffc107; margin: 15px 0; border-radius: 4px; }
+    .tip { background: #e8f5e9; padding: 12px; border-left: 4px solid #04AA6D; margin: 15px 0; border-radius: 4px; }
+    .back-btn { display: inline-block; margin-bottom: 20px; padding: 8px 16px; background: #04AA6D; color: white; text-decoration: none; border-radius: 4px; }
+    .back-btn:hover { background: #038a57; }
+    /* Tutorial reference table */
+    table.ref { width: 100%; border-collapse: collapse; margin: 15px 0; }
+    table.ref th { background: #04AA6D; color: white; padding: 10px; text-align: left; }
+    table.ref td { padding: 8px 10px; border-bottom: 1px solid #ddd; }
+    table.ref tr:nth-child(even) { background: #f9f9f9; }
+    code { background: #eee; padding: 2px 6px; border-radius: 3px; font-family: monospace; }
+    /* Demo tables */
+    .demo-table-1 { border-collapse: collapse; }
+    .demo-table-1 td, .demo-table-1 th { border: 1px solid black; padding: 8px; }
+    .demo-table-2 { border-collapse: collapse; width: 100%; }
+    .demo-table-2 td, .demo-table-2 th { border: 1px solid #ddd; padding: 10px; }
+    .demo-table-2 th { background: #04AA6D; color: white; }
+    .demo-table-2 tr:nth-child(even) { background: #f2f2f2; }
+    .demo-table-2 tr:hover { background: #ddd; }
+    .demo-table-3 { border-collapse: collapse; width: 100%; }
+    .demo-table-3 td, .demo-table-3 th { border: 2px solid #04AA6D; padding: 10px; text-align: center; }
+    .demo-table-3 th { background: #04AA6D; color: white; }
+    .demo-table-caption { border-collapse: collapse; width: 100%; }
+    .demo-table-caption caption { font-weight: bold; color: #04AA6D; margin-bottom: 8px; }
+    .demo-table-caption td, .demo-table-caption th { border: 1px solid #ddd; padding: 8px; text-align: center; }
+    .demo-table-caption th { background: #04AA6D; color: white; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html">🏠 Home</a>
+  <a href="page_title.html">« Sebelumnya: Page Title</a>
+  <a href="lists.html">Berikutnya: Lists »</a>
+</nav>
+
+<div class="content">
+  <a class="back-btn" href="index.html">← Kembali ke Index</a>
+
+  <h1>HTML Tables (Tabel)</h1>
+  <p>
+    Tabel HTML digunakan untuk menyusun data dalam baris dan kolom. Tabel sangat berguna untuk menampilkan informasi terstruktur seperti jadwal, daftar harga, laporan, dan data perbandingan.
+  </p>
+
+  <h2>1. Struktur Dasar Tabel</h2>
+  <p>Tabel HTML dibuat menggunakan kombinasi beberapa tag:</p>
+
+  <table class="ref">
+    <tr>
+      <th>Tag</th>
+      <th>Keterangan</th>
+    </tr>
+    <tr>
+      <td><code>&lt;table&gt;</code></td>
+      <td>Mendefinisikan tabel</td>
+    </tr>
+    <tr>
+      <td><code>&lt;tr&gt;</code></td>
+      <td>Table Row — mendefinisikan baris pada tabel</td>
+    </tr>
+    <tr>
+      <td><code>&lt;th&gt;</code></td>
+      <td>Table Header — sel header (tebal, rata tengah secara default)</td>
+    </tr>
+    <tr>
+      <td><code>&lt;td&gt;</code></td>
+      <td>Table Data — sel data biasa</td>
+    </tr>
+    <tr>
+      <td><code>&lt;thead&gt;</code></td>
+      <td>Mengelompokkan konten header tabel</td>
+    </tr>
+    <tr>
+      <td><code>&lt;tbody&gt;</code></td>
+      <td>Mengelompokkan konten isi tabel</td>
+    </tr>
+    <tr>
+      <td><code>&lt;tfoot&gt;</code></td>
+      <td>Mengelompokkan konten footer tabel</td>
+    </tr>
+    <tr>
+      <td><code>&lt;caption&gt;</code></td>
+      <td>Menambahkan judul/keterangan tabel</td>
+    </tr>
+  </table>
+
+  <h3>Contoh tabel paling sederhana:</h3>
+  <div class="example">&lt;table&gt;
+  &lt;tr&gt;
+    &lt;th&gt;Nama&lt;/th&gt;
+    &lt;th&gt;Usia&lt;/th&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;Budi&lt;/td&gt;
+    &lt;td&gt;25&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;Siti&lt;/td&gt;
+    &lt;td&gt;22&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;</div>
+
+  <div class="result">
+    <strong>Hasil:</strong><br><br>
+    <table class="demo-table-1">
+      <tr>
+        <th>Nama</th>
+        <th>Usia</th>
+      </tr>
+      <tr>
+        <td>Budi</td>
+        <td>25</td>
+      </tr>
+      <tr>
+        <td>Siti</td>
+        <td>22</td>
+      </tr>
+    </table>
+  </div>
+
+  <h2>2. Border Tabel</h2>
+  <p>Secara default, tabel HTML tidak memiliki border. Anda perlu menambahkan CSS untuk menampilkan border:</p>
+
+  <div class="example">&lt;style&gt;
+  table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse; /* Gabungkan border jadi satu */
+  }
+&lt;/style&gt;
+
+&lt;table&gt;
+  &lt;tr&gt;
+    &lt;th&gt;Produk&lt;/th&gt;
+    &lt;th&gt;Harga&lt;/th&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;Apel&lt;/td&gt;
+    &lt;td&gt;Rp 5.000&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;</div>
+
+  <div class="note">
+    📌 <strong>border-collapse:</strong>
+    <ul>
+      <li><code>border-collapse: collapse</code> — Menggabungkan border sel yang berdekatan menjadi satu garis (lebih rapi)</li>
+      <li><code>border-collapse: separate</code> — Setiap sel memiliki border sendiri-sendiri (default)</li>
+    </ul>
+  </div>
+
+  <h2>3. Cell Padding dan Cell Spacing</h2>
+  <p><code>padding</code> menentukan jarak antara konten sel dengan border sel:</p>
+
+  <div class="example">&lt;style&gt;
+  th, td {
+    padding: 15px;  /* Jarak konten dengan tepi sel */
+  }
+&lt;/style&gt;</div>
+
+  <p>Anda juga bisa menggunakan <code>border-spacing</code> untuk jarak antar sel (ketika border-collapse: separate):</p>
+
+  <div class="example">&lt;style&gt;
+  table {
+    border-spacing: 5px; /* Jarak antar sel */
+  }
+&lt;/style&gt;</div>
+
+  <h2>4. Tabel dengan Styling Lengkap</h2>
+  <div class="example">&lt;style&gt;
+  table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  th, td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+  }
+  th {
+    background-color: #04AA6D;
+    color: white;
+  }
+  tr:nth-child(even) {
+    background-color: #f2f2f2; /* Warna baris genap */
+  }
+  tr:hover {
+    background-color: #ddd; /* Efek hover */
+  }
+&lt;/style&gt;
+
+&lt;table&gt;
+  &lt;tr&gt;
+    &lt;th&gt;Nama&lt;/th&gt;
+    &lt;th&gt;Jabatan&lt;/th&gt;
+    &lt;th&gt;Kota&lt;/th&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;Budi Santoso&lt;/td&gt;
+    &lt;td&gt;Manajer&lt;/td&gt;
+    &lt;td&gt;Jakarta&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;Siti Rahayu&lt;/td&gt;
+    &lt;td&gt;Developer&lt;/td&gt;
+    &lt;td&gt;Bandung&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;Ahmad Fauzi&lt;/td&gt;
+    &lt;td&gt;Designer&lt;/td&gt;
+    &lt;td&gt;Surabaya&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;</div>
+
+  <div class="result">
+    <strong>Hasil:</strong><br><br>
+    <table class="demo-table-2">
+      <tr>
+        <th>Nama</th>
+        <th>Jabatan</th>
+        <th>Kota</th>
+      </tr>
+      <tr>
+        <td>Budi Santoso</td>
+        <td>Manajer</td>
+        <td>Jakarta</td>
+      </tr>
+      <tr>
+        <td>Siti Rahayu</td>
+        <td>Developer</td>
+        <td>Bandung</td>
+      </tr>
+      <tr>
+        <td>Ahmad Fauzi</td>
+        <td>Designer</td>
+        <td>Surabaya</td>
+      </tr>
+    </table>
+  </div>
+
+  <h2>5. Colspan — Menggabungkan Kolom</h2>
+  <p>
+    Atribut <code>colspan</code> pada <code>&lt;td&gt;</code> atau <code>&lt;th&gt;</code> digunakan untuk membuat satu sel memanjang ke beberapa kolom.
+  </p>
+
+  <div class="example">&lt;table&gt;
+  &lt;tr&gt;
+    &lt;th colspan="2"&gt;Informasi Pribadi&lt;/th&gt;  &lt;!-- Mencakup 2 kolom --&gt;
+    &lt;th colspan="2"&gt;Kontak&lt;/th&gt;              &lt;!-- Mencakup 2 kolom --&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;Nama&lt;/td&gt;
+    &lt;td&gt;Usia&lt;/td&gt;
+    &lt;td&gt;Email&lt;/td&gt;
+    &lt;td&gt;Telepon&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;Budi&lt;/td&gt;
+    &lt;td&gt;25&lt;/td&gt;
+    &lt;td&gt;budi@mail.com&lt;/td&gt;
+    &lt;td&gt;0812-xxx&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;</div>
+
+  <div class="result">
+    <strong>Hasil:</strong><br><br>
+    <table class="demo-table-3">
+      <tr>
+        <th colspan="2">Informasi Pribadi</th>
+        <th colspan="2">Kontak</th>
+      </tr>
+      <tr>
+        <td>Nama</td>
+        <td>Usia</td>
+        <td>Email</td>
+        <td>Telepon</td>
+      </tr>
+      <tr>
+        <td>Budi</td>
+        <td>25</td>
+        <td>budi@mail.com</td>
+        <td>0812-xxx</td>
+      </tr>
+    </table>
+  </div>
+
+  <h2>6. Rowspan — Menggabungkan Baris</h2>
+  <p>
+    Atribut <code>rowspan</code> digunakan untuk membuat satu sel memanjang ke beberapa baris.
+  </p>
+
+  <div class="example">&lt;table&gt;
+  &lt;tr&gt;
+    &lt;th&gt;Hari&lt;/th&gt;
+    &lt;th&gt;Jadwal&lt;/th&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td rowspan="2"&gt;Senin&lt;/td&gt;  &lt;!-- Mencakup 2 baris --&gt;
+    &lt;td&gt;08.00 - Matematika&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;10.00 - Bahasa Indonesia&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;Selasa&lt;/td&gt;
+    &lt;td&gt;08.00 - IPA&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;</div>
+
+  <div class="result">
+    <strong>Hasil:</strong><br><br>
+    <table class="demo-table-3">
+      <tr>
+        <th>Hari</th>
+        <th>Jadwal</th>
+      </tr>
+      <tr>
+        <td rowspan="2">Senin</td>
+        <td>08.00 - Matematika</td>
+      </tr>
+      <tr>
+        <td>10.00 - Bahasa Indonesia</td>
+      </tr>
+      <tr>
+        <td>Selasa</td>
+        <td>08.00 - IPA</td>
+      </tr>
+    </table>
+  </div>
+
+  <h2>7. Struktur Tabel Lengkap (&lt;thead&gt;, &lt;tbody&gt;, &lt;tfoot&gt;)</h2>
+  <p>Untuk tabel yang lebih terstruktur, gunakan <code>&lt;thead&gt;</code>, <code>&lt;tbody&gt;</code>, dan <code>&lt;tfoot&gt;</code>:</p>
+
+  <div class="example">&lt;table&gt;
+  &lt;caption&gt;Laporan Penjualan Bulan Ini&lt;/caption&gt;
+
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Produk&lt;/th&gt;
+      &lt;th&gt;Qty&lt;/th&gt;
+      &lt;th&gt;Harga&lt;/th&gt;
+      &lt;th&gt;Total&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Laptop&lt;/td&gt;
+      &lt;td&gt;3&lt;/td&gt;
+      &lt;td&gt;Rp 8.000.000&lt;/td&gt;
+      &lt;td&gt;Rp 24.000.000&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Mouse&lt;/td&gt;
+      &lt;td&gt;10&lt;/td&gt;
+      &lt;td&gt;Rp 150.000&lt;/td&gt;
+      &lt;td&gt;Rp 1.500.000&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+
+  &lt;tfoot&gt;
+    &lt;tr&gt;
+      &lt;td colspan="3"&gt;&lt;strong&gt;Total Keseluruhan&lt;/strong&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;strong&gt;Rp 25.500.000&lt;/strong&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tfoot&gt;
+&lt;/table&gt;</div>
+
+  <div class="result">
+    <strong>Hasil:</strong><br><br>
+    <table class="demo-table-caption">
+      <caption>Laporan Penjualan Bulan Ini</caption>
+      <thead>
+        <tr>
+          <th>Produk</th>
+          <th>Qty</th>
+          <th>Harga</th>
+          <th>Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Laptop</td>
+          <td>3</td>
+          <td>Rp 8.000.000</td>
+          <td>Rp 24.000.000</td>
+        </tr>
+        <tr>
+          <td>Mouse</td>
+          <td>10</td>
+          <td>Rp 150.000</td>
+          <td>Rp 1.500.000</td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="3"><strong>Total Keseluruhan</strong></td>
+          <td><strong>Rp 25.500.000</strong></td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+
+  <h2>8. Tips Styling Tabel</h2>
+
+  <div class="example">&lt;style&gt;
+  /* Lebar kolom */
+  table { width: 100%; }
+  th:first-child { width: 40%; }
+
+  /* Rata kanan untuk angka */
+  td:last-child { text-align: right; }
+
+  /* Warna bergantian (zebra stripes) */
+  tr:nth-child(even) { background: #f2f2f2; }
+  tr:nth-child(odd)  { background: #ffffff; }
+
+  /* Efek hover */
+  tr:hover { background: #e8f5e9; }
+
+  /* Tabel responsif (bisa di-scroll horizontal di layar kecil) */
+  .table-wrapper {
+    overflow-x: auto;
+  }
+&lt;/style&gt;
+
+&lt;div class="table-wrapper"&gt;
+  &lt;table&gt; ... &lt;/table&gt;
+&lt;/div&gt;</div>
+
+  <div class="tip">
+    💡 <strong>Tabel Responsif:</strong> Bungkus tabel dalam <code>&lt;div style="overflow-x: auto;"&gt;</code> agar tabel bisa di-scroll secara horizontal pada layar kecil/mobile, sehingga tidak merusak tata letak halaman.
+  </div>
+
+  <h2>Ringkasan Tag Tabel</h2>
+  <table class="ref">
+    <tr>
+      <th>Tag/Atribut</th>
+      <th>Fungsi</th>
+      <th>Contoh</th>
+    </tr>
+    <tr>
+      <td><code>&lt;table&gt;</code></td>
+      <td>Wadah utama tabel</td>
+      <td><code>&lt;table&gt;...&lt;/table&gt;</code></td>
+    </tr>
+    <tr>
+      <td><code>&lt;tr&gt;</code></td>
+      <td>Baris tabel</td>
+      <td><code>&lt;tr&gt;...&lt;/tr&gt;</code></td>
+    </tr>
+    <tr>
+      <td><code>&lt;th&gt;</code></td>
+      <td>Sel header (tebal, tengah)</td>
+      <td><code>&lt;th&gt;Nama&lt;/th&gt;</code></td>
+    </tr>
+    <tr>
+      <td><code>&lt;td&gt;</code></td>
+      <td>Sel data biasa</td>
+      <td><code>&lt;td&gt;Budi&lt;/td&gt;</code></td>
+    </tr>
+    <tr>
+      <td><code>colspan</code></td>
+      <td>Gabung beberapa kolom</td>
+      <td><code>&lt;td colspan="3"&gt;</code></td>
+    </tr>
+    <tr>
+      <td><code>rowspan</code></td>
+      <td>Gabung beberapa baris</td>
+      <td><code>&lt;td rowspan="2"&gt;</code></td>
+    </tr>
+    <tr>
+      <td><code>&lt;caption&gt;</code></td>
+      <td>Judul tabel</td>
+      <td><code>&lt;caption&gt;Laporan&lt;/caption&gt;</code></td>
+    </tr>
+    <tr>
+      <td><code>&lt;thead&gt;/&lt;tbody&gt;/&lt;tfoot&gt;</code></td>
+      <td>Pengelompokan bagian tabel</td>
+      <td>Membantu styling & aksesibilitas</td>
+    </tr>
+  </table>
+
+  <div style="margin-top: 30px; display: flex; justify-content: space-between;">
+    <a class="back-btn" href="page_title.html">« Sebelumnya: Page Title</a>
+    <a class="back-btn" href="lists.html">Berikutnya: Lists »</a>
+  </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>HTML Layout - Belajar HTML</title>
+  <style>
+    body { font-family: 'Segoe UI', sans-serif; margin: 0; background: #f9f9f9; color: #333; }
+    nav { background: #04AA6D; padding: 10px 20px; }
+    nav a { color: white; text-decoration: none; margin-right: 15px; font-weight: bold; }
+    nav a:hover { text-decoration: underline; }
+    .content { max-width: 900px; margin: 30px auto; background: white; padding: 30px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+    h1 { color: #04AA6D; border-left: 5px solid #04AA6D; padding-left: 15px; }
+    h2 { color: #333; margin-top: 25px; }
+    .example { background: #f1f1f1; border-left: 4px solid #04AA6D; padding: 15px; margin: 15px 0; border-radius: 4px; font-family: monospace; white-space: pre-wrap; }
+    .note { background: #ffffcc; padding: 12px; border-left: 4px solid #ffc107; margin: 15px 0; border-radius: 4px; }
+    .back-btn { display: inline-block; margin-bottom: 20px; padding: 8px 16px; background: #04AA6D; color: white; text-decoration: none; border-radius: 4px; }
+    table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+    th { background: #04AA6D; color: white; padding: 10px; }
+    td { padding: 8px 10px; border-bottom: 1px solid #ddd; }
+    tr:nth-child(even) { background: #f9f9f9; }
+
+    /* Layout diagram styles */
+    .layout-diagram { border: 2px solid #04AA6D; border-radius: 6px; overflow: hidden; margin: 20px 0; font-family: 'Segoe UI', sans-serif; }
+    .layout-header { background: #04AA6D; color: white; text-align: center; padding: 15px; font-weight: bold; }
+    .layout-nav { background: #037a52; color: white; text-align: center; padding: 10px; font-size: 0.9em; }
+    .layout-middle { display: flex; min-height: 150px; }
+    .layout-main { background: #e8f5e9; flex: 3; padding: 15px; border-right: 2px solid #04AA6D; }
+    .layout-aside { background: #c8e6c9; flex: 1; padding: 15px; text-align: center; }
+    .layout-footer { background: #555; color: white; text-align: center; padding: 12px; font-size: 0.9em; }
+    .layout-label { font-weight: bold; color: #04AA6D; display: block; margin-bottom: 5px; }
+    .layout-aside .layout-label { color: #2e7d32; }
+
+    /* Tag highlight boxes */
+    .tag-box { display: inline-block; background: #04AA6D; color: white; padding: 3px 8px; border-radius: 3px; font-family: monospace; font-size: 0.9em; margin: 2px; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html">🏠 Home</a>
+  <a href="head.html">← Sebelumnya: HTML Head</a>
+  <a href="responsive.html">Selanjutnya: HTML Responsive →</a>
+</nav>
+
+<div class="content">
+  <a href="index.html" class="back-btn">← Kembali ke Index</a>
+
+  <h1>HTML Layout</h1>
+  <p>
+    HTML menyediakan beberapa elemen semantik yang mendefinisikan berbagai bagian dari halaman web. 
+    Elemen-elemen layout ini membantu browser, mesin pencari, dan pembaca layar untuk memahami 
+    struktur dan makna konten halaman.
+  </p>
+
+  <!-- Diagram Layout -->
+  <h2>🖼️ Diagram Tata Letak Halaman Web Umum</h2>
+  <p>Berikut adalah contoh tata letak halaman web yang umum menggunakan elemen semantik HTML:</p>
+
+  <div class="layout-diagram">
+    <div class="layout-header">
+      <span class="layout-label" style="color:white;">&lt;header&gt;</span>
+      Logo & Judul Website
+    </div>
+    <div class="layout-nav">
+      <span style="color:#a5d6a7; font-weight:bold;">&lt;nav&gt;</span>
+      &nbsp; Menu Navigasi &nbsp; | &nbsp; Home &nbsp; | &nbsp; About &nbsp; | &nbsp; Contact
+    </div>
+    <div class="layout-middle">
+      <div class="layout-main">
+        <span class="layout-label">&lt;main&gt; &amp; &lt;article&gt; / &lt;section&gt;</span>
+        <p style="color:#555; font-size:0.9em;">Konten utama halaman berada di sini. Bisa berisi artikel, posting blog, atau informasi utama yang ingin disampaikan kepada pengunjung.</p>
+      </div>
+      <div class="layout-aside">
+        <span class="layout-label">&lt;aside&gt;</span>
+        <p style="color:#555; font-size:0.9em;">Sidebar / Konten Tambahan</p>
+      </div>
+    </div>
+    <div class="layout-footer">
+      <span style="color:#aaa; font-weight:bold;">&lt;footer&gt;</span>
+      &nbsp; © 2024 Website Saya. Hak Cipta Dilindungi.
+    </div>
+  </div>
+
+  <!-- Elemen-elemen -->
+  <h2>📋 Elemen-Elemen Layout HTML</h2>
+  <p>HTML5 memperkenalkan elemen-elemen semantik berikut untuk layout halaman:</p>
+
+  <table>
+    <tr>
+      <th>Elemen</th>
+      <th>Deskripsi</th>
+    </tr>
+    <tr>
+      <td><code>&lt;header&gt;</code></td>
+      <td>Mendefinisikan header untuk dokumen atau section. Biasanya berisi logo, judul, dan navigasi utama.</td>
+    </tr>
+    <tr>
+      <td><code>&lt;nav&gt;</code></td>
+      <td>Mendefinisikan sekumpulan link navigasi utama (menu).</td>
+    </tr>
+    <tr>
+      <td><code>&lt;main&gt;</code></td>
+      <td>Mendefinisikan konten utama dari dokumen. Hanya boleh ada satu &lt;main&gt; per halaman.</td>
+    </tr>
+    <tr>
+      <td><code>&lt;section&gt;</code></td>
+      <td>Mendefinisikan sebuah bagian/seksi dalam dokumen dengan topik yang berkaitan.</td>
+    </tr>
+    <tr>
+      <td><code>&lt;article&gt;</code></td>
+      <td>Mendefinisikan konten independen yang berdiri sendiri (posting blog, artikel berita, komentar).</td>
+    </tr>
+    <tr>
+      <td><code>&lt;aside&gt;</code></td>
+      <td>Mendefinisikan konten di samping konten utama (sidebar, iklan, info tambahan).</td>
+    </tr>
+    <tr>
+      <td><code>&lt;footer&gt;</code></td>
+      <td>Mendefinisikan footer untuk dokumen atau section. Biasanya berisi informasi hak cipta, kontak, dll.</td>
+    </tr>
+  </table>
+
+  <!-- Header -->
+  <h2>1. Elemen &lt;header&gt;</h2>
+  <p>
+    Elemen <code>&lt;header&gt;</code> mewakili konten pengantar atau sekumpulan link navigasi.
+    Biasanya berisi logo, judul situs, dan menu navigasi utama. Sebuah halaman boleh memiliki
+    beberapa <code>&lt;header&gt;</code> (misalnya header untuk sebuah artikel).
+  </p>
+  <div class="example">&lt;header&gt;
+  &lt;h1&gt;Website Saya&lt;/h1&gt;
+  &lt;p&gt;Tagline atau deskripsi singkat&lt;/p&gt;
+  &lt;nav&gt;
+    &lt;a href="/home"&gt;Home&lt;/a&gt;
+    &lt;a href="/about"&gt;About&lt;/a&gt;
+  &lt;/nav&gt;
+&lt;/header&gt;</div>
+
+  <!-- Nav -->
+  <h2>2. Elemen &lt;nav&gt;</h2>
+  <p>
+    Elemen <code>&lt;nav&gt;</code> mendefinisikan sekumpulan link navigasi. Tidak semua link harus
+    berada di dalam <code>&lt;nav&gt;</code> — hanya blok utama link navigasi saja.
+  </p>
+  <div class="example">&lt;nav&gt;
+  &lt;ul&gt;
+    &lt;li&gt;&lt;a href="/home"&gt;Beranda&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="/produk"&gt;Produk&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="/kontak"&gt;Kontak&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/nav&gt;</div>
+
+  <!-- Main -->
+  <h2>3. Elemen &lt;main&gt;</h2>
+  <p>
+    Elemen <code>&lt;main&gt;</code> mewakili konten dominan (utama) dari <code>&lt;body&gt;</code>.
+    Konten dalam <code>&lt;main&gt;</code> harus unik untuk dokumen tersebut. Hanya satu elemen
+    <code>&lt;main&gt;</code> yang diperbolehkan per halaman.
+  </p>
+  <div class="example">&lt;main&gt;
+  &lt;h2&gt;Artikel Terbaru&lt;/h2&gt;
+  &lt;p&gt;Ini adalah konten utama halaman saya...&lt;/p&gt;
+&lt;/main&gt;</div>
+
+  <!-- Section -->
+  <h2>4. Elemen &lt;section&gt;</h2>
+  <p>
+    Elemen <code>&lt;section&gt;</code> mendefinisikan sebuah bagian dalam dokumen.
+    Menurut dokumentasi W3C, "seksi adalah pengelompokan konten bertema, biasanya dengan heading."
+    Gunakan <code>&lt;section&gt;</code> untuk membagi halaman menjadi bagian-bagian logis.
+  </p>
+  <div class="example">&lt;section&gt;
+  &lt;h2&gt;Tentang Kami&lt;/h2&gt;
+  &lt;p&gt;Kami adalah perusahaan teknologi yang berdiri sejak 2010...&lt;/p&gt;
+&lt;/section&gt;
+
+&lt;section&gt;
+  &lt;h2&gt;Layanan Kami&lt;/h2&gt;
+  &lt;p&gt;Kami menyediakan berbagai layanan digital...&lt;/p&gt;
+&lt;/section&gt;</div>
+
+  <!-- Article -->
+  <h2>5. Elemen &lt;article&gt;</h2>
+  <p>
+    Elemen <code>&lt;article&gt;</code> mewakili konten yang berdiri sendiri dan bisa didistribusikan
+    atau digunakan ulang secara independen — misalnya posting forum, artikel majalah, artikel berita,
+    posting blog, komentar pengguna, widget interaktif, atau konten independen lainnya.
+  </p>
+  <div class="example">&lt;article&gt;
+  &lt;h2&gt;Belajar HTML untuk Pemula&lt;/h2&gt;
+  &lt;p&gt;Ditulis oleh: John Doe | 24 September 2024&lt;/p&gt;
+  &lt;p&gt;HTML adalah bahasa markup standar untuk membuat halaman web...&lt;/p&gt;
+&lt;/article&gt;</div>
+
+  <!-- Aside -->
+  <h2>6. Elemen &lt;aside&gt;</h2>
+  <p>
+    Elemen <code>&lt;aside&gt;</code> mendefinisikan konten yang ditempatkan di samping konten
+    yang sedang ditampilkan, seperti sidebar. Konten di dalamnya harus berkaitan secara tidak
+    langsung dengan konten sekitarnya (iklan, link terkait, bio penulis, dll.).
+  </p>
+  <div class="example">&lt;aside&gt;
+  &lt;h3&gt;Artikel Terkait&lt;/h3&gt;
+  &lt;ul&gt;
+    &lt;li&gt;&lt;a href="#"&gt;Cara Membuat Website&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#"&gt;Tutorial CSS Dasar&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/aside&gt;</div>
+
+  <!-- Footer -->
+  <h2>7. Elemen &lt;footer&gt;</h2>
+  <p>
+    Elemen <code>&lt;footer&gt;</code> mendefinisikan footer untuk dokumen atau seksi.
+    Biasanya berisi: informasi hak cipta, informasi penulis, link ke dokumen terkait,
+    informasi kontak, sitemap, dan lain-lain.
+  </p>
+  <div class="example">&lt;footer&gt;
+  &lt;p&gt;&amp;copy; 2024 Website Saya. Semua Hak Dilindungi.&lt;/p&gt;
+  &lt;p&gt;
+    &lt;a href="/privacy"&gt;Kebijakan Privasi&lt;/a&gt; |
+    &lt;a href="/kontak"&gt;Hubungi Kami&lt;/a&gt;
+  &lt;/p&gt;
+&lt;/footer&gt;</div>
+
+  <!-- Contoh Lengkap -->
+  <h2>📄 Contoh Struktur Halaman Lengkap</h2>
+  <p>Berikut adalah contoh struktur halaman HTML lengkap menggunakan semua elemen layout:</p>
+  <div class="example">&lt;!DOCTYPE html&gt;
+&lt;html lang="id"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;title&gt;Contoh Layout HTML&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+  &lt;header&gt;
+    &lt;h1&gt;Website Berita Indonesia&lt;/h1&gt;
+  &lt;/header&gt;
+
+  &lt;nav&gt;
+    &lt;a href="/"&gt;Beranda&lt;/a&gt; |
+    &lt;a href="/politik"&gt;Politik&lt;/a&gt; |
+    &lt;a href="/olahraga"&gt;Olahraga&lt;/a&gt;
+  &lt;/nav&gt;
+
+  &lt;main&gt;
+    &lt;section&gt;
+      &lt;h2&gt;Berita Utama&lt;/h2&gt;
+      &lt;article&gt;
+        &lt;h3&gt;Judul Berita Pertama&lt;/h3&gt;
+        &lt;p&gt;Isi berita pertama...&lt;/p&gt;
+      &lt;/article&gt;
+      &lt;article&gt;
+        &lt;h3&gt;Judul Berita Kedua&lt;/h3&gt;
+        &lt;p&gt;Isi berita kedua...&lt;/p&gt;
+      &lt;/article&gt;
+    &lt;/section&gt;
+
+    &lt;aside&gt;
+      &lt;h3&gt;Berita Populer&lt;/h3&gt;
+      &lt;ul&gt;
+        &lt;li&gt;&lt;a href="#"&gt;Berita Populer 1&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#"&gt;Berita Populer 2&lt;/a&gt;&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/aside&gt;
+  &lt;/main&gt;
+
+  &lt;footer&gt;
+    &lt;p&gt;&amp;copy; 2024 Website Berita Indonesia&lt;/p&gt;
+  &lt;/footer&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</div>
+
+  <!-- Teknik Layout CSS -->
+  <h2>🎨 Teknik Layout dengan CSS</h2>
+  <p>Untuk mengatur posisi elemen-elemen layout, gunakan salah satu teknik CSS berikut:</p>
+
+  <table>
+    <tr>
+      <th>Teknik</th>
+      <th>Deskripsi</th>
+      <th>Cocok Untuk</th>
+    </tr>
+    <tr>
+      <td><strong>CSS Flexbox</strong></td>
+      <td>Layout satu dimensi (baris atau kolom)</td>
+      <td>Navigasi, kartu, centering</td>
+    </tr>
+    <tr>
+      <td><strong>CSS Grid</strong></td>
+      <td>Layout dua dimensi (baris dan kolom)</td>
+      <td>Layout halaman penuh, galeri</td>
+    </tr>
+    <tr>
+      <td><strong>CSS Float</strong></td>
+      <td>Mengapungkan elemen ke kiri/kanan (cara lama)</td>
+      <td>Konten dengan gambar melayang</td>
+    </tr>
+    <tr>
+      <td><strong>CSS Positioning</strong></td>
+      <td>Menempatkan elemen secara absolut/relatif/fixed</td>
+      <td>Header sticky, popup, overlay</td>
+    </tr>
+  </table>
+
+  <div class="example">/* Contoh layout dengan Flexbox */
+header { display: flex; justify-content: space-between; align-items: center; }
+
+main { display: flex; gap: 20px; }
+article { flex: 3; }
+aside { flex: 1; }
+
+/* Contoh layout dengan Grid */
+body {
+  display: grid;
+  grid-template-areas:
+    "header header"
+    "nav    nav"
+    "main   aside"
+    "footer footer";
+  grid-template-columns: 3fr 1fr;
+}</div>
+
+  <div class="note">
+    💡 <strong>Tips:</strong> Selalu gunakan elemen semantik yang tepat daripada menggunakan
+    <code>&lt;div&gt;</code> untuk segalanya. Elemen semantik membuat kode lebih mudah dibaca,
+    meningkatkan aksesibilitas, dan membantu SEO (Search Engine Optimization).
+  </div>
+
+  <!-- Perbandingan Semantik vs Non-Semantik -->
+  <h2>⚖️ Semantik vs Non-Semantik</h2>
+  <p>
+    Sebelum HTML5, developer menggunakan <code>&lt;div&gt;</code> untuk semua bagian layout.
+    Sekarang, gunakan elemen semantik yang bermakna:
+  </p>
+
+  <table>
+    <tr>
+      <th>❌ Cara Lama (Non-Semantik)</th>
+      <th>✅ Cara Baru (Semantik)</th>
+    </tr>
+    <tr>
+      <td><code>&lt;div id="header"&gt;</code></td>
+      <td><code>&lt;header&gt;</code></td>
+    </tr>
+    <tr>
+      <td><code>&lt;div id="nav"&gt;</code></td>
+      <td><code>&lt;nav&gt;</code></td>
+    </tr>
+    <tr>
+      <td><code>&lt;div id="main"&gt;</code></td>
+      <td><code>&lt;main&gt;</code></td>
+    </tr>
+    <tr>
+      <td><code>&lt;div id="sidebar"&gt;</code></td>
+      <td><code>&lt;aside&gt;</code></td>
+    </tr>
+    <tr>
+      <td><code>&lt;div id="footer"&gt;</code></td>
+      <td><code>&lt;footer&gt;</code></td>
+    </tr>
+  </table>
+
+  <div class="note">
+    🔍 <strong>Penting:</strong> Browser lama seperti IE8 tidak mendukung elemen HTML5 semantik.
+    Jika perlu mendukung browser lama, tambahkan CSS: 
+    <code>header, nav, main, section, article, aside, footer { display: block; }</code>
+  </div>
+
+  <br>
+  <a href="head.html" class="back-btn">← HTML Head</a>
+  &nbsp;
+  <a href="responsive.html" class="back-btn">HTML Responsive →</a>
+</div>
+
+</body>
+</html>

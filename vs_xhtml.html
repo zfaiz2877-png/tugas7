@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HTML vs XHTML - Belajar HTML Bahasa Indonesia</title>
+  <style>
+    body { font-family: 'Segoe UI', sans-serif; margin: 0; background: #f9f9f9; color: #333; }
+    nav { background: #04AA6D; padding: 10px 20px; display: flex; align-items: center; flex-wrap: wrap; gap: 8px; }
+    nav a { color: white; text-decoration: none; margin-right: 15px; font-weight: 500; }
+    nav a:hover { text-decoration: underline; }
+    .content { max-width: 900px; margin: 30px auto; background: white; padding: 30px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+    h1 { color: #04AA6D; border-left: 5px solid #04AA6D; padding-left: 15px; }
+    h2 { color: #333; margin-top: 30px; }
+    h3 { color: #555; }
+    .example { background: #f1f1f1; border-left: 4px solid #04AA6D; padding: 15px; margin: 15px 0; border-radius: 4px; font-family: monospace; white-space: pre-wrap; }
+    .result { background: #fff; border: 2px dashed #04AA6D; padding: 15px; margin: 5px 0 20px 0; border-radius: 4px; }
+    .note { background: #ffffcc; padding: 12px; border-left: 4px solid #ffc107; margin: 15px 0; border-radius: 4px; }
+    .info { background: #e8f4fd; padding: 12px; border-left: 4px solid #2196F3; margin: 15px 0; border-radius: 4px; }
+    .back-btn { display: inline-block; margin-bottom: 20px; padding: 8px 16px; background: #04AA6D; color: white; text-decoration: none; border-radius: 4px; }
+    .back-btn:hover { background: #038a56; }
+    table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+    th { background: #04AA6D; color: white; padding: 10px; text-align: left; }
+    td { padding: 10px; border-bottom: 1px solid #ddd; vertical-align: top; }
+    tr:nth-child(even) { background: #f9f9f9; }
+    .tag { background: #e8f5e9; color: #2e7d32; padding: 2px 6px; border-radius: 3px; font-family: monospace; }
+    .bad { color: #c62828; }
+    .good { color: #2e7d32; }
+    .code-wrong { background: #fdecea; border-left: 4px solid #c62828; padding: 15px; margin: 10px 0; border-radius: 4px; font-family: monospace; white-space: pre-wrap; }
+    .code-right { background: #e8f5e9; border-left: 4px solid #04AA6D; padding: 15px; margin: 10px 0; border-radius: 4px; font-family: monospace; white-space: pre-wrap; }
+    .rule-card { border: 1px solid #ddd; border-radius: 8px; padding: 15px 20px; margin: 15px 0; }
+    .rule-card h3 { color: #04AA6D; margin-top: 0; }
+    .compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin: 15px 0; }
+    .compare-html { background: #e8f4fd; border: 1px solid #2196F3; border-radius: 8px; padding: 15px; }
+    .compare-xhtml { background: #e8f5e9; border: 1px solid #04AA6D; border-radius: 8px; padding: 15px; }
+    .compare-html h3 { color: #1565c0; margin-top: 0; }
+    .compare-xhtml h3 { color: #2e7d32; margin-top: 0; }
+    .label-html { display: inline-block; background: #1565c0; color: white; padding: 2px 8px; border-radius: 3px; font-size: 0.8em; }
+    .label-xhtml { display: inline-block; background: #2e7d32; color: white; padding: 2px 8px; border-radius: 3px; font-size: 0.8em; }
+    @media (max-width: 600px) { .compare-grid { grid-template-columns: 1fr; } }
+    .timeline { margin: 20px 0; }
+    .timeline-item { display: flex; gap: 15px; margin-bottom: 15px; }
+    .timeline-year { background: #04AA6D; color: white; padding: 5px 10px; border-radius: 4px; font-weight: bold; min-width: 60px; text-align: center; height: fit-content; }
+    .timeline-content { flex: 1; border-left: 2px solid #04AA6D; padding-left: 15px; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html">🏠 Home</a>
+  <a href="url_encode.html">⬅ Sebelumnya: URL Encode</a>
+  <a href="index.html">Kembali ke Index ➡</a>
+</nav>
+
+<div class="content">
+  <a href="index.html" class="back-btn">← Kembali ke Index</a>
+
+  <h1>HTML vs XHTML</h1>
+  <p>
+    XHTML adalah versi HTML yang lebih ketat dan bersih, yang ditulis berdasarkan standar <strong>XML</strong>. Memahami perbedaan antara HTML dan XHTML penting untuk menulis kode yang valid dan kompatibel di berbagai platform.
+  </p>
+
+  <!-- ==================== SECTION 1 ==================== -->
+  <h2>1. Sejarah Singkat</h2>
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-year">1991</div>
+      <div class="timeline-content">
+        <strong>HTML 1.0</strong> — Tim Berners-Lee menciptakan HTML. Sangat sederhana dan permisif (tidak ketat).
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">1997</div>
+      <div class="timeline-content">
+        <strong>HTML 4.0 / 4.01</strong> — HTML berkembang pesat namun masih sangat toleran terhadap kode yang tidak valid (tag tidak ditutup, atribut tanpa tanda kutip, dll.).
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">2000</div>
+      <div class="timeline-content">
+        <strong>XHTML 1.0</strong> — W3C merilis XHTML sebagai reformulasi HTML berdasarkan XML. Lebih ketat, lebih konsisten, dan lebih mudah diproses mesin.
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">2001</div>
+      <div class="timeline-content">
+        <strong>XHTML 1.1</strong> — Versi XHTML yang lebih modular.
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">2014</div>
+      <div class="timeline-content">
+        <strong>HTML5</strong> — W3C dan WHATWG merilis HTML5 yang menggabungkan keunggulan HTML dan XHTML, namun tetap kompatibel ke belakang. HTML5 menjadi standar modern.
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== SECTION 2 ==================== -->
+  <h2>2. Apa Itu XHTML?</h2>
+  <p>
+    <strong>XHTML</strong> (eXtensible HyperText Markup Language) adalah bahasa markup yang menggabungkan HTML dengan aturan ketat XML (eXtensible Markup Language).
+  </p>
+
+  <div class="compare-grid">
+    <div class="compare-html">
+      <h3>🌐 HTML</h3>
+      <ul>
+        <li>Berbasis SGML (Standard Generalized Markup Language)</li>
+        <li>Parser HTML sangat toleran terhadap kesalahan</li>
+        <li>Aturan penulisan fleksibel</li>
+        <li>Browser tetap menampilkan halaman meski ada kesalahan kode</li>
+      </ul>
+    </div>
+    <div class="compare-xhtml">
+      <h3>📐 XHTML</h3>
+      <ul>
+        <li>Berbasis XML (eXtensible Markup Language)</li>
+        <li>Parser XML sangat ketat — satu kesalahan bisa membuat halaman gagal dimuat</li>
+        <li>Aturan penulisan sangat ketat</li>
+        <li>Harus 100% valid dan well-formed</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="info">
+    ℹ️ <strong>Analogi:</strong> HTML seperti percakapan santai — boleh ada sedikit kesalahan tata bahasa dan lawan bicara masih mengerti. XHTML seperti dokumen resmi — satu tanda baca salah bisa membuat dokumen ditolak.
+  </div>
+
+  <!-- ==================== SECTION 3 ==================== -->
+  <h2>3. Deklarasi DOCTYPE</h2>
+  <p>Perbedaan pertama yang terlihat adalah cara mendeklarasikan DOCTYPE:</p>
+
+  <h3><span class="label-html">HTML</span> HTML5 DOCTYPE (Sederhana):</h3>
+  <div class="example">&lt;!DOCTYPE html&gt;</div>
+
+  <h3><span class="label-xhtml">XHTML</span> XHTML 1.0 Strict DOCTYPE (Panjang):</h3>
+  <div class="example">&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"&gt;</div>
+
+  <h3><span class="label-xhtml">XHTML</span> XHTML 1.0 Transitional DOCTYPE:</h3>
+  <div class="example">&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;</div>
+
+  <h3><span class="label-xhtml">XHTML</span> XHTML 1.0 Frameset DOCTYPE:</h3>
+  <div class="example">&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd"&gt;</div>
+
+  <p>XHTML juga memerlukan deklarasi namespace XML pada tag <code>&lt;html&gt;</code>:</p>
+  <div class="example">&lt;html xmlns="http://www.w3.org/1999/xhtml"&gt;</div>
+
+  <!-- ==================== SECTION 4 ==================== -->
+  <h2>4. Aturan-Aturan Wajib XHTML</h2>
+  <p>XHTML memiliki aturan yang jauh lebih ketat dibanding HTML. Berikut adalah aturan-aturan utamanya:</p>
+
+  <!-- ATURAN 1 -->
+  <div class="rule-card">
+    <h3>📌 Aturan 1: Semua Tag Harus Huruf Kecil (Lowercase)</h3>
+    <p>Dalam XHTML, semua nama tag dan atribut <strong>harus</strong> ditulis dalam huruf kecil.</p>
+
+    <p><span class="bad">❌ Salah (HTML memperbolehkan, XHTML tidak):</span></p>
+    <div class="code-wrong">&lt;BODY&gt;
+  &lt;P&gt;Ini adalah paragraf.&lt;/P&gt;
+  &lt;IMG SRC="foto.jpg" ALT="Foto"&gt;
+&lt;/BODY&gt;</div>
+
+    <p><span class="good">✅ Benar (XHTML):</span></p>
+    <div class="code-right">&lt;body&gt;
+  &lt;p&gt;Ini adalah paragraf.&lt;/p&gt;
+  &lt;img src="foto.jpg" alt="Foto" /&gt;
+&lt;/body&gt;</div>
+  </div>
+
+  <!-- ATURAN 2 -->
+  <div class="rule-card">
+    <h3>📌 Aturan 2: Semua Tag Harus Ditutup</h3>
+    <p>Dalam HTML, beberapa tag bisa tidak ditutup (seperti <code>&lt;br&gt;</code>, <code>&lt;img&gt;</code>, <code>&lt;p&gt;</code>). Dalam XHTML, semua tag <strong>harus ditutup</strong>.</p>
+
+    <p><span class="bad">❌ Salah (XHTML):</span></p>
+    <div class="code-wrong">&lt;p&gt;Paragraf pertama.
+&lt;p&gt;Paragraf kedua.
+&lt;br&gt;
+&lt;img src="foto.jpg" alt="Foto"&gt;
+&lt;hr&gt;
+&lt;input type="text"&gt;</div>
+
+    <p><span class="good">✅ Benar (XHTML) — Tag kosong ditutup dengan " /":</span></p>
+    <div class="code-right">&lt;p&gt;Paragraf pertama.&lt;/p&gt;
+&lt;p&gt;Paragraf kedua.&lt;/p&gt;
+&lt;br /&gt;
+&lt;img src="foto.jpg" alt="Foto" /&gt;
+&lt;hr /&gt;
+&lt;input type="text" /&gt;</div>
+  </div>
+
+  <!-- ATURAN 3 -->
+  <div class="rule-card">
+    <h3>📌 Aturan 3: Tag Harus Ditumpuk dengan Benar (Proper Nesting)</h3>
+    <p>Dalam XHTML, tag harus dibuka dan ditutup dalam urutan yang benar (LIFO — Last In, First Out). Tag yang dibuka terakhir harus ditutup pertama.</p>
+
+    <p><span class="bad">❌ Salah — Tumpukan tag salah:</span></p>
+    <div class="code-wrong">&lt;b&gt;&lt;i&gt;Teks tebal dan miring&lt;/b&gt;&lt;/i&gt;
+
+&lt;p&gt;&lt;span&gt;Teks&lt;/p&gt;&lt;/span&gt;</div>
+
+    <p><span class="good">✅ Benar — Tumpukan tag benar:</span></p>
+    <div class="code-right">&lt;b&gt;&lt;i&gt;Teks tebal dan miring&lt;/i&gt;&lt;/b&gt;
+
+&lt;p&gt;&lt;span&gt;Teks&lt;/span&gt;&lt;/p&gt;</div>
+
+    <div class="note">
+      💡 Bayangkan seperti kurung dalam matematika: ([ ]) benar, ([)] salah. Tag HTML/XHTML bekerja sama persis.
+    </div>
+  </div>
+
+  <!-- ATURAN 4 -->
+  <div class="rule-card">
+    <h3>📌 Aturan 4: Nilai Atribut Harus Menggunakan Tanda Kutip</h3>
+    <p>Semua nilai atribut dalam XHTML <strong>harus</strong> diapit dengan tanda kutip (bisa tanda kutip ganda atau tunggal).</p>
+
+    <p><span class="bad">❌ Salah — Tanpa tanda kutip:</span></p>
+    <div class="code-wrong">&lt;img src=foto.jpg alt=Foto width=300 height=200&gt;
+&lt;table border=1&gt;
+&lt;input type=text name=nama size=30&gt;</div>
+
+    <p><span class="good">✅ Benar — Dengan tanda kutip ganda:</span></p>
+    <div class="code-right">&lt;img src="foto.jpg" alt="Foto" width="300" height="200" /&gt;
+&lt;table border="1"&gt;
+&lt;input type="text" name="nama" size="30" /&gt;</div>
+
+    <p><span class="good">✅ Juga benar — Dengan tanda kutip tunggal:</span></p>
+    <div class="code-right">&lt;img src='foto.jpg' alt='Foto' width='300' height='200' /&gt;</div>
+  </div>
+
+  <!-- ATURAN 5 -->
+  <div class="rule-card">
+    <h3>📌 Aturan 5: Atribut Tidak Boleh Disingkat (No Attribute Minimization)</h3>
+    <p>Dalam HTML, beberapa atribut boolean bisa ditulis tanpa nilai. Dalam XHTML, semua atribut harus memiliki nilai eksplisit.</p>
+
+    <p><span class="bad">❌ Salah (XHTML):</span></p>
+    <div class="code-wrong">&lt;input type="checkbox" checked&gt;
+&lt;input type="text" disabled&gt;
+&lt;option selected&gt;Pilihan 1&lt;/option&gt;</div>
+
+    <p><span class="good">✅ Benar (XHTML):</span></p>
+    <div class="code-right">&lt;input type="checkbox" checked="checked" /&gt;
+&lt;input type="text" disabled="disabled" /&gt;
+&lt;option selected="selected"&gt;Pilihan 1&lt;/option&gt;</div>
+  </div>
+
+  <!-- ATURAN 6 -->
+  <div class="rule-card">
+    <h3>📌 Aturan 6: Dokumen XHTML Harus Memiliki Satu Elemen Root</h3>
+    <p>Setiap dokumen XHTML harus memiliki tepat satu elemen root, yaitu tag <code>&lt;html&gt;</code>, dan semua elemen lain harus berada di dalam elemen root ini.</p>
+
+    <div class="code-right">&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"&gt;
+&lt;html xmlns="http://www.w3.org/1999/xhtml"&gt;
+  &lt;head&gt;
+    &lt;meta charset="UTF-8" /&gt;
+    &lt;title&gt;Dokumen XHTML&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;p&gt;Semua konten ada di dalam elemen root &amp;lt;html&amp;gt;&lt;/p&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</div>
+  </div>
+
+  <!-- ==================== SECTION 5 ==================== -->
+  <h2>5. Tabel Perbandingan Lengkap HTML vs XHTML</h2>
+  <table>
+    <tr>
+      <th>Aspek</th>
+      <th><span class="label-html">HTML</span></th>
+      <th><span class="label-xhtml">XHTML</span></th>
+    </tr>
+    <tr>
+      <td><strong>Basis</strong></td>
+      <td>SGML</td>
+      <td>XML</td>
+    </tr>
+    <tr>
+      <td><strong>Case Sensitivity</strong></td>
+      <td>Tidak sensitif (&lt;P&gt; = &lt;p&gt;)</td>
+      <td>Sensitif (harus huruf kecil semua)</td>
+    </tr>
+    <tr>
+      <td><strong>Penutupan Tag</strong></td>
+      <td>Opsional untuk tag tertentu (&lt;br&gt;, &lt;p&gt;, &lt;li&gt;)</td>
+      <td>Wajib untuk semua tag (&lt;br /&gt;)</td>
+    </tr>
+    <tr>
+      <td><strong>Nesting Tag</strong></td>
+      <td>Browser mencoba memperbaiki</td>
+      <td>Harus benar-benar tepat</td>
+    </tr>
+    <tr>
+      <td><strong>Tanda Kutip Atribut</strong></td>
+      <td>Opsional (bisa tanpa tanda kutip)</td>
+      <td>Wajib (harus diapit tanda kutip)</td>
+    </tr>
+    <tr>
+      <td><strong>Atribut Boolean</strong></td>
+      <td>Boleh disingkat: checked</td>
+      <td>Harus lengkap: checked="checked"</td>
+    </tr>
+    <tr>
+      <td><strong>DOCTYPE</strong></td>
+      <td>&lt;!DOCTYPE html&gt; (sederhana)</td>
+      <td>DOCTYPE panjang + namespace</td>
+    </tr>
+    <tr>
+      <td><strong>Toleransi Error</strong></td>
+      <td>Tinggi (browser mencoba memperbaiki)</td>
+      <td>Nol (satu error = gagal total)</td>
+    </tr>
+    <tr>
+      <td><strong>Penggunaan Saat Ini</strong></td>
+      <td>Sangat umum (HTML5)</td>
+      <td>Sangat jarang (hampir ditinggalkan)</td>
+    </tr>
+    <tr>
+      <td><strong>Direkomendasikan Untuk</strong></td>
+      <td>Hampir semua proyek web modern</td>
+      <td>Sistem yang membutuhkan parsing XML ketat</td>
+    </tr>
+  </table>
+
+  <!-- ==================== SECTION 6 ==================== -->
+  <h2>6. Contoh Dokumen HTML vs XHTML</h2>
+  <div class="compare-grid">
+    <div>
+      <p><span class="label-html">HTML5</span></p>
+      <div class="example">&lt;!DOCTYPE html&gt;
+&lt;html lang="id"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;title&gt;Halaman HTML&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;h1&gt;Judul Halaman&lt;/h1&gt;
+
+&lt;P&gt;Paragraf dengan tag besar.
+
+&lt;img src="foto.jpg" alt="foto"&gt;
+
+&lt;br&gt;
+
+&lt;input type="checkbox" checked&gt;
+Setuju
+
+&lt;/body&gt;
+&lt;/html&gt;</div>
+      <p class="good">✅ Halaman ini valid di HTML5 meskipun banyak "kekurangan".</p>
+    </div>
+    <div>
+      <p><span class="label-xhtml">XHTML 1.0</span></p>
+      <div class="example">&lt;?xml version="1.0"
+  encoding="UTF-8"?&gt;
+&lt;!DOCTYPE html PUBLIC
+ "-//W3C//DTD XHTML 1.0
+  Strict//EN"
+ "http://www.w3.org/TR/
+  xhtml1/DTD/
+  xhtml1-strict.dtd"&gt;
+&lt;html xmlns=
+ "http://www.w3.org/
+  1999/xhtml"
+  lang="id"&gt;
+&lt;head&gt;
+ &lt;meta charset="UTF-8" /&gt;
+ &lt;title&gt;Halaman XHTML&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;h1&gt;Judul Halaman&lt;/h1&gt;
+
+&lt;p&gt;Paragraf yang benar.&lt;/p&gt;
+
+&lt;img src="foto.jpg"
+  alt="foto" /&gt;
+
+&lt;br /&gt;
+
+&lt;input type="checkbox"
+  checked="checked" /&gt;
+Setuju
+
+&lt;/body&gt;
+&lt;/html&gt;</div>
+      <p class="good">✅ Semua aturan XHTML dipenuhi.</p>
+    </div>
+  </div>
+
+  <!-- ==================== SECTION 7 ==================== -->
+  <h2>7. Perbedaan Penanganan Error</h2>
+  <p>Salah satu perbedaan paling fundamental adalah cara browser menangani error:</p>
+
+  <table>
+    <tr>
+      <th>Situasi</th>
+      <th>HTML</th>
+      <th>XHTML</th>
+    </tr>
+    <tr>
+      <td>Tag tidak ditutup</td>
+      <td class="good">✅ Browser otomatis menutup</td>
+      <td class="bad">❌ Error — halaman rusak</td>
+    </tr>
+    <tr>
+      <td>Tag tidak tertutup dengan benar (nesting salah)</td>
+      <td class="good">✅ Browser mencoba memperbaiki</td>
+      <td class="bad">❌ Error — parsing berhenti</td>
+    </tr>
+    <tr>
+      <td>Nama tag huruf besar</td>
+      <td class="good">✅ Diterima (&lt;P&gt; = &lt;p&gt;)</td>
+      <td class="bad">❌ Error — tidak dikenali</td>
+    </tr>
+    <tr>
+      <td>Nilai atribut tanpa tanda kutip</td>
+      <td class="good">✅ Diterima di HTML4</td>
+      <td class="bad">❌ Error di XHTML</td>
+    </tr>
+    <tr>
+      <td>Karakter &lt; dan &amp; tanpa escape</td>
+      <td>⚠️ Tergantung konteks</td>
+      <td class="bad">❌ Error — harus &amp;lt; dan &amp;amp;</td>
+    </tr>
+  </table>
+
+  <!-- ==================== SECTION 8 ==================== -->
+  <h2>8. XHTML dan Karakter Khusus</h2>
+  <p>Dalam XHTML, karakter-karakter khusus XML harus di-escape menggunakan HTML entities:</p>
+  <table>
+    <tr><th>Karakter</th><th>Entity</th><th>Keterangan</th></tr>
+    <tr><td>&lt;</td><td>&amp;lt;</td><td>Tanda kurang dari (less than)</td></tr>
+    <tr><td>&gt;</td><td>&amp;gt;</td><td>Tanda lebih dari (greater than)</td></tr>
+    <tr><td>&amp;</td><td>&amp;amp;</td><td>Ampersand</td></tr>
+    <tr><td>"</td><td>&amp;quot;</td><td>Tanda kutip ganda</td></tr>
+    <tr><td>'</td><td>&amp;apos;</td><td>Tanda kutip tunggal (apostrof)</td></tr>
+  </table>
+
+  <div class="example">&lt;!-- Dalam XHTML, karakter khusus harus di-escape --&gt;
+&lt;p&gt;Nilai variabel: a &amp;lt; b &amp;amp;&amp;amp; b &amp;gt; c&lt;/p&gt;
+&lt;p&gt;Tag HTML ditulis: &amp;lt;p&amp;gt;paragraf&amp;lt;/p&amp;gt;&lt;/p&gt;
+&lt;a href="halaman.html?id=1&amp;amp;lang=id"&gt;Link&lt;/a&gt;</div>
+
+  <!-- ==================== SECTION 9 ==================== -->
+  <h2>9. XHTML dalam Praktik Saat Ini</h2>
+  <p>Meskipun XHTML sempat populer di awal 2000-an, saat ini penggunaannya sangat berkurang karena:</p>
+  <ul>
+    <li>❌ Terlalu ketat — satu kesalahan kecil bisa membuat seluruh halaman gagal ditampilkan</li>
+    <li>❌ Lebih verbose (banyak kode) tanpa manfaat yang jelas bagi pengguna biasa</li>
+    <li>❌ HTML5 sudah mengadopsi praktik-praktik baik dari XHTML</li>
+    <li>❌ Sebagian besar server masih mengirim XHTML dengan MIME type <code>text/html</code>, membuat browser memprosesnya sebagai HTML biasa</li>
+  </ul>
+
+  <div class="note">
+    💡 <strong>Rekomendasi Saat Ini:</strong> Gunakan <strong>HTML5</strong> dengan praktik penulisan yang baik (tutup semua tag, gunakan huruf kecil, gunakan tanda kutip untuk atribut). Ini memberikan fleksibilitas HTML dengan keterbacaan XHTML.
+  </div>
+
+  <!-- ==================== SECTION 10 ==================== -->
+  <h2>10. Praktik Terbaik HTML5 yang Terinspirasi XHTML</h2>
+  <p>Meski menggunakan HTML5, ada baiknya mengikuti konvensi penulisan yang bersih seperti XHTML:</p>
+
+  <div class="example">&lt;!DOCTYPE html&gt;
+&lt;html lang="id"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;Praktik Terbaik HTML5&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+  &lt;!-- ✅ Semua tag huruf kecil --&gt;
+  &lt;h1&gt;Judul Utama&lt;/h1&gt;
+
+  &lt;!-- ✅ Semua tag ditutup --&gt;
+  &lt;p&gt;Ini adalah paragraf yang ditutup dengan benar.&lt;/p&gt;
+
+  &lt;!-- ✅ Tag kosong juga "ditutup" (opsional di HTML5, tapi disarankan) --&gt;
+  &lt;br /&gt;
+  &lt;img src="foto.jpg" alt="Deskripsi foto" /&gt;
+  &lt;hr /&gt;
+
+  &lt;!-- ✅ Semua nilai atribut menggunakan tanda kutip --&gt;
+  &lt;a href="halaman.html" class="link-utama"&gt;Klik di sini&lt;/a&gt;
+
+  &lt;!-- ✅ Nesting yang benar --&gt;
+  &lt;p&gt;&lt;strong&gt;&lt;em&gt;Teks penting&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+
+  &lt;!-- ✅ Form input dengan label --&gt;
+  &lt;form action="/proses" method="post"&gt;
+    &lt;label for="nama"&gt;Nama:&lt;/label&gt;
+    &lt;input type="text" id="nama" name="nama" /&gt;
+    &lt;button type="submit"&gt;Kirim&lt;/button&gt;
+  &lt;/form&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</div>
+
+  <!-- ==================== SECTION 11 ==================== -->
+  <h2>11. Ringkasan Perbedaan HTML dan XHTML</h2>
+  <table>
+    <tr>
+      <th>Aturan</th>
+      <th>Contoh Salah (HTML memperbolehkan)</th>
+      <th>Contoh Benar (XHTML wajib)</th>
+    </tr>
+    <tr>
+      <td>Huruf kecil</td>
+      <td style="font-family:monospace;">&lt;TABLE&gt;, &lt;TR&gt;, &lt;TD&gt;</td>
+      <td style="font-family:monospace;">&lt;table&gt;, &lt;tr&gt;, &lt;td&gt;</td>
+    </tr>
+    <tr>
+      <td>Tag ditutup</td>
+      <td style="font-family:monospace;">&lt;p&gt;Teks &lt;br&gt;</td>
+      <td style="font-family:monospace;">&lt;p&gt;Teks&lt;/p&gt; &lt;br /&gt;</td>
+    </tr>
+    <tr>
+      <td>Nesting benar</td>
+      <td style="font-family:monospace;">&lt;b&gt;&lt;i&gt;teks&lt;/b&gt;&lt;/i&gt;</td>
+      <td style="font-family:monospace;">&lt;b&gt;&lt;i&gt;teks&lt;/i&gt;&lt;/b&gt;</td>
+    </tr>
+    <tr>
+      <td>Tanda kutip atribut</td>
+      <td style="font-family:monospace;">&lt;a href=halaman.html&gt;</td>
+      <td style="font-family:monospace;">&lt;a href="halaman.html"&gt;</td>
+    </tr>
+    <tr>
+      <td>Atribut boolean</td>
+      <td style="font-family:monospace;">&lt;input disabled&gt;</td>
+      <td style="font-family:monospace;">&lt;input disabled="disabled" /&gt;</td>
+    </tr>
+    <tr>
+      <td>Escape karakter</td>
+      <td style="font-family:monospace;">&lt;a href="a.html&amp;b=1"&gt;</td>
+      <td style="font-family:monospace;">&lt;a href="a.html&amp;amp;b=1"&gt;</td>
+    </tr>
+  </table>
+
+  <div class="note">
+    📌 <strong>Kesimpulan:</strong>
+    <ul>
+      <li>Gunakan <strong>HTML5</strong> untuk proyek web modern</li>
+      <li>Ikuti konvensi penulisan yang bersih: huruf kecil, tutup semua tag, gunakan tanda kutip</li>
+      <li>XHTML masih relevan secara historis dan memahaminya membantu kamu menulis HTML yang lebih baik</li>
+      <li>Validasi HTML kamu di <a href="https://validator.w3.org" target="_blank">W3C Markup Validation Service</a></li>
+    </ul>
+  </div>
+
+  <br>
+  <a href="url_encode.html" class="back-btn">⬅ Sebelumnya: URL Encoding</a>
+  &nbsp;
+  <a href="index.html" class="back-btn">🏠 Kembali ke Index</a>
+
+</div>
+</body>
+</html>

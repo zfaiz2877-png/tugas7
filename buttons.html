@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HTML Buttons - W3Schools</title>
+  <style>
+    body { font-family: 'Segoe UI', sans-serif; margin: 0; background: #f9f9f9; color: #333; }
+    nav { background: #04AA6D; padding: 10px 20px; }
+    nav a { color: white; text-decoration: none; margin-right: 15px; }
+    .content { max-width: 900px; margin: 30px auto; background: white; padding: 30px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+    h1 { color: #04AA6D; border-left: 5px solid #04AA6D; padding-left: 15px; }
+    h2 { color: #333; margin-top: 25px; }
+    .example { background: #f1f1f1; border-left: 4px solid #04AA6D; padding: 15px; margin: 15px 0; border-radius: 4px; font-family: monospace; white-space: pre-wrap; }
+    .demo-box { border: 1px solid #ccc; padding: 15px; margin: 15px 0; border-radius: 4px; background: #fff; }
+    .note { background: #ffffcc; padding: 12px; border-left: 4px solid #ffc107; margin: 15px 0; border-radius: 4px; }
+    .back-btn { display: inline-block; margin-bottom: 20px; padding: 8px 16px; background: #04AA6D; color: white; text-decoration: none; border-radius: 4px; }
+    button { background: #04AA6D; color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer; font-size: 16px; }
+    button:hover { background: #038857; }
+    .btn-red { background: #f44336; }
+    .btn-red:hover { background: #d32f2f; }
+    .btn-blue { background: #2196F3; }
+    .btn-blue:hover { background: #0b7dda; }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="index.html">🏠 Home</a>
+    <a href="id.html">❮ Id</a>
+    <a href="iframes.html">Next: Iframes ❯</a>
+  </nav>
+  <div class="content">
+    <a class="back-btn" href="index.html">← Kembali ke Index</a>
+    <h1>HTML Buttons</h1>
+
+    <h2>Elemen &lt;button&gt; HTML</h2>
+    <p>Tag <code>&lt;button&gt;</code> mendefinisikan tombol yang dapat diklik.</p>
+    <p>Di dalam elemen <code>&lt;button&gt;</code>, Anda dapat meletakkan teks (dan tag seperti <code>&lt;i&gt;</code>, <code>&lt;b&gt;</code>, <code>&lt;strong&gt;</code>, <code>&lt;br&gt;</code>, <code>&lt;img&gt;</code>, dll.). Hal ini tidak dimungkinkan dengan tombol yang dibuat menggunakan elemen <code>&lt;input&gt;</code>.</p>
+
+    <h2>Contoh Sintaks Dasar</h2>
+    <div class="example">&lt;button type="button" onclick="alert('Halo Dunia!')"&gt;Klik Saya!&lt;/button&gt;</div>
+
+    <h2>Contoh Live Tombol Interaktif</h2>
+    <div class="demo-box">
+      <button type="button" onclick="alert('Tombol berhasil diklik! 🎉')">Klik Saya!</button>
+      <button type="button" class="btn-red" onclick="alert('Tombol Merah!')">Tombol Bahaya</button>
+      <button type="button" class="btn-blue" onclick="alert('Tombol Biru!')">Tombol Info</button>
+    </div>
+
+    <h2>Atribut type pada Tombol</h2>
+    <p>Selalu tentukan atribut <code>type</code> untuk elemen tombol. Nilai yang didukung meliputi:</p>
+    <ul>
+      <li><code>button</code>: Tombol standar yang dapat diklik (biasanya untuk memicu JavaScript).</li>
+      <li><code>submit</code>: Tombol untuk mengirimkan formulir (nilai default di dalam tag <code>&lt;form&gt;</code>).</li>
+      <li><code>reset</code>: Tombol untuk mengatur ulang semua data dalam formulir ke nilai awal.</li>
+    </ul>
+
+    <h2>Tombol Sebagai Tautan</h2>
+    <div class="example">&lt;button onclick="document.location='https://www.w3schools.com'"&gt;Buka W3Schools&lt;/button&gt;</div>
+
+    <div class="note">
+      <strong>Tips &amp; Best Practice:</strong> Selalu tentukan atribut <code>type="button"</code> jika tombol tidak digunakan untuk mengirim formulir. Jika tidak ditentukan, beberapa browser akan memperlakukannya sebagai tombol kirim (submit) form secara default.
+    </div>
+  </div>
+</body>
+</html>

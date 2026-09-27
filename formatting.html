@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>HTML Formatting - Belajar HTML</title>
+  <style>
+    body { font-family: 'Segoe UI', sans-serif; margin: 0; background: #f9f9f9; color: #333; }
+    nav { background: #04AA6D; padding: 10px 20px; }
+    nav a { color: white; text-decoration: none; margin-right: 15px; font-weight: bold; }
+    nav a:hover { text-decoration: underline; }
+    .content { max-width: 900px; margin: 30px auto; background: white; padding: 30px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+    h1 { color: #04AA6D; border-left: 5px solid #04AA6D; padding-left: 15px; }
+    h2 { color: #333; margin-top: 30px; border-bottom: 2px solid #f1f1f1; padding-bottom: 5px; }
+    h3 { color: #04AA6D; }
+    .example { background: #f1f1f1; border-left: 4px solid #04AA6D; padding: 15px; margin: 15px 0; border-radius: 4px; font-family: monospace; white-space: pre; overflow-x: auto; }
+    .result { background: #fff; border: 1px solid #ccc; padding: 15px; margin: 0 0 15px 0; border-radius: 4px; }
+    .result-label { font-size: 12px; font-weight: bold; color: #888; margin-bottom: 5px; text-transform: uppercase; }
+    .note { background: #ffffcc; padding: 12px; border-left: 4px solid #ffc107; margin: 15px 0; border-radius: 4px; }
+    .important { background: #e8f5e9; padding: 12px; border-left: 4px solid #04AA6D; margin: 15px 0; border-radius: 4px; }
+    .back-btn { display: inline-block; margin-bottom: 20px; padding: 8px 16px; background: #04AA6D; color: white; text-decoration: none; border-radius: 4px; }
+    .back-btn:hover { background: #037f55; }
+    table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+    th { background: #04AA6D; color: white; padding: 10px; text-align: left; }
+    td { padding: 8px 10px; border-bottom: 1px solid #ddd; }
+    tr:nth-child(even) { background: #f9f9f9; }
+    .tag { background: #e8f5e9; color: #2e7d32; padding: 2px 6px; border-radius: 3px; font-family: monospace; font-weight: bold; }
+    .diff-box { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin: 15px 0; }
+    .diff-item { padding: 12px; border-radius: 6px; }
+    .diff-visual { background: #e3f2fd; border: 1px solid #90caf9; }
+    .diff-semantic { background: #e8f5e9; border: 1px solid #a5d6a7; }
+    .diff-item h4 { margin: 0 0 8px 0; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html">🏠 Home</a>
+  <a href="styles.html">⬅ Sebelumnya: Styles</a>
+  <a href="quotations.html">Selanjutnya: Quotations ➡</a>
+</nav>
+
+<div class="content">
+  <a href="index.html" class="back-btn">← Kembali ke Index</a>
+
+  <h1>HTML Formatting (Pemformatan Teks)</h1>
+  <p>HTML menyediakan berbagai elemen untuk mendefinisikan teks dengan makna khusus. Elemen-elemen formatting ini memungkinkan kita untuk membuat teks <strong>tebal</strong>, <em>miring</em>, <mark>ditandai</mark>, <del>dicoret</del>, dan banyak lagi.</p>
+
+  <div class="note">
+    <strong>📌 Visual vs Semantik:</strong> Beberapa tag HTML hanya mengubah tampilan (visual), sementara tag lainnya memberikan <em>makna semantik</em> (artinya penting bagi mesin pencari dan screen reader). Selalu gunakan tag yang tepat sesuai konteksnya.
+  </div>
+
+  <!-- ==================== SECTION 1: BOLD ==================== -->
+  <h2>1. Teks Tebal — &lt;b&gt; dan &lt;strong&gt;</h2>
+  <p>Keduanya menampilkan teks dengan <strong>huruf tebal (bold)</strong>, namun memiliki perbedaan semantik:</p>
+
+  <div class="diff-box">
+    <div class="diff-item diff-visual">
+      <h4>🎨 &lt;b&gt; — Visual Only</h4>
+      <p>Membuat teks tebal <strong>hanya untuk tampilan visual</strong>, tanpa makna tambahan. Digunakan ketika hanya perlu menebalkan teks tanpa menekankan pentingnya.</p>
+    </div>
+    <div class="diff-item diff-semantic">
+      <h4>💡 &lt;strong&gt; — Semantik</h4>
+      <p>Membuat teks tebal <strong>sekaligus menandai bahwa teks tersebut sangat penting</strong>. Browser, mesin pencari, dan screen reader memahami ini sebagai konten penting.</p>
+    </div>
+  </div>
+
+  <div class="example">&lt;p&gt;Teks ini menggunakan tag &lt;b&gt;bold biasa&lt;/b&gt; untuk tampilan.&lt;/p&gt;
+&lt;p&gt;Teks ini menggunakan tag &lt;strong&gt;strong (penting)&lt;/strong&gt; untuk makna.&lt;/p&gt;</div>
+
+  <div class="result-label">Hasil:</div>
+  <div class="result">
+    <p>Teks ini menggunakan tag <b>bold biasa</b> untuk tampilan.</p>
+    <p>Teks ini menggunakan tag <strong>strong (penting)</strong> untuk makna.</p>
+  </div>
+
+  <!-- ==================== SECTION 2: ITALIC ==================== -->
+  <h2>2. Teks Miring — &lt;i&gt; dan &lt;em&gt;</h2>
+  <p>Keduanya menampilkan teks dengan <em>huruf miring (italic)</em>, namun juga memiliki perbedaan semantik:</p>
+
+  <div class="diff-box">
+    <div class="diff-item diff-visual">
+      <h4>🎨 &lt;i&gt; — Visual Only</h4>
+      <p>Membuat teks miring secara visual. Digunakan untuk istilah teknis, frasa dari bahasa asing, pemikiran karakter, dll.</p>
+    </div>
+    <div class="diff-item diff-semantic">
+      <h4>💡 &lt;em&gt; — Semantik (Emphasis)</h4>
+      <p>Membuat teks miring <strong>dengan penekanan semantik</strong>. Screen reader akan membaca teks dengan nada berbeda untuk menunjukkan penekanan.</p>
+    </div>
+  </div>
+
+  <div class="example">&lt;p&gt;Kata &lt;i&gt;serendipity&lt;/i&gt; berasal dari bahasa Inggris.&lt;/p&gt;
+&lt;p&gt;Kamu &lt;em&gt;harus&lt;/em&gt; membaca buku itu sebelum ujian!&lt;/p&gt;</div>
+
+  <div class="result-label">Hasil:</div>
+  <div class="result">
+    <p>Kata <i>serendipity</i> berasal dari bahasa Inggris.</p>
+    <p>Kamu <em>harus</em> membaca buku itu sebelum ujian!</p>
+  </div>
+
+  <!-- ==================== SECTION 3: SMALL ==================== -->
+  <h2>3. Teks Kecil — &lt;small&gt;</h2>
+  <p>Elemen <span class="tag">&lt;small&gt;</span> mendefinisikan teks yang lebih kecil (small print), seperti hak cipta, catatan kaki, atau disclaimer.</p>
+
+  <div class="example">&lt;p&gt;Ini adalah teks normal.&lt;/p&gt;
+&lt;p&gt;&lt;small&gt;Ini adalah teks yang lebih kecil.&lt;/small&gt;&lt;/p&gt;
+&lt;p&gt;© 2024 PT. Contoh Indonesia. &lt;small&gt;Semua hak cipta dilindungi.&lt;/small&gt;&lt;/p&gt;</div>
+
+  <div class="result-label">Hasil:</div>
+  <div class="result">
+    <p>Ini adalah teks normal.</p>
+    <p><small>Ini adalah teks yang lebih kecil.</small></p>
+    <p>© 2024 PT. Contoh Indonesia. <small>Semua hak cipta dilindungi.</small></p>
+  </div>
+
+  <!-- ==================== SECTION 4: MARK ==================== -->
+  <h2>4. Teks Ditandai — &lt;mark&gt;</h2>
+  <p>Elemen <span class="tag">&lt;mark&gt;</span> mendefinisikan teks yang harus disorot/ditandai (highlighted). Browser biasanya menampilkan teks ini dengan latar kuning.</p>
+
+  <div class="example">&lt;p&gt;Ingat untuk mempelajari tentang &lt;mark&gt;HTML dan CSS&lt;/mark&gt;
+sebelum mulai belajar JavaScript.&lt;/p&gt;
+
+&lt;p&gt;Jawaban yang benar adalah &lt;mark&gt;opsi C&lt;/mark&gt;.&lt;/p&gt;</div>
+
+  <div class="result-label">Hasil:</div>
+  <div class="result">
+    <p>Ingat untuk mempelajari tentang <mark>HTML dan CSS</mark> sebelum mulai belajar JavaScript.</p>
+    <p>Jawaban yang benar adalah <mark>opsi C</mark>.</p>
+  </div>
+
+  <!-- ==================== SECTION 5: DEL ==================== -->
+  <h2>5. Teks Dicoret — &lt;del&gt;</h2>
+  <p>Elemen <span class="tag">&lt;del&gt;</span> mendefinisikan teks yang telah dihapus dari sebuah dokumen. Browser biasanya menampilkan teks yang dicoret (strikethrough).</p>
+
+  <div class="example">&lt;p&gt;Harga: &lt;del&gt;Rp 500.000&lt;/del&gt; Rp 250.000&lt;/p&gt;
+&lt;p&gt;Menu hari ini: &lt;del&gt;Nasi Goreng&lt;/del&gt; Mie Goreng&lt;/p&gt;</div>
+
+  <div class="result-label">Hasil:</div>
+  <div class="result">
+    <p>Harga: <del>Rp 500.000</del> Rp 250.000</p>
+    <p>Menu hari ini: <del>Nasi Goreng</del> Mie Goreng</p>
+  </div>
+
+  <!-- ==================== SECTION 6: INS ==================== -->
+  <h2>6. Teks Disisipkan — &lt;ins&gt;</h2>
+  <p>Elemen <span class="tag">&lt;ins&gt;</span> mendefinisikan teks yang telah disisipkan ke dalam dokumen. Browser biasanya menampilkan teks yang digarisbawahi (underline).</p>
+
+  <div class="example">&lt;p&gt;Hari ini adalah &lt;del&gt;Senin&lt;/del&gt; &lt;ins&gt;Selasa&lt;/ins&gt;.&lt;/p&gt;</div>
+
+  <div class="result-label">Hasil:</div>
+  <div class="result">
+    <p>Hari ini adalah <del>Senin</del> <ins>Selasa</ins>.</p>
+  </div>
+
+  <!-- ==================== SECTION 7: SUB ==================== -->
+  <h2>7. Subscript — &lt;sub&gt;</h2>
+  <p>Elemen <span class="tag">&lt;sub&gt;</span> mendefinisikan teks subscript. Teks subscript ditampilkan setengah karakter di bawah garis normal dan kadang ditampilkan lebih kecil. Digunakan untuk formula kimia, catatan kaki, dll.</p>
+
+  <div class="example">&lt;p&gt;Rumus air adalah H&lt;sub&gt;2&lt;/sub&gt;O&lt;/p&gt;
+&lt;p&gt;Rumus kimia glukosa adalah C&lt;sub&gt;6&lt;/sub&gt;H&lt;sub&gt;12&lt;/sub&gt;O&lt;sub&gt;6&lt;/sub&gt;&lt;/p&gt;
+&lt;p&gt;Ini adalah catatan&lt;sub&gt;[1]&lt;/sub&gt; penting.&lt;/p&gt;</div>
+
+  <div class="result-label">Hasil:</div>
+  <div class="result">
+    <p>Rumus air adalah H<sub>2</sub>O</p>
+    <p>Rumus kimia glukosa adalah C<sub>6</sub>H<sub>12</sub>O<sub>6</sub></p>
+    <p>Ini adalah catatan<sub>[1]</sub> penting.</p>
+  </div>
+
+  <!-- ==================== SECTION 8: SUP ==================== -->
+  <h2>8. Superscript — &lt;sup&gt;</h2>
+  <p>Elemen <span class="tag">&lt;sup&gt;</span> mendefinisikan teks superscript. Teks superscript ditampilkan setengah karakter di atas garis normal. Digunakan untuk pangkat matematika, ordinal, dll.</p>
+
+  <div class="example">&lt;p&gt;Luas lingkaran = π r&lt;sup&gt;2&lt;/sup&gt;&lt;/p&gt;
+&lt;p&gt;2&lt;sup&gt;10&lt;/sup&gt; = 1024&lt;/p&gt;
+&lt;p&gt;Abad ke-21&lt;sup&gt;st&lt;/sup&gt; Century&lt;/p&gt;</div>
+
+  <div class="result-label">Hasil:</div>
+  <div class="result">
+    <p>Luas lingkaran = π r<sup>2</sup></p>
+    <p>2<sup>10</sup> = 1024</p>
+    <p>Abad ke-21<sup>st</sup> Century</p>
+  </div>
+
+  <!-- ==================== SECTION 9: SUMMARY TABLE ==================== -->
+  <h2>9. Ringkasan Semua Tag Formatting</h2>
+  <table>
+    <tr>
+      <th>Tag</th>
+      <th>Nama</th>
+      <th>Tampilan</th>
+      <th>Keterangan</th>
+    </tr>
+    <tr>
+      <td>&lt;b&gt;</td>
+      <td>Bold</td>
+      <td><b>Teks Tebal</b></td>
+      <td>Teks tebal (visual only)</td>
+    </tr>
+    <tr>
+      <td>&lt;strong&gt;</td>
+      <td>Strong</td>
+      <td><strong>Teks Penting</strong></td>
+      <td>Teks tebal dengan makna penting (semantik)</td>
+    </tr>
+    <tr>
+      <td>&lt;i&gt;</td>
+      <td>Italic</td>
+      <td><i>Teks Miring</i></td>
+      <td>Teks miring (visual only)</td>
+    </tr>
+    <tr>
+      <td>&lt;em&gt;</td>
+      <td>Emphasis</td>
+      <td><em>Teks Ditekankan</em></td>
+      <td>Teks miring dengan penekanan (semantik)</td>
+    </tr>
+    <tr>
+      <td>&lt;small&gt;</td>
+      <td>Small</td>
+      <td><small>Teks Kecil</small></td>
+      <td>Teks lebih kecil dari normal</td>
+    </tr>
+    <tr>
+      <td>&lt;mark&gt;</td>
+      <td>Mark</td>
+      <td><mark>Teks Ditandai</mark></td>
+      <td>Teks disorot/highlight (latar kuning)</td>
+    </tr>
+    <tr>
+      <td>&lt;del&gt;</td>
+      <td>Deleted</td>
+      <td><del>Teks Dicoret</del></td>
+      <td>Teks yang dihapus/dicoret</td>
+    </tr>
+    <tr>
+      <td>&lt;ins&gt;</td>
+      <td>Inserted</td>
+      <td><ins>Teks Disisipkan</ins></td>
+      <td>Teks yang disisipkan (digarisbawahi)</td>
+    </tr>
+    <tr>
+      <td>&lt;sub&gt;</td>
+      <td>Subscript</td>
+      <td>H<sub>2</sub>O</td>
+      <td>Teks di bawah garis (rumus kimia, dll.)</td>
+    </tr>
+    <tr>
+      <td>&lt;sup&gt;</td>
+      <td>Superscript</td>
+      <td>x<sup>2</sup></td>
+      <td>Teks di atas garis (pangkat, dll.)</td>
+    </tr>
+  </table>
+
+  <!-- ==================== SECTION 10: COMBINED EXAMPLE ==================== -->
+  <h2>10. Contoh Kombinasi Formatting</h2>
+  <div class="example">&lt;h2&gt;Review Produk: Laptop Gaming X9&lt;/h2&gt;
+
+&lt;p&gt;Laptop ini adalah &lt;strong&gt;pilihan terbaik&lt;/strong&gt; untuk para gamer.
+Dengan prosesor &lt;mark&gt;Intel Core i9&lt;/mark&gt; dan RAM &lt;b&gt;32GB&lt;/b&gt;,
+performa-nya sangat &lt;em&gt;luar biasa&lt;/em&gt;!&lt;/p&gt;
+
+&lt;p&gt;Harga: &lt;del&gt;Rp 25.000.000&lt;/del&gt; &lt;ins&gt;Rp 20.000.000&lt;/ins&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;small&gt;*Harga berlaku hingga 31 Desember 2024.&lt;/small&gt;&lt;/p&gt;
+
+&lt;p&gt;Resolusi layar: 3840 &times; 2160 px (4K)&lt;/p&gt;
+&lt;p&gt;Penilaian: 9.8&lt;sup&gt;/10&lt;/sup&gt;&lt;/p&gt;</div>
+
+  <div class="result-label">Hasil:</div>
+  <div class="result">
+    <h2 style="color:#333;">Review Produk: Laptop Gaming X9</h2>
+    <p>Laptop ini adalah <strong>pilihan terbaik</strong> untuk para gamer. Dengan prosesor <mark>Intel Core i9</mark> dan RAM <b>32GB</b>, performa-nya sangat <em>luar biasa</em>!</p>
+    <p>Harga: <del>Rp 25.000.000</del> <ins>Rp 20.000.000</ins></p>
+    <p><small>*Harga berlaku hingga 31 Desember 2024.</small></p>
+    <p>Penilaian: 9.8<sup>/10</sup></p>
+  </div>
+
+  <div class="important">
+    <strong>💡 Best Practice:</strong>
+    <ul>
+      <li>Gunakan <code>&lt;strong&gt;</code> daripada <code>&lt;b&gt;</code> ketika teks memang penting secara semantik.</li>
+      <li>Gunakan <code>&lt;em&gt;</code> daripada <code>&lt;i&gt;</code> ketika teks memang perlu ditekankan.</li>
+      <li>Tag <code>&lt;i&gt;</code> lebih tepat digunakan untuk istilah teknis, istilah asing, atau nama publikasi.</li>
+      <li>Hindari menggunakan tag formatting hanya untuk mengubah tampilan — gunakan CSS untuk itu.</li>
+    </ul>
+  </div>
+
+  <div style="margin-top: 40px; display: flex; justify-content: space-between;">
+    <a href="styles.html" class="back-btn">⬅ Sebelumnya: Styles</a>
+    <a href="quotations.html" class="back-btn">Selanjutnya: Quotations ➡</a>
+  </div>
+</div>
+
+</body>
+</html>

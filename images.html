@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>HTML Images - Tutorial Bahasa Indonesia</title>
+  <style>
+    body { font-family: 'Segoe UI', sans-serif; margin: 0; background: #f9f9f9; color: #333; }
+    nav { background: #04AA6D; padding: 10px 20px; display: flex; align-items: center; flex-wrap: wrap; gap: 8px; }
+    nav a { color: white; text-decoration: none; margin-right: 15px; font-weight: 500; }
+    nav a:hover { text-decoration: underline; }
+    .content { max-width: 900px; margin: 30px auto; background: white; padding: 30px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+    h1 { color: #04AA6D; border-left: 5px solid #04AA6D; padding-left: 15px; }
+    h2 { color: #333; margin-top: 30px; border-bottom: 2px solid #f0f0f0; padding-bottom: 6px; }
+    h3 { color: #04AA6D; }
+    .example { background: #f1f1f1; border-left: 4px solid #04AA6D; padding: 15px; margin: 15px 0; border-radius: 4px; font-family: monospace; white-space: pre-wrap; font-size: 14px; }
+    .result { background: #fff; border: 2px dashed #04AA6D; padding: 15px; margin: 10px 0 20px 0; border-radius: 4px; }
+    .note { background: #ffffcc; padding: 12px; border-left: 4px solid #ffc107; margin: 15px 0; border-radius: 4px; }
+    .tip { background: #e8f5e9; padding: 12px; border-left: 4px solid #04AA6D; margin: 15px 0; border-radius: 4px; }
+    .back-btn { display: inline-block; margin-bottom: 20px; padding: 8px 16px; background: #04AA6D; color: white; text-decoration: none; border-radius: 4px; }
+    .back-btn:hover { background: #038a57; }
+    table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+    th { background: #04AA6D; color: white; padding: 10px; text-align: left; }
+    td { padding: 8px 10px; border-bottom: 1px solid #ddd; }
+    tr:nth-child(even) { background: #f9f9f9; }
+    code { background: #eee; padding: 2px 6px; border-radius: 3px; font-family: monospace; }
+    .demo-img-placeholder { background: linear-gradient(135deg, #04AA6D 0%, #028a57 100%); width: 200px; height: 140px; display: flex; align-items: center; justify-content: center; color: white; font-size: 14px; border-radius: 4px; }
+    .float-demo { overflow: hidden; margin: 10px 0; padding: 10px; border: 1px solid #ddd; border-radius: 4px; }
+    .float-left-demo { float: left; margin-right: 15px; width: 120px; height: 80px; background: linear-gradient(135deg, #04AA6D, #028a57); display: flex; align-items: center; justify-content: center; color: white; font-size: 12px; border-radius: 4px; }
+    .clearfix::after { content: ""; display: table; clear: both; }
+    .bg-demo { background-image: linear-gradient(45deg, #04AA6D22 25%, transparent 25%), linear-gradient(-45deg, #04AA6D22 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #04AA6D22 75%), linear-gradient(-45deg, transparent 75%, #04AA6D22 75%); background-size: 20px 20px; background-position: 0 0, 0 10px, 10px -10px, -10px 0px; padding: 30px; text-align: center; border-radius: 4px; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html">🏠 Home</a>
+  <a href="links.html">« Sebelumnya: Links</a>
+  <a href="favicon.html">Berikutnya: Favicon »</a>
+</nav>
+
+<div class="content">
+  <a class="back-btn" href="index.html">← Kembali ke Index</a>
+
+  <h1>HTML Images (Gambar)</h1>
+  <p>
+    Gambar membuat halaman web menjadi lebih menarik dan informatif. Dalam HTML, gambar disisipkan menggunakan tag <code>&lt;img&gt;</code>. Tag ini merupakan <strong>tag kosong</strong> (void element), artinya tidak memiliki tag penutup.
+  </p>
+
+  <h2>1. Tag &lt;img&gt; Dasar</h2>
+  <p>Sintaks dasar untuk menyisipkan gambar:</p>
+
+  <div class="example">&lt;img src="nama-gambar.jpg" alt="Deskripsi gambar"&gt;</div>
+
+  <p>Tag <code>&lt;img&gt;</code> memiliki dua atribut yang <strong>wajib</strong> ada:</p>
+  <table>
+    <tr>
+      <th>Atribut</th>
+      <th>Keterangan</th>
+    </tr>
+    <tr>
+      <td><code>src</code></td>
+      <td>Source (sumber) — menentukan path atau URL gambar yang akan ditampilkan</td>
+    </tr>
+    <tr>
+      <td><code>alt</code></td>
+      <td>Alternative text — teks pengganti jika gambar gagal dimuat; penting untuk aksesibilitas dan SEO</td>
+    </tr>
+  </table>
+
+  <div class="result">
+    <strong>Contoh tampilan gambar:</strong><br><br>
+    <div class="demo-img-placeholder">🖼️ Gambar di sini</div>
+  </div>
+
+  <div class="note">
+    📌 <strong>Pentingnya atribut alt:</strong> Atribut <code>alt</code> dibaca oleh screen reader untuk pengguna yang mengalami gangguan penglihatan. Selain itu, teks alt ditampilkan jika gambar gagal dimuat, dan membantu mesin pencari memahami konten gambar.
+  </div>
+
+  <h2>2. Atribut width dan height</h2>
+  <p>
+    Atribut <code>width</code> dan <code>height</code> digunakan untuk menentukan ukuran gambar dalam piksel. Selalu tentukan ukuran gambar untuk mengurangi <em>layout shift</em> saat halaman dimuat.
+  </p>
+
+  <div class="example">&lt;img src="kucing.jpg" alt="Foto kucing lucu" width="300" height="200"&gt;</div>
+
+  <p>Ukuran juga bisa ditentukan melalui CSS:</p>
+  <div class="example">&lt;img src="kucing.jpg" alt="Foto kucing" style="width: 300px; height: 200px;"&gt;
+
+&lt;!-- Atau gunakan class CSS --&gt;
+&lt;style&gt;
+  .gambar-konten {
+    width: 100%;        /* Lebar penuh container */
+    max-width: 500px;   /* Maksimal 500px */
+    height: auto;       /* Tinggi menyesuaikan rasio aspek */
+  }
+&lt;/style&gt;
+&lt;img src="pemandangan.jpg" alt="Pemandangan gunung" class="gambar-konten"&gt;</div>
+
+  <div class="tip">
+    💡 <strong>Tips:</strong> Gunakan <code>height: auto</code> bersama <code>width</code> tertentu agar gambar tidak terdistorsi (menjaga rasio aspek).
+  </div>
+
+  <h2>3. Path Gambar (src)</h2>
+  <p>Nilai <code>src</code> dapat berupa path relatif, absolut, atau URL eksternal:</p>
+
+  <div class="example">&lt;!-- Gambar di folder yang sama --&gt;
+&lt;img src="kucing.jpg" alt="Kucing"&gt;
+
+&lt;!-- Gambar di subfolder --&gt;
+&lt;img src="gambar/kucing.jpg" alt="Kucing"&gt;
+
+&lt;!-- Gambar di folder induk --&gt;
+&lt;img src="../gambar/kucing.jpg" alt="Kucing"&gt;
+
+&lt;!-- URL gambar eksternal --&gt;
+&lt;img src="https://www.example.com/gambar/kucing.jpg" alt="Kucing"&gt;</div>
+
+  <h2>4. Gambar Sebagai Tautan</h2>
+  <p>Gambar dapat dijadikan tautan dengan membungkusnya di dalam tag <code>&lt;a&gt;</code>:</p>
+
+  <div class="example">&lt;a href="https://www.w3schools.com"&gt;
+  &lt;img src="w3schools_logo.jpg" alt="Logo W3Schools" width="150"&gt;
+&lt;/a&gt;</div>
+
+  <div class="result">
+    <strong>Hasil — gambar yang dapat diklik:</strong><br><br>
+    <a href="#" style="display: inline-block;">
+      <div class="demo-img-placeholder" style="cursor: pointer; border: 3px solid #0000EE;">🔗 Gambar Tautan</div>
+    </a>
+  </div>
+
+  <div class="note">
+    📌 Saat gambar dijadikan tautan, teksnya (nilai <code>alt</code>) akan dibacakan oleh screen reader sebagai teks tautan.
+  </div>
+
+  <h2>5. Float Gambar dengan CSS</h2>
+  <p>
+    Properti CSS <code>float</code> memungkinkan teks mengalir di samping gambar. Ini berguna untuk layout artikel atau blog.
+  </p>
+
+  <h3>Float ke Kiri</h3>
+  <div class="example">&lt;img src="foto.jpg" alt="Foto" style="float: left; margin-right: 15px; width: 150px;"&gt;
+&lt;p&gt;Teks akan mengalir di sebelah kanan gambar ini. 
+Properti float: left membuat gambar menempel di sisi kiri, 
+dan elemen di sekitarnya akan melingkupi gambar tersebut.&lt;/p&gt;</div>
+
+  <div class="result clearfix">
+    <strong>Hasil:</strong><br>
+    <div class="float-demo clearfix">
+      <div class="float-left-demo">🖼️ Foto</div>
+      <p style="margin: 0;">Teks akan mengalir di sebelah kanan gambar ini. Properti <code>float: left</code> membuat gambar menempel di sisi kiri, dan elemen di sekitarnya akan melingkupi gambar tersebut. Ini sangat berguna untuk artikel dan posting blog yang memiliki gambar ilustrasi.</p>
+    </div>
+  </div>
+
+  <h3>Float ke Kanan</h3>
+  <div class="example">&lt;img src="foto.jpg" alt="Foto" style="float: right; margin-left: 15px; width: 150px;"&gt;
+&lt;p&gt;Teks akan mengalir di sebelah kiri gambar ini. 
+Properti float: right membuat gambar menempel di sisi kanan.&lt;/p&gt;</div>
+
+  <div class="tip">
+    💡 Setelah menggunakan <code>float</code>, tambahkan <code>clear: both</code> atau gunakan clearfix agar elemen berikutnya tidak ikut melingkupi gambar:
+    <br><br>
+    <code>.clearfix::after { content: ""; display: table; clear: both; }</code>
+  </div>
+
+  <h2>6. Background Image (Gambar Latar)</h2>
+  <p>
+    Gambar latar belakang ditambahkan melalui CSS, bukan melalui tag <code>&lt;img&gt;</code>. Gunakan properti <code>background-image</code>.
+  </p>
+
+  <div class="example">&lt;!-- Inline style --&gt;
+&lt;div style="background-image: url('pemandangan.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 300px;"&gt;
+  Konten di atas gambar latar
+&lt;/div&gt;
+
+&lt;!-- Menggunakan CSS --&gt;
+&lt;style&gt;
+  .hero-section {
+    background-image: url('hero.jpg');
+    background-size: cover;       /* Menutupi seluruh area */
+    background-position: center;  /* Tengah */
+    background-repeat: no-repeat; /* Tidak diulang */
+    min-height: 400px;
+  }
+&lt;/style&gt;
+&lt;div class="hero-section"&gt;
+  &lt;h1&gt;Selamat Datang!&lt;/h1&gt;
+&lt;/div&gt;</div>
+
+  <div class="result">
+    <div class="bg-demo">
+      <p style="margin: 0; font-weight: bold; color: #04AA6D;">Konten di atas background image</p>
+    </div>
+  </div>
+
+  <h3>Nilai background-size</h3>
+  <table>
+    <tr>
+      <th>Nilai</th>
+      <th>Keterangan</th>
+    </tr>
+    <tr>
+      <td><code>cover</code></td>
+      <td>Gambar diperbesar untuk menutupi seluruh area (mungkin terpotong)</td>
+    </tr>
+    <tr>
+      <td><code>contain</code></td>
+      <td>Gambar disesuaikan agar seluruh gambar terlihat (mungkin ada ruang kosong)</td>
+    </tr>
+    <tr>
+      <td><code>100% 100%</code></td>
+      <td>Gambar diregangkan untuk memenuhi area (mungkin terdistorsi)</td>
+    </tr>
+    <tr>
+      <td><code>auto</code></td>
+      <td>Ukuran asli gambar dipertahankan</td>
+    </tr>
+  </table>
+
+  <h2>7. Gambar Responsif</h2>
+  <p>Gambar responsif akan menyesuaikan ukurannya dengan lebar layar:</p>
+
+  <div class="example">&lt;!-- Cara termudah membuat gambar responsif --&gt;
+&lt;img src="foto.jpg" alt="Foto" style="max-width: 100%; height: auto;"&gt;
+
+&lt;!-- Atau gunakan class CSS --&gt;
+&lt;style&gt;
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+&lt;/style&gt;</div>
+
+  <h2>8. Format Gambar yang Didukung</h2>
+  <table>
+    <tr>
+      <th>Format</th>
+      <th>Ekstensi</th>
+      <th>Kegunaan</th>
+    </tr>
+    <tr>
+      <td>JPEG</td>
+      <td>.jpg, .jpeg</td>
+      <td>Foto berkualitas tinggi, ukuran file kecil</td>
+    </tr>
+    <tr>
+      <td>PNG</td>
+      <td>.png</td>
+      <td>Gambar dengan transparansi, kualitas tinggi</td>
+    </tr>
+    <tr>
+      <td>GIF</td>
+      <td>.gif</td>
+      <td>Animasi sederhana, gambar dengan warna terbatas</td>
+    </tr>
+    <tr>
+      <td>WebP</td>
+      <td>.webp</td>
+      <td>Format modern, ukuran kecil, kualitas baik</td>
+    </tr>
+    <tr>
+      <td>SVG</td>
+      <td>.svg</td>
+      <td>Gambar vektor, dapat diperbesar tanpa pecah</td>
+    </tr>
+    <tr>
+      <td>ICO</td>
+      <td>.ico</td>
+      <td>Ikon, biasanya untuk favicon</td>
+    </tr>
+  </table>
+
+  <h2>9. Contoh Lengkap</h2>
+  <div class="example">&lt;!DOCTYPE html&gt;
+&lt;html lang="id"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;title&gt;Contoh Gambar HTML&lt;/title&gt;
+  &lt;style&gt;
+    .gambar-artikel {
+      float: left;
+      margin: 0 15px 10px 0;
+      border-radius: 8px;
+    }
+    .clearfix::after { content: ""; display: table; clear: both; }
+    .hero {
+      background-image: url('hero.jpg');
+      background-size: cover;
+      background-position: center;
+      min-height: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      text-align: center;
+    }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+  &lt;!-- Hero dengan background image --&gt;
+  &lt;div class="hero"&gt;
+    &lt;h1&gt;Selamat Datang&lt;/h1&gt;
+  &lt;/div&gt;
+
+  &lt;!-- Gambar sebagai tautan --&gt;
+  &lt;a href="produk.html"&gt;
+    &lt;img src="produk.jpg" alt="Produk Unggulan" width="200" height="150"&gt;
+  &lt;/a&gt;
+
+  &lt;!-- Artikel dengan gambar float --&gt;
+  &lt;div class="clearfix"&gt;
+    &lt;img src="artikel.jpg" alt="Ilustrasi" 
+         class="gambar-artikel" width="200" height="140"&gt;
+    &lt;p&gt;Ini adalah isi artikel yang mengalir di samping gambar.&lt;/p&gt;
+  &lt;/div&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</div>
+
+  <h2>Ringkasan Atribut &lt;img&gt;</h2>
+  <table>
+    <tr>
+      <th>Atribut</th>
+      <th>Contoh</th>
+      <th>Keterangan</th>
+    </tr>
+    <tr>
+      <td><code>src</code></td>
+      <td><code>src="foto.jpg"</code></td>
+      <td>Path atau URL gambar (wajib)</td>
+    </tr>
+    <tr>
+      <td><code>alt</code></td>
+      <td><code>alt="Deskripsi"</code></td>
+      <td>Teks alternatif (wajib)</td>
+    </tr>
+    <tr>
+      <td><code>width</code></td>
+      <td><code>width="300"</code></td>
+      <td>Lebar gambar dalam piksel</td>
+    </tr>
+    <tr>
+      <td><code>height</code></td>
+      <td><code>height="200"</code></td>
+      <td>Tinggi gambar dalam piksel</td>
+    </tr>
+    <tr>
+      <td><code>style</code></td>
+      <td><code>style="float: left"</code></td>
+      <td>Style CSS inline</td>
+    </tr>
+    <tr>
+      <td><code>title</code></td>
+      <td><code>title="Tooltip"</code></td>
+      <td>Teks tooltip saat hover</td>
+    </tr>
+  </table>
+
+  <div style="margin-top: 30px; display: flex; justify-content: space-between;">
+    <a class="back-btn" href="links.html">« Sebelumnya: Links</a>
+    <a class="back-btn" href="favicon.html">Berikutnya: Favicon »</a>
+  </div>
+</div>
+
+</body>
+</html>

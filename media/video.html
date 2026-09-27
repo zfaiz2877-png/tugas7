@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>HTML Video - Tutorial Bahasa Indonesia</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { font-family: 'Segoe UI', sans-serif; margin: 0; background: #f9f9f9; color: #333; }
+    nav { background: #04AA6D; padding: 10px 20px; display: flex; align-items: center; flex-wrap: wrap; gap: 8px; }
+    nav a { color: white; text-decoration: none; margin-right: 15px; font-weight: 500; }
+    nav a:hover { text-decoration: underline; }
+    .content { max-width: 900px; margin: 30px auto; background: white; padding: 30px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+    h1 { color: #04AA6D; border-left: 5px solid #04AA6D; padding-left: 15px; }
+    h2 { color: #333; margin-top: 30px; border-bottom: 2px solid #eee; padding-bottom: 6px; }
+    h3 { color: #04AA6D; }
+    .back-btn { display: inline-block; margin-bottom: 20px; padding: 8px 16px; background: #04AA6D; color: white; text-decoration: none; border-radius: 4px; font-size: 14px; }
+    .back-btn:hover { background: #038a56; }
+    .example { background: #f1f1f1; border-left: 4px solid #04AA6D; padding: 15px; margin: 15px 0; border-radius: 4px; font-family: 'Courier New', monospace; font-size: 14px; white-space: pre-wrap; overflow-x: auto; }
+    .note { background: #ffffcc; padding: 12px; border-left: 4px solid #ffc107; margin: 15px 0; border-radius: 4px; font-size: 14px; }
+    .info { background: #e7f5ff; padding: 12px; border-left: 4px solid #339af0; margin: 15px 0; border-radius: 4px; font-size: 14px; }
+    .result { background: #f9f9f9; border: 2px dashed #04AA6D; border-radius: 4px; padding: 15px; margin: 10px 0; }
+    .result label { font-size: 13px; color: #04AA6D; font-weight: bold; display: block; margin-bottom: 8px; }
+    table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+    th { background: #04AA6D; color: white; padding: 10px; text-align: left; }
+    td { padding: 9px 10px; border-bottom: 1px solid #ddd; vertical-align: top; }
+    tr:nth-child(even) { background: #f9f9f9; }
+    code { background: #eee; padding: 2px 6px; border-radius: 3px; font-family: 'Courier New', monospace; font-size: 13px; color: #c0392b; }
+    .nav-pages { display: flex; justify-content: space-between; margin-top: 30px; flex-wrap: wrap; gap: 10px; }
+    .nav-pages a { padding: 10px 20px; background: #04AA6D; color: white; text-decoration: none; border-radius: 4px; font-weight: 500; }
+    .nav-pages a:hover { background: #038a56; }
+    .tag-list { display: flex; flex-wrap: wrap; gap: 8px; margin: 10px 0; }
+    .tag { display: inline-block; background: #04AA6D; color: white; padding: 4px 10px; border-radius: 20px; font-size: 13px; }
+    .attr-card { background: #f8f8f8; border: 1px solid #ddd; border-radius: 6px; padding: 14px 18px; margin: 10px 0; }
+    .attr-card h4 { color: #04AA6D; margin: 0 0 6px 0; font-family: 'Courier New', monospace; font-size: 16px; }
+    .attr-card p { margin: 0; font-size: 14px; color: #555; }
+    footer { text-align: center; padding: 20px; color: #aaa; font-size: 13px; margin-top: 40px; }
+    .browser-support { display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 10px; margin: 15px 0; }
+    .browser { text-align: center; padding: 10px; border-radius: 6px; font-size: 13px; font-weight: bold; }
+    .supported { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html">🏠 Beranda Utama</a>
+  <a href="index.html">← Media Index</a>
+  <a href="audio.html">Audio →</a>
+</nav>
+
+<div class="content">
+  <a href="../index.html" class="back-btn">← Kembali ke Index Utama</a>
+
+  <h1>🎬 HTML Video</h1>
+
+  <p>
+    Elemen <code>&lt;video&gt;</code> diperkenalkan dalam <strong>HTML5</strong> untuk memudahkan penyematan
+    konten video langsung ke dalam halaman web tanpa memerlukan plugin eksternal. Sebelum HTML5,
+    video harus diputar menggunakan teknologi seperti Adobe Flash yang tidak lagi didukung browser modern.
+  </p>
+
+  <div class="info">
+    ℹ️ <strong>Sejarah Singkat:</strong> Sebelum HTML5, tidak ada standar baku untuk menampilkan video di web.
+    Video memerlukan plugin seperti Flash, Silverlight, atau RealPlayer. HTML5 mengubah segalanya dengan
+    memperkenalkan elemen <code>&lt;video&gt;</code> yang didukung oleh semua browser modern.
+  </div>
+
+  <!-- =================== ELEMEN VIDEO DASAR =================== -->
+  <h2>1. Elemen &lt;video&gt; Dasar</h2>
+  <p>
+    Sintaks paling sederhana dari elemen <code>&lt;video&gt;</code> adalah dengan menggunakan atribut
+    <code>src</code> untuk menentukan sumber video dan <code>controls</code> untuk menampilkan kontrol pemutar.
+  </p>
+
+  <div class="example">&lt;video src="film.mp4" controls&gt;
+  Browser Anda tidak mendukung elemen video.
+&lt;/video&gt;</div>
+
+  <div class="result">
+    <label>▶ Hasil (Preview Kontrol Video):</label>
+    <p style="color:#555; font-size:14px; text-align:center; padding:20px; border:2px solid #04AA6D; border-radius:6px; background:#f0fdf8;">
+      🎬 [Di sini akan muncul pemutar video dengan kontrol play/pause/volume/fullscreen]<br>
+      <em style="color:#aaa; font-size:12px;">(Kontrol muncul jika atribut "controls" ditambahkan)</em>
+    </p>
+  </div>
+
+  <div class="note">
+    ⚠️ <strong>Fallback Text:</strong> Teks di antara tag <code>&lt;video&gt;</code> dan <code>&lt;/video&gt;</code>
+    hanya akan ditampilkan jika browser tidak mendukung elemen <code>&lt;video&gt;</code>. Ini disebut
+    <em>fallback content</em> dan penting untuk aksesibilitas.
+  </div>
+
+  <!-- =================== ATRIBUT SRC =================== -->
+  <h2>2. Atribut <code>src</code></h2>
+  <p>
+    Atribut <code>src</code> menentukan URL atau path ke file video yang ingin ditampilkan.
+    Bisa berupa path relatif, path absolut, atau URL lengkap.
+  </p>
+
+  <div class="example">&lt;!-- Path relatif --&gt;
+&lt;video src="video/film.mp4" controls&gt;&lt;/video&gt;
+
+&lt;!-- Path absolut --&gt;
+&lt;video src="/assets/video/film.mp4" controls&gt;&lt;/video&gt;
+
+&lt;!-- URL eksternal --&gt;
+&lt;video src="https://www.example.com/video/film.mp4" controls&gt;&lt;/video&gt;</div>
+
+  <!-- =================== ATRIBUT CONTROLS =================== -->
+  <h2>3. Atribut <code>controls</code></h2>
+  <p>
+    Atribut <code>controls</code> menambahkan kontrol pemutar bawaan browser ke video,
+    termasuk tombol <strong>play/pause</strong>, <strong>pengatur volume</strong>, <strong>progress bar</strong>,
+    dan tombol <strong>fullscreen</strong>. Atribut ini bersifat boolean (cukup ditulis tanpa nilai).
+  </p>
+
+  <div class="example">&lt;!-- Tanpa controls (tidak ada kontrol) --&gt;
+&lt;video src="film.mp4"&gt;&lt;/video&gt;
+
+&lt;!-- Dengan controls (ada kontrol pemutar) --&gt;
+&lt;video src="film.mp4" controls&gt;&lt;/video&gt;</div>
+
+  <div class="note">
+    💡 <strong>Tips:</strong> Selalu gunakan atribut <code>controls</code> kecuali Anda membuat kontrol
+    video kustom sendiri menggunakan JavaScript. Tanpa kontrol, pengguna tidak bisa menghentikan atau
+    mengatur volume video.
+  </div>
+
+  <!-- =================== ATRIBUT WIDTH DAN HEIGHT =================== -->
+  <h2>4. Atribut <code>width</code> dan <code>height</code></h2>
+  <p>
+    Atribut <code>width</code> dan <code>height</code> menentukan dimensi area pemutar video dalam piksel.
+    Disarankan untuk selalu menentukan dimensi agar halaman tidak melompat saat video dimuat.
+  </p>
+
+  <div class="example">&lt;video src="film.mp4" controls width="640" height="360"&gt;
+  Browser Anda tidak mendukung elemen video.
+&lt;/video&gt;</div>
+
+  <div class="info">
+    📐 <strong>Rasio Aspek:</strong> Video umumnya memiliki rasio aspek 16:9 (widescreen).
+    Contoh ukuran umum: 1280×720 (HD), 1920×1080 (Full HD), 640×360 (SD). Jika hanya satu
+    dimensi yang diatur, browser akan menjaga rasio aspek secara otomatis.
+  </div>
+
+  <!-- =================== ATRIBUT AUTOPLAY =================== -->
+  <h2>5. Atribut <code>autoplay</code></h2>
+  <p>
+    Atribut <code>autoplay</code> membuat video mulai diputar secara otomatis saat halaman dimuat.
+    Namun, sebagian besar browser modern memblokir <em>autoplay</em> dengan suara karena alasan
+    pengalaman pengguna (UX).
+  </p>
+
+  <div class="example">&lt;video src="film.mp4" autoplay controls&gt;
+  Browser Anda tidak mendukung elemen video.
+&lt;/video&gt;</div>
+
+  <div class="note">
+    ⚠️ <strong>Penting:</strong> Banyak browser modern (Chrome, Firefox, Safari) memblokir autoplay jika
+    video memiliki suara. Untuk mengatasi ini, gunakan kombinasi <code>autoplay</code> dan <code>muted</code>.
+    Video yang dibisukan (<em>muted</em>) biasanya diizinkan untuk autoplay.
+  </div>
+
+  <div class="example">&lt;!-- Solusi autoplay yang direkomendasikan --&gt;
+&lt;video src="film.mp4" autoplay muted controls&gt;
+  Browser Anda tidak mendukung elemen video.
+&lt;/video&gt;</div>
+
+  <!-- =================== ATRIBUT LOOP =================== -->
+  <h2>6. Atribut <code>loop</code></h2>
+  <p>
+    Atribut <code>loop</code> membuat video diputar ulang secara terus-menerus dari awal setelah mencapai akhir.
+    Berguna untuk video latar belakang atau animasi.
+  </p>
+
+  <div class="example">&lt;video src="film.mp4" controls loop&gt;
+  Browser Anda tidak mendukung elemen video.
+&lt;/video&gt;
+
+&lt;!-- Kombinasi: autoplay + muted + loop untuk video background --&gt;
+&lt;video src="background.mp4" autoplay muted loop&gt;
+  Browser Anda tidak mendukung elemen video.
+&lt;/video&gt;</div>
+
+  <!-- =================== ATRIBUT MUTED =================== -->
+  <h2>7. Atribut <code>muted</code></h2>
+  <p>
+    Atribut <code>muted</code> membisukan suara video secara default. Video tetap diputar tetapi tanpa
+    audio. Pengguna dapat mengaktifkan suara kembali melalui kontrol pemutar.
+  </p>
+
+  <div class="example">&lt;video src="film.mp4" controls muted&gt;
+  Browser Anda tidak mendukung elemen video.
+&lt;/video&gt;</div>
+
+  <!-- =================== ATRIBUT POSTER =================== -->
+  <h2>8. Atribut <code>poster</code></h2>
+  <p>
+    Atribut <code>poster</code> menentukan gambar yang akan ditampilkan sebelum video diputar atau
+    selama video sedang diunduh. Jika tidak ditentukan, browser akan menggunakan frame pertama video
+    sebagai poster.
+  </p>
+
+  <div class="example">&lt;video src="film.mp4" controls poster="thumbnail.jpg" width="640" height="360"&gt;
+  Browser Anda tidak mendukung elemen video.
+&lt;/video&gt;</div>
+
+  <!-- =================== ATRIBUT PRELOAD =================== -->
+  <h2>9. Atribut <code>preload</code></h2>
+  <p>
+    Atribut <code>preload</code> memberi petunjuk kepada browser tentang bagaimana video harus
+    dimuat saat halaman dibuka.
+  </p>
+
+  <table>
+    <tr>
+      <th>Nilai</th>
+      <th>Deskripsi</th>
+    </tr>
+    <tr>
+      <td><code>none</code></td>
+      <td>Browser tidak akan memuat video sama sekali sebelum pengguna menekan play</td>
+    </tr>
+    <tr>
+      <td><code>metadata</code></td>
+      <td>Browser hanya memuat metadata video (durasi, dimensi, dll.) — <strong>default</strong></td>
+    </tr>
+    <tr>
+      <td><code>auto</code></td>
+      <td>Browser dapat memuat seluruh video saat halaman dimuat</td>
+    </tr>
+  </table>
+
+  <div class="example">&lt;video src="film.mp4" controls preload="metadata"&gt;
+  Browser Anda tidak mendukung elemen video.
+&lt;/video&gt;</div>
+
+  <!-- =================== ELEMEN SOURCE =================== -->
+  <h2>10. Elemen &lt;source&gt; – Multiple Format</h2>
+  <p>
+    Elemen <code>&lt;source&gt;</code> digunakan di dalam <code>&lt;video&gt;</code> untuk menyediakan
+    beberapa format video sebagai alternatif. Browser akan memilih format pertama yang didukungnya
+    dan mengabaikan sisanya.
+  </p>
+
+  <p>Mengapa ini penting? Karena tidak semua browser mendukung format video yang sama:</p>
+
+  <table>
+    <tr>
+      <th>Format</th>
+      <th>Ekstensi</th>
+      <th>MIME Type</th>
+      <th>Dukungan Browser</th>
+    </tr>
+    <tr>
+      <td><strong>MP4</strong> (H.264)</td>
+      <td>.mp4</td>
+      <td>video/mp4</td>
+      <td>Chrome, Firefox, Safari, Edge, Opera</td>
+    </tr>
+    <tr>
+      <td><strong>WebM</strong> (VP8/VP9)</td>
+      <td>.webm</td>
+      <td>video/webm</td>
+      <td>Chrome, Firefox, Edge, Opera</td>
+    </tr>
+    <tr>
+      <td><strong>OGG</strong> (Theora)</td>
+      <td>.ogg / .ogv</td>
+      <td>video/ogg</td>
+      <td>Chrome, Firefox, Opera</td>
+    </tr>
+  </table>
+
+  <div class="example">&lt;video controls width="640" height="360"&gt;
+  &lt;source src="film.mp4"  type="video/mp4"&gt;
+  &lt;source src="film.webm" type="video/webm"&gt;
+  &lt;source src="film.ogg"  type="video/ogg"&gt;
+  Browser Anda tidak mendukung elemen video.
+&lt;/video&gt;</div>
+
+  <div class="info">
+    ℹ️ <strong>Cara Kerja:</strong> Browser membaca elemen <code>&lt;source&gt;</code> dari atas ke bawah.
+    Ia akan memilih format <strong>pertama</strong> yang bisa diputar. Karena MP4 paling banyak didukung,
+    letakkan MP4 di posisi pertama.
+  </div>
+
+  <!-- =================== ATRIBUT TYPE =================== -->
+  <h2>11. Atribut <code>type</code> pada &lt;source&gt;</h2>
+  <p>
+    Atribut <code>type</code> pada elemen <code>&lt;source&gt;</code> memberitahu browser tentang
+    format MIME dari file media, sehingga browser tidak perlu mengunduh file untuk mengetahui
+    apakah format tersebut didukung atau tidak.
+  </p>
+
+  <div class="example">&lt;source src="film.mp4"  type="video/mp4"&gt;
+&lt;source src="film.webm" type="video/webm"&gt;
+&lt;source src="film.ogg"  type="video/ogg"&gt;</div>
+
+  <div class="note">
+    💡 <strong>Tips Performa:</strong> Selalu sertakan atribut <code>type</code> pada setiap elemen
+    <code>&lt;source&gt;</code>. Ini membantu browser menentukan dengan cepat format mana yang
+    didukung tanpa perlu mengunduh file terlebih dahulu.
+  </div>
+
+  <!-- =================== FALLBACK TEXT =================== -->
+  <h2>12. Teks Fallback (Cadangan)</h2>
+  <p>
+    Teks atau konten yang diletakkan di antara tag <code>&lt;video&gt;</code> dan <code>&lt;/video&gt;</code>
+    disebut <strong>fallback content</strong>. Konten ini hanya ditampilkan jika browser tidak mendukung
+    elemen video HTML5.
+  </p>
+
+  <div class="example">&lt;video src="film.mp4" controls&gt;
+  &lt;!-- Fallback text sederhana --&gt;
+  Browser Anda tidak mendukung pemutaran video HTML5.
+  Silakan &lt;a href="film.mp4"&gt;unduh video&lt;/a&gt; untuk menontonnya.
+&lt;/video&gt;</div>
+
+  <div class="example">&lt;!-- Fallback dengan pesan lebih informatif --&gt;
+&lt;video controls width="640" height="360"&gt;
+  &lt;source src="film.mp4"  type="video/mp4"&gt;
+  &lt;source src="film.webm" type="video/webm"&gt;
+  &lt;p&gt;
+    Maaf, browser Anda tidak mendukung video HTML5.
+    Anda dapat &lt;a href="film.mp4"&gt;mengunduh video di sini&lt;/a&gt;.
+  &lt;/p&gt;
+&lt;/video&gt;</div>
+
+  <!-- =================== CONTOH LENGKAP =================== -->
+  <h2>13. Contoh Lengkap</h2>
+  <p>Berikut adalah contoh penggunaan elemen <code>&lt;video&gt;</code> secara lengkap dan profesional:</p>
+
+  <div class="example">&lt;!DOCTYPE html&gt;
+&lt;html lang="id"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;title&gt;Halaman Video&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+  &lt;h2&gt;Video Tutorial HTML&lt;/h2&gt;
+
+  &lt;video
+    controls
+    width="640"
+    height="360"
+    poster="thumbnail.jpg"
+    preload="metadata"&gt;
+
+    &lt;source src="tutorial.mp4"  type="video/mp4"&gt;
+    &lt;source src="tutorial.webm" type="video/webm"&gt;
+    &lt;source src="tutorial.ogg"  type="video/ogg"&gt;
+
+    &lt;p&gt;Browser Anda tidak mendukung video HTML5.
+       &lt;a href="tutorial.mp4"&gt;Unduh video&lt;/a&gt;&lt;/p&gt;
+  &lt;/video&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</div>
+
+  <!-- =================== RINGKASAN ATRIBUT =================== -->
+  <h2>14. Ringkasan Semua Atribut</h2>
+  <table>
+    <tr>
+      <th>Atribut</th>
+      <th>Tipe</th>
+      <th>Deskripsi</th>
+    </tr>
+    <tr>
+      <td><code>src</code></td>
+      <td>URL</td>
+      <td>Menentukan URL sumber file video</td>
+    </tr>
+    <tr>
+      <td><code>controls</code></td>
+      <td>Boolean</td>
+      <td>Menampilkan kontrol pemutar bawaan browser</td>
+    </tr>
+    <tr>
+      <td><code>autoplay</code></td>
+      <td>Boolean</td>
+      <td>Video diputar otomatis saat halaman dimuat</td>
+    </tr>
+    <tr>
+      <td><code>loop</code></td>
+      <td>Boolean</td>
+      <td>Video diulang dari awal setelah selesai</td>
+    </tr>
+    <tr>
+      <td><code>muted</code></td>
+      <td>Boolean</td>
+      <td>Membisukan audio video secara default</td>
+    </tr>
+    <tr>
+      <td><code>width</code></td>
+      <td>Pixels</td>
+      <td>Menentukan lebar pemutar video</td>
+    </tr>
+    <tr>
+      <td><code>height</code></td>
+      <td>Pixels</td>
+      <td>Menentukan tinggi pemutar video</td>
+    </tr>
+    <tr>
+      <td><code>poster</code></td>
+      <td>URL</td>
+      <td>Gambar yang ditampilkan sebelum video diputar</td>
+    </tr>
+    <tr>
+      <td><code>preload</code></td>
+      <td>none/metadata/auto</td>
+      <td>Cara browser memuat video saat halaman dibuka</td>
+    </tr>
+  </table>
+
+  <!-- =================== DUKUNGAN BROWSER =================== -->
+  <h2>15. Dukungan Browser</h2>
+  <p>Elemen <code>&lt;video&gt;</code> didukung oleh semua browser modern:</p>
+  <div class="browser-support">
+    <div class="browser supported">🌐 Chrome<br>Didukung</div>
+    <div class="browser supported">🦊 Firefox<br>Didukung</div>
+    <div class="browser supported">🧭 Safari<br>Didukung</div>
+    <div class="browser supported">🔵 Edge<br>Didukung</div>
+    <div class="browser supported">🔴 Opera<br>Didukung</div>
+  </div>
+
+  <div class="note">
+    📌 <strong>Ringkasan Penting:</strong><br>
+    • Gunakan <code>&lt;video src="..." controls&gt;</code> untuk video dasar<br>
+    • Gunakan <code>&lt;source&gt;</code> untuk mendukung berbagai format (MP4, WebM, OGG)<br>
+    • Tambahkan <code>muted</code> jika ingin <code>autoplay</code> bekerja di browser modern<br>
+    • Selalu sertakan teks fallback untuk aksesibilitas<br>
+    • Tentukan <code>width</code> dan <code>height</code> untuk menghindari layout shift
+  </div>
+
+  <div class="nav-pages">
+    <a href="index.html">← Media Index</a>
+    <a href="audio.html">HTML Audio →</a>
+  </div>
+</div>
+
+<footer>
+  &copy; 2024 Tugas W3Schools · HTML Video · Dibuat dengan HTML5
+</footer>
+
+</body>
+</html>

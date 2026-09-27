@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HTML Id - Tutorial W3Schools Bahasa Indonesia</title>
+  <style>
+    body { font-family: 'Segoe UI', sans-serif; margin: 0; background: #f9f9f9; color: #333; }
+    nav { background: #04AA6D; padding: 10px 20px; display: flex; align-items: center; flex-wrap: wrap; gap: 8px; }
+    nav a { color: white; text-decoration: none; margin-right: 15px; font-weight: 500; }
+    nav a:hover { text-decoration: underline; }
+    .content { max-width: 900px; margin: 30px auto; background: white; padding: 30px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+    h1 { color: #04AA6D; border-left: 5px solid #04AA6D; padding-left: 15px; }
+    h2 { color: #333; margin-top: 30px; border-bottom: 2px solid #f0f0f0; padding-bottom: 5px; }
+    h3 { color: #04AA6D; }
+    .example { background: #f1f1f1; border-left: 4px solid #04AA6D; padding: 15px; margin: 15px 0; border-radius: 4px; font-family: monospace; white-space: pre-wrap; font-size: 14px; }
+    .note { background: #ffffcc; padding: 12px; border-left: 4px solid #ffc107; margin: 15px 0; border-radius: 4px; }
+    .tip { background: #e8f5e9; padding: 12px; border-left: 4px solid #04AA6D; margin: 15px 0; border-radius: 4px; }
+    .warning { background: #fde8e8; padding: 12px; border-left: 4px solid #e74c3c; margin: 15px 0; border-radius: 4px; }
+    .back-btn { display: inline-block; margin-bottom: 20px; padding: 8px 16px; background: #04AA6D; color: white; text-decoration: none; border-radius: 4px; }
+    .back-btn:hover { background: #038a57; }
+    table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+    th { background: #04AA6D; color: white; padding: 10px; text-align: left; }
+    td { padding: 8px 10px; border-bottom: 1px solid #ddd; }
+    tr:nth-child(even) { background: #f9f9f9; }
+    .result-box { background: #fff; border: 2px dashed #04AA6D; padding: 15px; margin: 10px 0; border-radius: 4px; }
+    .nav-btns { display: flex; justify-content: space-between; margin-top: 30px; flex-wrap: wrap; gap: 10px; }
+    .nav-btn { padding: 10px 20px; background: #04AA6D; color: white; text-decoration: none; border-radius: 4px; font-weight: 500; }
+    .nav-btn:hover { background: #038a57; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html">🏠 Home</a>
+  <a href="classes.html">« Sebelumnya: Classes</a>
+  <a href="iframes.html">Berikutnya: Iframes »</a>
+</nav>
+
+<div class="content">
+  <a href="index.html" class="back-btn">← Kembali ke Index</a>
+
+  <h1>HTML Id (Atribut id)</h1>
+  <p>
+    Atribut <code>id</code> digunakan untuk memberikan <strong>identitas unik</strong> pada sebuah elemen HTML.
+    Nilainya harus unik di seluruh halaman — tidak boleh ada dua elemen yang memiliki nilai <code>id</code> yang sama.
+    Atribut <code>id</code> digunakan oleh CSS (untuk styling) maupun JavaScript (untuk manipulasi DOM).
+  </p>
+
+  <div class="note">
+    <strong>📌 Catatan:</strong> Nilai <code>id</code> <em>bersifat case-sensitive</em> (peka huruf besar-kecil).
+    Artinya, <code>id="myHeader"</code> dan <code>id="myheader"</code> dianggap sebagai dua id yang berbeda.
+    Selain itu, setiap id harus unik dalam satu halaman HTML.
+  </div>
+
+  <h2>1. Sintaks Dasar Atribut id</h2>
+  <p>
+    Untuk memberikan id pada elemen, tambahkan atribut <code>id="namaId"</code> di dalam tag pembuka.
+    Di CSS, id ditarget menggunakan tanda pagar (<code>#</code>) diikuti nama id-nya.
+  </p>
+
+  <div class="example">&lt;!-- HTML: memberikan id pada elemen --&gt;
+&lt;h1 id="judul-utama"&gt;Ini Judul Utama&lt;/h1&gt;
+&lt;p  id="paragraf-intro"&gt;Ini paragraf intro.&lt;/p&gt;
+
+/* CSS: menarget id dengan tanda pagar (#) */
+#judul-utama {
+  color: #04AA6D;
+  font-size: 36px;
+}
+
+#paragraf-intro {
+  font-size: 18px;
+  color: #555;
+}</div>
+
+  <div class="result-box">
+    <strong>Hasil:</strong><br><br>
+    <h1 style="color:#04AA6D;font-size:2em;margin:0 0 8px 0;">Ini Judul Utama</h1>
+    <p style="font-size:18px;color:#555;margin:0;">Ini paragraf intro.</p>
+  </div>
+
+  <h2>2. Aturan Keunikan id</h2>
+  <p>
+    Berbeda dengan atribut <code>class</code>, nilai <code>id</code> harus <strong>benar-benar unik</strong>
+    dalam satu dokumen HTML. Tidak boleh ada dua elemen dengan id yang sama.
+  </p>
+
+  <div class="example">&lt;!-- BENAR: setiap elemen memiliki id yang berbeda --&gt;
+&lt;div id="header"&gt;Bagian Header&lt;/div&gt;
+&lt;div id="konten"&gt;Bagian Konten&lt;/div&gt;
+&lt;div id="footer"&gt;Bagian Footer&lt;/div&gt;
+
+&lt;!-- SALAH: dua elemen memiliki id yang sama --&gt;
+&lt;div id="header"&gt;Header Pertama&lt;/div&gt;
+&lt;div id="header"&gt;Header Kedua&lt;/div&gt; &lt;!-- ❌ SALAH! --&gt;</div>
+
+  <div class="warning">
+    <strong>⚠️ Peringatan:</strong> Menggunakan id yang sama pada lebih dari satu elemen adalah
+    <strong>pelanggaran standar HTML</strong> dan dapat menyebabkan perilaku yang tidak terduga,
+    terutama saat menggunakan JavaScript (<code>getElementById</code> hanya akan mengembalikan elemen pertama).
+    Jika Anda butuh menarget banyak elemen, gunakan atribut <code>class</code>.
+  </div>
+
+  <h2>3. Menggunakan id di CSS</h2>
+  <p>
+    Untuk menarget elemen dengan <code>id</code> tertentu di CSS, gunakan tanda pagar (<code>#</code>)
+    diikuti nama id. Selector id memiliki <strong>spesifisitas yang lebih tinggi</strong> daripada selector kelas.
+  </p>
+
+  <div class="example">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;style&gt;
+  #header {
+    background-color: #04AA6D;
+    color: white;
+    padding: 20px;
+    text-align: center;
+  }
+  #sidebar {
+    background-color: #f4f4f4;
+    float: left;
+    width: 200px;
+    padding: 15px;
+    min-height: 200px;
+  }
+  #main {
+    margin-left: 230px;
+    padding: 15px;
+  }
+  #footer {
+    background-color: #333;
+    color: white;
+    padding: 15px;
+    text-align: center;
+    clear: both;
+  }
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+  &lt;div id="header"&gt;
+    &lt;h1&gt;Website Saya&lt;/h1&gt;
+  &lt;/div&gt;
+
+  &lt;div id="sidebar"&gt;
+    &lt;h3&gt;Menu&lt;/h3&gt;
+    &lt;ul&gt;
+      &lt;li&gt;Beranda&lt;/li&gt;
+      &lt;li&gt;Tentang&lt;/li&gt;
+      &lt;li&gt;Kontak&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/div&gt;
+
+  &lt;div id="main"&gt;
+    &lt;h2&gt;Selamat Datang&lt;/h2&gt;
+    &lt;p&gt;Ini adalah konten utama halaman.&lt;/p&gt;
+  &lt;/div&gt;
+
+  &lt;div id="footer"&gt;
+    &lt;p&gt;© 2024 Website Saya&lt;/p&gt;
+  &lt;/div&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</div>
+
+  <div class="result-box">
+    <strong>Hasil:</strong><br><br>
+    <div style="background:#04AA6D;color:white;padding:15px;text-align:center;border-radius:4px 4px 0 0;">
+      <h1 style="margin:0;font-size:1.4em;">Website Saya</h1>
+    </div>
+    <div style="display:flex;">
+      <div style="background:#f4f4f4;width:160px;padding:12px;min-height:100px;flex-shrink:0;">
+        <h3 style="margin:0 0 8px 0;font-size:0.95em;">Menu</h3>
+        <ul style="margin:0;padding-left:18px;font-size:0.9em;">
+          <li>Beranda</li>
+          <li>Tentang</li>
+          <li>Kontak</li>
+        </ul>
+      </div>
+      <div style="padding:12px;flex:1;">
+        <h2 style="margin:0 0 8px 0;font-size:1.1em;">Selamat Datang</h2>
+        <p style="margin:0;font-size:0.9em;">Ini adalah konten utama halaman.</p>
+      </div>
+    </div>
+    <div style="background:#333;color:white;padding:10px;text-align:center;border-radius:0 0 4px 4px;">
+      <p style="margin:0;font-size:0.9em;">© 2024 Website Saya</p>
+    </div>
+  </div>
+
+  <h2>4. Menggunakan id di JavaScript</h2>
+  <p>
+    Salah satu kegunaan terpenting dari <code>id</code> adalah dalam JavaScript.
+    Metode <code>document.getElementById("namaId")</code> memungkinkan kita mengakses dan memanipulasi
+    elemen secara langsung berdasarkan id-nya.
+  </p>
+
+  <div class="example">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+  &lt;h1 id="judul-halaman"&gt;Judul Awal&lt;/h1&gt;
+  &lt;p id="teks-demo"&gt;Paragraf ini bisa diubah.&lt;/p&gt;
+
+  &lt;button onclick="ubahKonten()"&gt;Ubah Konten&lt;/button&gt;
+  &lt;button onclick="ubahWarna()"&gt;Ubah Warna&lt;/button&gt;
+  &lt;button onclick="sembunyikan()"&gt;Sembunyikan&lt;/button&gt;
+
+  &lt;script&gt;
+  function ubahKonten() {
+    document.getElementById("judul-halaman").innerHTML = "Judul Telah Diubah!";
+    document.getElementById("teks-demo").innerHTML = "Teks ini sudah berubah menggunakan JavaScript!";
+  }
+
+  function ubahWarna() {
+    document.getElementById("judul-halaman").style.color = "#e74c3c";
+    document.getElementById("teks-demo").style.backgroundColor = "#ffffcc";
+  }
+
+  function sembunyikan() {
+    document.getElementById("teks-demo").style.display = "none";
+  }
+  &lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</div>
+
+  <div class="result-box">
+    <strong>Demonstrasi Interaktif:</strong><br><br>
+    <h1 id="judul-halaman" style="color:#04AA6D;margin:0 0 8px 0;font-size:1.4em;">Judul Awal</h1>
+    <p id="teks-demo" style="margin:0 0 12px 0;">Paragraf ini bisa diubah.</p>
+    <button onclick="document.getElementById('judul-halaman').innerHTML='Judul Telah Diubah!'; document.getElementById('teks-demo').innerHTML='Teks ini sudah berubah menggunakan JavaScript!';" style="padding:8px 14px;background:#04AA6D;color:white;border:none;border-radius:4px;cursor:pointer;margin:4px;">Ubah Konten</button>
+    <button onclick="document.getElementById('judul-halaman').style.color='#e74c3c'; document.getElementById('teks-demo').style.backgroundColor='#ffffcc';" style="padding:8px 14px;background:#3498db;color:white;border:none;border-radius:4px;cursor:pointer;margin:4px;">Ubah Warna</button>
+    <button onclick="document.getElementById('teks-demo').style.display='none';" style="padding:8px 14px;background:#e74c3c;color:white;border:none;border-radius:4px;cursor:pointer;margin:4px;">Sembunyikan</button>
+  </div>
+
+  <h2>5. Menggunakan id sebagai Bookmark (Jangkar)</h2>
+  <p>
+    Atribut <code>id</code> dapat digunakan untuk membuat <strong>bookmark (jangkar)</strong> di dalam halaman HTML.
+    Ini sangat berguna untuk halaman yang panjang, memungkinkan pengguna melompat langsung ke bagian tertentu.
+  </p>
+
+  <h3>Cara Membuat Bookmark</h3>
+  <p>Ada dua langkah untuk membuat dan menggunakan bookmark:</p>
+  <ol>
+    <li><strong>Buat target bookmark</strong> dengan memberikan <code>id</code> pada elemen tujuan.</li>
+    <li><strong>Buat link</strong> yang mengarah ke id tersebut menggunakan sintaks <code>href="#namaId"</code>.</li>
+  </ol>
+
+  <div class="example">&lt;!-- Langkah 1: Buat target dengan id --&gt;
+&lt;h2 id="bab1"&gt;Bab 1: Pengenalan HTML&lt;/h2&gt;
+&lt;p&gt;...konten bab 1...&lt;/p&gt;
+
+&lt;h2 id="bab2"&gt;Bab 2: CSS Dasar&lt;/h2&gt;
+&lt;p&gt;...konten bab 2...&lt;/p&gt;
+
+&lt;h2 id="bab3"&gt;Bab 3: JavaScript&lt;/h2&gt;
+&lt;p&gt;...konten bab 3...&lt;/p&gt;
+
+&lt;!-- Langkah 2: Buat link menuju bookmark --&gt;
+&lt;!-- Link di halaman yang SAMA --&gt;
+&lt;a href="#bab1"&gt;Pergi ke Bab 1&lt;/a&gt;
+&lt;a href="#bab2"&gt;Pergi ke Bab 2&lt;/a&gt;
+&lt;a href="#bab3"&gt;Pergi ke Bab 3&lt;/a&gt;
+
+&lt;!-- Link dari halaman LAIN --&gt;
+&lt;a href="materi.html#bab2"&gt;Buka Bab 2 dari halaman lain&lt;/a&gt;</div>
+
+  <div class="result-box">
+    <strong>Contoh Daftar Isi:</strong><br><br>
+    <nav style="background:#f4f4f4;padding:15px;border-radius:4px;display:inline-block;">
+      <strong>📋 Daftar Isi</strong>
+      <ul style="margin:8px 0 0 0;padding-left:20px;">
+        <li><a href="#bab1-demo" style="color:#04AA6D;text-decoration:none;">Bab 1: Pengenalan HTML</a></li>
+        <li><a href="#bab2-demo" style="color:#04AA6D;text-decoration:none;">Bab 2: CSS Dasar</a></li>
+        <li><a href="#bab3-demo" style="color:#04AA6D;text-decoration:none;">Bab 3: JavaScript</a></li>
+      </ul>
+    </nav>
+    <div id="bab1-demo" style="margin-top:15px;padding:10px;background:#e8f5e9;border-radius:4px;">
+      <h3 style="margin:0 0 5px 0;color:#04AA6D;">Bab 1: Pengenalan HTML</h3>
+      <p style="margin:0;">Ini konten bab 1...</p>
+    </div>
+    <div id="bab2-demo" style="margin-top:10px;padding:10px;background:#e3f2fd;border-radius:4px;">
+      <h3 style="margin:0 0 5px 0;color:#1565c0;">Bab 2: CSS Dasar</h3>
+      <p style="margin:0;">Ini konten bab 2...</p>
+    </div>
+    <div id="bab3-demo" style="margin-top:10px;padding:10px;background:#fff3e0;border-radius:4px;">
+      <h3 style="margin:0 0 5px 0;color:#e65100;">Bab 3: JavaScript</h3>
+      <p style="margin:0;">Ini konten bab 3...</p>
+    </div>
+  </div>
+
+  <h2>6. Spesifisitas: id vs class</h2>
+  <p>
+    Dalam CSS, <strong>spesifisitas</strong> menentukan aturan mana yang "menang" ketika ada konflik gaya.
+    Selector id (<code>#</code>) memiliki spesifisitas yang lebih tinggi daripada selector kelas (<code>.</code>).
+  </p>
+
+  <div class="example">&lt;style&gt;
+  .warna-biru {
+    color: blue;  /* Spesifisitas: 0,1,0 */
+  }
+  #warna-merah {
+    color: red;   /* Spesifisitas: 1,0,0 — LEBIH TINGGI, akan menang! */
+  }
+&lt;/style&gt;
+
+&lt;!-- Elemen ini akan berwarna MERAH karena id lebih spesifik --&gt;
+&lt;p id="warna-merah" class="warna-biru"&gt;Warna teks ini apa?&lt;/p&gt;</div>
+
+  <div class="result-box">
+    <strong>Hasil:</strong><br><br>
+    <p style="color:red;margin:0;">Warna teks ini apa? → <strong>Merah!</strong> (karena id lebih spesifik)</p>
+  </div>
+
+  <h2>7. Perbandingan: id vs class</h2>
+  <table>
+    <tr>
+      <th>Aspek</th>
+      <th>id</th>
+      <th>class</th>
+    </tr>
+    <tr>
+      <td>Selector CSS</td>
+      <td><code>#namaId</code> (tanda pagar)</td>
+      <td><code>.namaKelas</code> (tanda titik)</td>
+    </tr>
+    <tr>
+      <td>Keunikan</td>
+      <td>Harus unik per halaman</td>
+      <td>Boleh digunakan berulang</td>
+    </tr>
+    <tr>
+      <td>Satu elemen</td>
+      <td>Hanya satu id per elemen</td>
+      <td>Boleh punya banyak kelas</td>
+    </tr>
+    <tr>
+      <td>Spesifisitas</td>
+      <td>Tinggi (menang atas class)</td>
+      <td>Lebih rendah dari id</td>
+    </tr>
+    <tr>
+      <td>JavaScript</td>
+      <td><code>getElementById("namaId")</code></td>
+      <td><code>getElementsByClassName("nama")</code></td>
+    </tr>
+    <tr>
+      <td>Bookmark/Anchor</td>
+      <td>Ya, <code>href="#namaId"</code></td>
+      <td>Tidak bisa</td>
+    </tr>
+    <tr>
+      <td>Best practice</td>
+      <td>Elemen unik: header, footer, modal</td>
+      <td>Komponen berulang: kartu, tombol</td>
+    </tr>
+  </table>
+
+  <h2>8. Aturan Penamaan id</h2>
+  <table>
+    <tr>
+      <th>Aturan</th>
+      <th>Keterangan</th>
+    </tr>
+    <tr>
+      <td>Unik per halaman</td>
+      <td>Tidak boleh ada dua elemen dengan id yang sama</td>
+    </tr>
+    <tr>
+      <td>Tidak boleh diawali angka</td>
+      <td><code>id="section1"</code> ✅ — <code>id="1section"</code> ❌</td>
+    </tr>
+    <tr>
+      <td>Tidak boleh mengandung spasi</td>
+      <td>Gunakan tanda hubung: <code>id="main-content"</code></td>
+    </tr>
+    <tr>
+      <td>Case-sensitive</td>
+      <td><code>id="Header"</code> ≠ <code>id="header"</code></td>
+    </tr>
+    <tr>
+      <td>Deskriptif</td>
+      <td>Gunakan nama yang bermakna: <code>id="login-form"</code></td>
+    </tr>
+  </table>
+
+  <h2>Ringkasan</h2>
+  <div class="tip">
+    <strong>💡 Poin-poin penting tentang HTML Id:</strong>
+    <ul>
+      <li>Atribut <code>id</code> memberikan identitas <strong>unik</strong> pada elemen HTML.</li>
+      <li>Setiap nilai id harus unik dalam satu halaman — tidak boleh duplikat.</li>
+      <li>Di CSS, targetkan id menggunakan selector pagar: <code>#namaId { ... }</code>.</li>
+      <li>Di JavaScript, gunakan <code>document.getElementById("namaId")</code> untuk mengakses elemen.</li>
+      <li>Gunakan id sebagai bookmark/jangkar dengan <code>href="#namaId"</code>.</li>
+      <li>Id memiliki spesifisitas CSS yang lebih tinggi daripada class.</li>
+    </ul>
+  </div>
+
+  <div class="nav-btns">
+    <a href="classes.html" class="nav-btn">« Sebelumnya: Classes</a>
+    <a href="iframes.html" class="nav-btn">Berikutnya: Iframes »</a>
+  </div>
+</div>
+
+</body>
+</html>

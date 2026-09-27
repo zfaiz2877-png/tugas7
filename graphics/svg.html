@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>HTML SVG - Tutorial</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', sans-serif; background: #f9f9f9; color: #333; }
+    nav {
+      background: #04AA6D;
+      padding: 12px 24px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    nav a { color: white; text-decoration: none; font-weight: 500; font-size: 15px; }
+    nav a:hover { text-decoration: underline; }
+    .content {
+      max-width: 900px;
+      margin: 36px auto;
+      background: white;
+      padding: 36px 40px;
+      border-radius: 10px;
+      box-shadow: 0 2px 14px rgba(0,0,0,0.10);
+    }
+    h1 {
+      color: #04AA6D;
+      border-left: 6px solid #04AA6D;
+      padding-left: 16px;
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
+    h2 { color: #333; margin-top: 32px; margin-bottom: 12px; font-size: 1.2rem; border-bottom: 2px solid #e8e8e8; padding-bottom: 6px; }
+    h3 { color: #04AA6D; margin-top: 22px; margin-bottom: 10px; font-size: 1.05rem; }
+    p { line-height: 1.75; margin-bottom: 12px; }
+    .back-btn {
+      display: inline-block;
+      margin-bottom: 24px;
+      padding: 8px 18px;
+      background: #04AA6D;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      font-size: 14px;
+      transition: background 0.2s;
+    }
+    .back-btn:hover { background: #028a57; }
+    .example {
+      background: #f4f4f4;
+      border-left: 5px solid #04AA6D;
+      padding: 16px 18px;
+      margin: 16px 0;
+      border-radius: 5px;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 0.92rem;
+      line-height: 1.7;
+      overflow-x: auto;
+      white-space: pre;
+    }
+    .note {
+      background: #ffffcc;
+      padding: 13px 16px;
+      border-left: 4px solid #ffc107;
+      margin: 18px 0;
+      border-radius: 5px;
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+    .info-box {
+      background: #e8f5ff;
+      border-left: 4px solid #2196F3;
+      padding: 13px 16px;
+      margin: 18px 0;
+      border-radius: 5px;
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+    .result-box {
+      border: 2px solid #04AA6D;
+      border-radius: 6px;
+      padding: 20px;
+      margin: 14px 0 22px 0;
+      background: #f9fefc;
+    }
+    .result-box p.label {
+      font-size: 0.82rem;
+      color: #888;
+      margin-bottom: 10px;
+      font-style: italic;
+    }
+    code {
+      background: #eee;
+      padding: 1px 5px;
+      border-radius: 3px;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 0.92em;
+    }
+    table { width: 100%; border-collapse: collapse; margin: 14px 0; }
+    th { background: #04AA6D; color: white; padding: 10px 14px; text-align: left; }
+    td { padding: 9px 14px; border-bottom: 1px solid #e0e0e0; font-size: 0.93rem; vertical-align: top; }
+    tr:nth-child(even) { background: #f4fdf9; }
+    .section-nav {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 1px solid #eee;
+    }
+    .section-nav a {
+      padding: 9px 20px;
+      background: #04AA6D;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      font-size: 14px;
+    }
+    .section-nav a:hover { background: #028a57; }
+    ul.method-list { margin: 10px 0 10px 20px; }
+    ul.method-list li { margin-bottom: 6px; line-height: 1.6; }
+    .compare-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin: 16px 0;
+    }
+    .compare-card {
+      border: 2px solid #04AA6D;
+      border-radius: 8px;
+      padding: 16px;
+    }
+    .compare-card h4 { color: #04AA6D; margin-bottom: 8px; }
+    .compare-card ul { margin-left: 16px; }
+    .compare-card li { margin-bottom: 5px; font-size: 0.93rem; line-height: 1.5; }
+    svg { overflow: visible; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html">🏠 Beranda</a>
+  <a href="canvas.html">← Canvas</a>
+  <a href="index.html">Graphics Index →</a>
+</nav>
+
+<div class="content">
+  <a href="../index.html" class="back-btn">← Kembali ke Beranda</a>
+
+  <h1>🔷 HTML SVG</h1>
+  <p>SVG (Scalable Vector Graphics) adalah format grafis berbasis <strong>XML</strong> untuk menggambar grafis vektor di web. Berbeda dengan Canvas yang berbasis piksel, SVG mendefinisikan bentuk secara matematis sehingga gambar tetap tajam di semua ukuran dan resolusi layar.</p>
+
+  <!-- ====== APA ITU SVG ====== -->
+  <h2>1. Apa Itu SVG?</h2>
+  <p>SVG adalah singkatan dari <strong>Scalable Vector Graphics</strong>. SVG menggunakan sintaks berbasis XML, yang berarti setiap elemen grafis (lingkaran, kotak, garis, dll.) adalah sebuah tag HTML yang bisa diakses dan dimanipulasi langsung melalui CSS atau JavaScript.</p>
+
+  <div class="info-box">
+    ℹ️ <strong>Keunggulan utama SVG:</strong> Gambar tidak akan buram saat diperbesar karena dideskripsikan secara matematis, bukan dengan piksel. Satu file SVG yang sama bisa tampil sempurna di layar kecil maupun billboard raksasa.
+  </div>
+
+  <div class="example">&lt;!-- SVG langsung di dalam HTML --&gt;
+&lt;svg width="200" height="100" xmlns="http://www.w3.org/2000/svg"&gt;
+  &lt;rect width="200" height="100" fill="#04AA6D" /&gt;
+  &lt;text x="100" y="55" fill="white" text-anchor="middle" font-size="18"&gt;
+    Halo SVG!
+  &lt;/text&gt;
+&lt;/svg&gt;</div>
+
+  <div class="result-box">
+    <p class="label">▶ Hasil:</p>
+    <svg width="200" height="100" xmlns="http://www.w3.org/2000/svg">
+      <rect width="200" height="100" fill="#04AA6D" rx="6"/>
+      <text x="100" y="55" fill="white" text-anchor="middle" font-size="18" font-family="Segoe UI, sans-serif">Halo SVG!</text>
+    </svg>
+  </div>
+
+  <h3>Atribut Elemen &lt;svg&gt;</h3>
+  <table>
+    <tr><th>Atribut</th><th>Fungsi</th></tr>
+    <tr><td><code>width</code></td><td>Lebar viewport SVG</td></tr>
+    <tr><td><code>height</code></td><td>Tinggi viewport SVG</td></tr>
+    <tr><td><code>xmlns</code></td><td>Namespace XML — diperlukan untuk SVG standalone</td></tr>
+    <tr><td><code>viewBox</code></td><td>Mendefinisikan area koordinat internal (untuk scaling)</td></tr>
+  </table>
+
+  <!-- ====== RECT ====== -->
+  <h2>2. Elemen &lt;rect&gt; — Persegi Panjang</h2>
+  <p>Elemen <code>&lt;rect&gt;</code> digunakan untuk menggambar persegi panjang. Atribut <code>rx</code> dan <code>ry</code> bisa digunakan untuk sudut yang membulat.</p>
+
+  <div class="example">&lt;svg width="400" height="130" xmlns="http://www.w3.org/2000/svg"&gt;
+
+  &lt;!-- Persegi panjang biasa --&gt;
+  &lt;rect x="10" y="20" width="120" height="80"
+        fill="#04AA6D" /&gt;
+
+  &lt;!-- Persegi panjang dengan border (stroke) --&gt;
+  &lt;rect x="150" y="20" width="120" height="80"
+        fill="none" stroke="#e91e63" stroke-width="3" /&gt;
+
+  &lt;!-- Persegi dengan sudut bulat --&gt;
+  &lt;rect x="290" y="20" width="100" height="80"
+        fill="#1565C0" rx="15" ry="15" opacity="0.8" /&gt;
+
+&lt;/svg&gt;</div>
+
+  <div class="result-box">
+    <p class="label">▶ Hasil:</p>
+    <svg width="400" height="130" xmlns="http://www.w3.org/2000/svg">
+      <rect x="10" y="20" width="120" height="80" fill="#04AA6D"/>
+      <rect x="150" y="20" width="120" height="80" fill="none" stroke="#e91e63" stroke-width="3"/>
+      <rect x="290" y="20" width="100" height="80" fill="#1565C0" rx="15" ry="15" opacity="0.8"/>
+    </svg>
+  </div>
+
+  <h3>Atribut &lt;rect&gt;</h3>
+  <table>
+    <tr><th>Atribut</th><th>Fungsi</th></tr>
+    <tr><td><code>x</code>, <code>y</code></td><td>Posisi sudut kiri atas</td></tr>
+    <tr><td><code>width</code>, <code>height</code></td><td>Lebar dan tinggi kotak</td></tr>
+    <tr><td><code>fill</code></td><td>Warna isi</td></tr>
+    <tr><td><code>stroke</code></td><td>Warna garis tepi</td></tr>
+    <tr><td><code>stroke-width</code></td><td>Ketebalan garis tepi</td></tr>
+    <tr><td><code>rx</code>, <code>ry</code></td><td>Radius sudut bulat (x dan y)</td></tr>
+    <tr><td><code>opacity</code></td><td>Transparansi (0=transparan, 1=penuh)</td></tr>
+  </table>
+
+  <!-- ====== CIRCLE ====== -->
+  <h2>3. Elemen &lt;circle&gt; — Lingkaran</h2>
+  <p>Elemen <code>&lt;circle&gt;</code> menggambar lingkaran sempurna berdasarkan titik pusat dan jari-jari.</p>
+
+  <div class="example">&lt;svg width="400" height="140" xmlns="http://www.w3.org/2000/svg"&gt;
+
+  &lt;!-- Lingkaran terisi --&gt;
+  &lt;circle cx="70" cy="70" r="55" fill="#FF5733" /&gt;
+
+  &lt;!-- Lingkaran outline saja --&gt;
+  &lt;circle cx="210" cy="70" r="55"
+          fill="none" stroke="#04AA6D" stroke-width="4" /&gt;
+
+  &lt;!-- Lingkaran semi-transparan --&gt;
+  &lt;circle cx="340" cy="70" r="50" fill="#9C27B0" opacity="0.6" /&gt;
+  &lt;circle cx="360" cy="70" r="50" fill="#E91E63" opacity="0.6" /&gt;
+
+&lt;/svg&gt;</div>
+
+  <div class="result-box">
+    <p class="label">▶ Hasil:</p>
+    <svg width="400" height="140" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="70" cy="70" r="55" fill="#FF5733"/>
+      <circle cx="210" cy="70" r="55" fill="none" stroke="#04AA6D" stroke-width="4"/>
+      <circle cx="340" cy="70" r="50" fill="#9C27B0" opacity="0.6"/>
+      <circle cx="360" cy="70" r="50" fill="#E91E63" opacity="0.6"/>
+    </svg>
+  </div>
+
+  <!-- ====== ELLIPSE ====== -->
+  <h2>4. Elemen &lt;ellipse&gt; — Elips</h2>
+  <p>Elemen <code>&lt;ellipse&gt;</code> serupa dengan lingkaran, namun memiliki dua jari-jari berbeda: horizontal (<code>rx</code>) dan vertikal (<code>ry</code>).</p>
+
+  <div class="example">&lt;svg width="400" height="130" xmlns="http://www.w3.org/2000/svg"&gt;
+
+  &lt;!-- Elips horizontal --&gt;
+  &lt;ellipse cx="110" cy="65" rx="100" ry="50" fill="#04AA6D" /&gt;
+
+  &lt;!-- Elips vertikal --&gt;
+  &lt;ellipse cx="300" cy="65" rx="50" ry="60"
+           fill="none" stroke="#FF9800" stroke-width="3"
+           stroke-dasharray="8 4" /&gt;
+
+&lt;/svg&gt;</div>
+
+  <div class="result-box">
+    <p class="label">▶ Hasil:</p>
+    <svg width="400" height="130" xmlns="http://www.w3.org/2000/svg">
+      <ellipse cx="110" cy="65" rx="100" ry="50" fill="#04AA6D"/>
+      <ellipse cx="300" cy="65" rx="50" ry="60" fill="none" stroke="#FF9800" stroke-width="3" stroke-dasharray="8 4"/>
+    </svg>
+  </div>
+
+  <!-- ====== LINE ====== -->
+  <h2>5. Elemen &lt;line&gt; — Garis</h2>
+  <p>Elemen <code>&lt;line&gt;</code> menggambar garis lurus dari satu titik ke titik lain.</p>
+
+  <div class="example">&lt;svg width="400" height="140" xmlns="http://www.w3.org/2000/svg"&gt;
+
+  &lt;!-- Garis horizontal --&gt;
+  &lt;line x1="20" y1="30" x2="380" y2="30"
+        stroke="#333" stroke-width="2" /&gt;
+
+  &lt;!-- Garis diagonal --&gt;
+  &lt;line x1="20" y1="60" x2="380" y2="120"
+        stroke="#04AA6D" stroke-width="3" /&gt;
+
+  &lt;!-- Garis putus-putus --&gt;
+  &lt;line x1="20" y1="90" x2="380" y2="90"
+        stroke="#e91e63" stroke-width="2"
+        stroke-dasharray="12 6" /&gt;
+
+  &lt;!-- Garis tebal --&gt;
+  &lt;line x1="20" y1="130" x2="380" y2="130"
+        stroke="#1565C0" stroke-width="8"
+        stroke-linecap="round" /&gt;
+
+&lt;/svg&gt;</div>
+
+  <div class="result-box">
+    <p class="label">▶ Hasil:</p>
+    <svg width="400" height="150" xmlns="http://www.w3.org/2000/svg">
+      <line x1="20" y1="30" x2="380" y2="30" stroke="#333" stroke-width="2"/>
+      <line x1="20" y1="60" x2="380" y2="125" stroke="#04AA6D" stroke-width="3"/>
+      <line x1="20" y1="90" x2="380" y2="90" stroke="#e91e63" stroke-width="2" stroke-dasharray="12 6"/>
+      <line x1="20" y1="135" x2="380" y2="135" stroke="#1565C0" stroke-width="8" stroke-linecap="round"/>
+    </svg>
+  </div>
+
+  <!-- ====== POLYGON ====== -->
+  <h2>6. Elemen &lt;polygon&gt; — Poligon</h2>
+  <p>Elemen <code>&lt;polygon&gt;</code> menggambar bentuk tertutup (closed shape) dari sekumpulan titik. Garis dari titik terakhir secara otomatis kembali ke titik pertama.</p>
+
+  <div class="example">&lt;svg width="400" height="160" xmlns="http://www.w3.org/2000/svg"&gt;
+
+  &lt;!-- Segitiga --&gt;
+  &lt;polygon points="90,10 20,150 160,150"
+           fill="#FF5733" opacity="0.85" /&gt;
+
+  &lt;!-- Segilima (pentagon) --&gt;
+  &lt;polygon points="265,15 310,55 295,110 235,110 220,55"
+           fill="#04AA6D" stroke="white" stroke-width="2" /&gt;
+
+  &lt;!-- Bintang 6 sudut --&gt;
+  &lt;polygon points="360,10 370,40 400,40 375,60 385,90 360,72 335,90 345,60 320,40 350,40"
+           fill="#F39C12" /&gt;
+
+&lt;/svg&gt;</div>
+
+  <div class="result-box">
+    <p class="label">▶ Hasil:</p>
+    <svg width="400" height="160" xmlns="http://www.w3.org/2000/svg">
+      <polygon points="90,10 20,150 160,150" fill="#FF5733" opacity="0.85"/>
+      <polygon points="265,15 310,55 295,110 235,110 220,55" fill="#04AA6D" stroke="white" stroke-width="2"/>
+      <polygon points="360,10 370,40 400,40 375,60 385,90 360,72 335,90 345,60 320,40 350,40" fill="#F39C12"/>
+    </svg>
+  </div>
+
+  <!-- ====== POLYLINE ====== -->
+  <h2>7. Elemen &lt;polyline&gt; — Garis Beruntun</h2>
+  <p>Elemen <code>&lt;polyline&gt;</code> mirip dengan <code>&lt;polygon&gt;</code>, namun <strong>tidak menutup</strong> garis secara otomatis. Cocok untuk grafik garis (line chart).</p>
+
+  <div class="example">&lt;svg width="400" height="160" xmlns="http://www.w3.org/2000/svg"&gt;
+
+  &lt;!-- Grid --&gt;
+  &lt;line x1="30" y1="10" x2="30" y2="145" stroke="#ddd" stroke-width="1"/&gt;
+  &lt;line x1="30" y1="145" x2="390" y2="145" stroke="#ddd" stroke-width="1"/&gt;
+
+  &lt;!-- Data grafik --&gt;
+  &lt;polyline
+    points="30,130 90,90 150,110 210,50 270,70 330,30 390,55"
+    fill="none" stroke="#04AA6D" stroke-width="3"
+    stroke-linejoin="round" stroke-linecap="round" /&gt;
+
+  &lt;!-- Area bawah grafik --&gt;
+  &lt;polyline
+    points="30,145 30,130 90,90 150,110 210,50 270,70 330,30 390,55 390,145"
+    fill="rgba(4,170,109,0.15)" stroke="none" /&gt;
+
+  &lt;!-- Titik data --&gt;
+  &lt;circle cx="30"  cy="130" r="4" fill="#04AA6D"/&gt;
+  &lt;circle cx="90"  cy="90"  r="4" fill="#04AA6D"/&gt;
+  &lt;circle cx="150" cy="110" r="4" fill="#04AA6D"/&gt;
+  &lt;circle cx="210" cy="50"  r="4" fill="#04AA6D"/&gt;
+  &lt;circle cx="270" cy="70"  r="4" fill="#04AA6D"/&gt;
+  &lt;circle cx="330" cy="30"  r="4" fill="#04AA6D"/&gt;
+  &lt;circle cx="390" cy="55"  r="4" fill="#04AA6D"/&gt;
+
+&lt;/svg&gt;</div>
+
+  <div class="result-box">
+    <p class="label">▶ Hasil (contoh line chart sederhana):</p>
+    <svg width="400" height="160" xmlns="http://www.w3.org/2000/svg">
+      <line x1="30" y1="10" x2="30" y2="145" stroke="#ddd" stroke-width="1"/>
+      <line x1="30" y1="145" x2="390" y2="145" stroke="#ddd" stroke-width="1"/>
+      <polyline points="30,130 90,90 150,110 210,50 270,70 330,30 390,55" fill="none" stroke="#04AA6D" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+      <polyline points="30,145 30,130 90,90 150,110 210,50 270,70 330,30 390,55 390,145" fill="rgba(4,170,109,0.15)" stroke="none"/>
+      <circle cx="30"  cy="130" r="5" fill="#04AA6D"/>
+      <circle cx="90"  cy="90"  r="5" fill="#04AA6D"/>
+      <circle cx="150" cy="110" r="5" fill="#04AA6D"/>
+      <circle cx="210" cy="50"  r="5" fill="#04AA6D"/>
+      <circle cx="270" cy="70"  r="5" fill="#04AA6D"/>
+      <circle cx="330" cy="30"  r="5" fill="#04AA6D"/>
+      <circle cx="390" cy="55"  r="5" fill="#04AA6D"/>
+    </svg>
+  </div>
+
+  <!-- ====== PATH ====== -->
+  <h2>8. Elemen &lt;path&gt; — Path (Jalur Kustom)</h2>
+  <p>Elemen <code>&lt;path&gt;</code> adalah elemen SVG paling powerful. Ia dapat membuat hampir semua bentuk menggunakan atribut <code>d</code> (data path) yang berisi serangkaian perintah gambar.</p>
+
+  <h3>Perintah Path Utama</h3>
+  <table>
+    <tr><th>Perintah</th><th>Nama</th><th>Parameter</th></tr>
+    <tr><td><code>M</code></td><td>Move To</td><td>x y — Pindah ke titik</td></tr>
+    <tr><td><code>L</code></td><td>Line To</td><td>x y — Garis lurus ke titik</td></tr>
+    <tr><td><code>H</code></td><td>Horizontal Line</td><td>x — Garis horizontal</td></tr>
+    <tr><td><code>V</code></td><td>Vertical Line</td><td>y — Garis vertikal</td></tr>
+    <tr><td><code>C</code></td><td>Cubic Bezier</td><td>x1 y1, x2 y2, x y</td></tr>
+    <tr><td><code>Q</code></td><td>Quadratic Bezier</td><td>x1 y1, x y</td></tr>
+    <tr><td><code>A</code></td><td>Arc</td><td>rx ry xrot large-arc sweep x y</td></tr>
+    <tr><td><code>Z</code></td><td>Close Path</td><td>Sambung ke titik awal</td></tr>
+  </table>
+  <p><em>Huruf kecil (m, l, h, v, c, q, a, z) berarti koordinat relatif terhadap posisi saat ini.</em></p>
+
+  <div class="example">&lt;svg width="400" height="200" xmlns="http://www.w3.org/2000/svg"&gt;
+
+  &lt;!-- Bentuk custom dengan garis lurus --&gt;
+  &lt;path d="M 20 160 L 80 20 L 140 160 Z"
+        fill="#FF5733" /&gt;
+
+  &lt;!-- Kurva Bezier kuadratik --&gt;
+  &lt;path d="M 170 160 Q 230 20 290 160"
+        fill="none" stroke="#04AA6D" stroke-width="3" /&gt;
+
+  &lt;!-- Kurva Bezier kubik --&gt;
+  &lt;path d="M 170 160 C 185 20 275 20 290 160"
+        fill="rgba(4,170,109,0.15)" stroke="none" /&gt;
+
+  &lt;!-- Arc (busur elips) --&gt;
+  &lt;path d="M 310 160 A 50 80 0 0 1 390 160"
+        fill="#9C27B0" opacity="0.8" /&gt;
+
+  &lt;!-- Anak panah / arrow --&gt;
+  &lt;path d="M 50 185 L 350 185 L 330 175 M 350 185 L 330 195"
+        fill="none" stroke="#1565C0" stroke-width="2"
+        stroke-linecap="round" /&gt;
+
+&lt;/svg&gt;</div>
+
+  <div class="result-box">
+    <p class="label">▶ Hasil:</p>
+    <svg width="400" height="200" xmlns="http://www.w3.org/2000/svg">
+      <path d="M 20 160 L 80 20 L 140 160 Z" fill="#FF5733"/>
+      <path d="M 170 160 Q 230 20 290 160" fill="none" stroke="#04AA6D" stroke-width="3"/>
+      <path d="M 170 160 C 185 20 275 20 290 160" fill="rgba(4,170,109,0.15)" stroke="none"/>
+      <path d="M 310 160 A 50 80 0 0 1 390 160" fill="#9C27B0" opacity="0.8"/>
+      <path d="M 50 185 L 350 185 L 330 175 M 350 185 L 330 195" fill="none" stroke="#1565C0" stroke-width="2" stroke-linecap="round"/>
+    </svg>
+  </div>
+
+  <!-- ====== TEXT ====== -->
+  <h2>9. Elemen &lt;text&gt; dan &lt;tspan&gt; — Teks SVG</h2>
+  <p>SVG memiliki elemen <code>&lt;text&gt;</code> untuk menampilkan teks. Teks SVG adalah bagian dari DOM, sehingga bisa diindeks oleh mesin pencari dan diakses oleh screen reader.</p>
+
+  <div class="example">&lt;svg width="400" height="160" xmlns="http://www.w3.org/2000/svg"&gt;
+
+  &lt;!-- Teks biasa --&gt;
+  &lt;text x="20" y="40" font-size="22" fill="#04AA6D"
+        font-family="Segoe UI, sans-serif" font-weight="bold"&gt;
+    Halo, SVG!
+  &lt;/text&gt;
+
+  &lt;!-- Teks tengah (text-anchor) --&gt;
+  &lt;text x="200" y="80" font-size="16" fill="#333"
+        text-anchor="middle" font-style="italic"&gt;
+    Teks di tengah
+  &lt;/text&gt;
+
+  &lt;!-- Teks dengan stroke --&gt;
+  &lt;text x="20" y="120" font-size="28" fill="none"
+        stroke="#e91e63" stroke-width="1.5"&gt;
+    Outline Only
+  &lt;/text&gt;
+
+  &lt;!-- tspan untuk span di dalam teks --&gt;
+  &lt;text x="20" y="155" font-size="15" fill="#555"&gt;
+    Ini &lt;tspan fill="#04AA6D" font-weight="bold"&gt;hijau&lt;/tspan&gt;
+    dan &lt;tspan fill="#e91e63"&gt;merah&lt;/tspan&gt;
+  &lt;/text&gt;
+
+&lt;/svg&gt;</div>
+
+  <div class="result-box">
+    <p class="label">▶ Hasil:</p>
+    <svg width="400" height="160" xmlns="http://www.w3.org/2000/svg">
+      <text x="20" y="40" font-size="22" fill="#04AA6D" font-family="Segoe UI, sans-serif" font-weight="bold">Halo, SVG!</text>
+      <text x="200" y="80" font-size="16" fill="#333" text-anchor="middle" font-style="italic">Teks di tengah</text>
+      <text x="20" y="120" font-size="28" fill="none" stroke="#e91e63" stroke-width="1.5">Outline Only</text>
+      <text x="20" y="155" font-size="15" fill="#555">Ini <tspan fill="#04AA6D" font-weight="bold">hijau</tspan> dan <tspan fill="#e91e63">merah</tspan></text>
+    </svg>
+  </div>
+
+  <!-- ====== GRADIEN SVG ====== -->
+  <h2>10. Gradien dan Filter pada SVG</h2>
+  <p>SVG mendukung gradien melalui elemen <code>&lt;defs&gt;</code>. Gradien didefinisikan di dalam <code>&lt;defs&gt;</code> lalu direferensikan menggunakan <code>url(#id)</code>.</p>
+
+  <div class="example">&lt;svg width="400" height="150" xmlns="http://www.w3.org/2000/svg"&gt;
+  &lt;defs&gt;
+    &lt;!-- Linear Gradient --&gt;
+    &lt;linearGradient id="linGrad" x1="0%" y1="0%" x2="100%" y2="0%"&gt;
+      &lt;stop offset="0%"   stop-color="#04AA6D" /&gt;
+      &lt;stop offset="100%" stop-color="#1a237e" /&gt;
+    &lt;/linearGradient&gt;
+
+    &lt;!-- Radial Gradient --&gt;
+    &lt;radialGradient id="radGrad" cx="50%" cy="50%" r="50%"&gt;
+      &lt;stop offset="0%"   stop-color="#FFEB3B" /&gt;
+      &lt;stop offset="100%" stop-color="#FF5722" /&gt;
+    &lt;/radialGradient&gt;
+  &lt;/defs&gt;
+
+  &lt;rect x="10"  y="20" width="180" height="100" fill="url(#linGrad)" rx="8" /&gt;
+  &lt;circle cx="310" cy="70" r="60" fill="url(#radGrad)" /&gt;
+&lt;/svg&gt;</div>
+
+  <div class="result-box">
+    <p class="label">▶ Hasil:</p>
+    <svg width="400" height="150" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="linGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#04AA6D"/>
+          <stop offset="100%" stop-color="#1a237e"/>
+        </linearGradient>
+        <radialGradient id="radGrad" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#FFEB3B"/>
+          <stop offset="100%" stop-color="#FF5722"/>
+        </radialGradient>
+      </defs>
+      <rect x="10" y="20" width="180" height="110" fill="url(#linGrad)" rx="8"/>
+      <circle cx="310" cy="70" r="60" fill="url(#radGrad)"/>
+    </svg>
+  </div>
+
+  <!-- ====== ANIMASI SVG ====== -->
+  <h2>11. Animasi SVG</h2>
+  <p>SVG mendukung animasi bawaan menggunakan elemen <code>&lt;animate&gt;</code> dan <code>&lt;animateTransform&gt;</code>, atau bisa juga menggunakan CSS <code>@keyframes</code>.</p>
+
+  <div class="example">&lt;svg width="400" height="120" xmlns="http://www.w3.org/2000/svg"&gt;
+
+  &lt;!-- Lingkaran bergerak (translate animasi) --&gt;
+  &lt;circle cx="60" cy="60" r="30" fill="#04AA6D"&gt;
+    &lt;animateTransform
+      attributeName="transform"
+      type="translate"
+      values="0,0; 280,0; 0,0"
+      dur="3s"
+      repeatCount="indefinite" /&gt;
+  &lt;/circle&gt;
+
+  &lt;!-- Kotak berputar --&gt;
+  &lt;rect x="350" y="35" width="40" height="40" fill="#e91e63"&gt;
+    &lt;animateTransform
+      attributeName="transform"
+      type="rotate"
+      values="0 370 55; 360 370 55"
+      dur="2s"
+      repeatCount="indefinite" /&gt;
+  &lt;/rect&gt;
+
+&lt;/svg&gt;</div>
+
+  <div class="result-box">
+    <p class="label">▶ Hasil (animasi berjalan):</p>
+    <svg width="400" height="120" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="60" cy="60" r="30" fill="#04AA6D">
+        <animateTransform attributeName="transform" type="translate" values="0,0; 280,0; 0,0" dur="3s" repeatCount="indefinite"/>
+      </circle>
+      <rect x="350" y="35" width="40" height="40" fill="#e91e63">
+        <animateTransform attributeName="transform" type="rotate" values="0 370 55; 360 370 55" dur="2s" repeatCount="indefinite"/>
+      </rect>
+    </svg>
+  </div>
+
+  <!-- ====== PERBANDINGAN SVG VS CANVAS ====== -->
+  <h2>12. SVG vs Canvas — Perbandingan Lengkap</h2>
+  <div class="compare-grid">
+    <div class="compare-card">
+      <h4>🔷 SVG (Scalable Vector Graphics)</h4>
+      <ul>
+        <li>✅ Berbasis vektor — tajam di semua resolusi</li>
+        <li>✅ Bagian dari DOM — bisa diakses CSS & JS</li>
+        <li>✅ Teks dapat diindeks search engine</li>
+        <li>✅ Mudah dibuat animasi dengan CSS</li>
+        <li>✅ Event listener per elemen</li>
+        <li>✅ Ideal untuk ikon, logo, ilustrasi</li>
+        <li>❌ Lambat untuk ribuan elemen kompleks</li>
+        <li>❌ Tidak cocok untuk efek berbasis piksel</li>
+      </ul>
+    </div>
+    <div class="compare-card">
+      <h4>🎨 Canvas (HTML Canvas)</h4>
+      <ul>
+        <li>✅ Performa tinggi untuk animasi kompleks</li>
+        <li>✅ Kontrol penuh piksel per piksel</li>
+        <li>✅ Cocok untuk game dan manipulasi gambar</li>
+        <li>✅ WebGL untuk grafis 3D</li>
+        <li>✅ Bisa ekspor sebagai gambar (PNG/JPG)</li>
+        <li>❌ Gambar raster — buram saat diperbesar</li>
+        <li>❌ Tidak ada akses DOM per elemen</li>
+        <li>❌ Tidak bisa diindeks search engine</li>
+      </ul>
+    </div>
+  </div>
+
+  <table style="margin-top:16px;">
+    <tr><th>Kriteria</th><th>SVG</th><th>Canvas</th></tr>
+    <tr><td>Ikon / Logo</td><td>✅ Direkomendasikan</td><td>❌ Tidak ideal</td></tr>
+    <tr><td>Game 2D</td><td>❌ Kurang performa</td><td>✅ Direkomendasikan</td></tr>
+    <tr><td>Infografis</td><td>✅ Direkomendasikan</td><td>✅ Bisa</td></tr>
+    <tr><td>Photo Editing</td><td>❌ Tidak cocok</td><td>✅ Direkomendasikan</td></tr>
+    <tr><td>Animasi Interaktif</td><td>✅ Mudah</td><td>✅ Fleksibel</td></tr>
+    <tr><td>Responsif/Scalable</td><td>✅ Native</td><td>⚠️ Perlu penanganan manual</td></tr>
+  </table>
+
+  <div class="note">
+    💡 <strong>Saran:</strong> Tidak perlu memilih salah satu secara mutlak! Dalam aplikasi web modern, kedua teknologi sering digunakan bersamaan sesuai kebutuhan spesifik masing-masing komponen.
+  </div>
+
+  <h2>13. Referensi Elemen SVG</h2>
+  <table>
+    <tr><th>Elemen</th><th>Fungsi</th></tr>
+    <tr><td><code>&lt;svg&gt;</code></td><td>Container utama SVG</td></tr>
+    <tr><td><code>&lt;rect&gt;</code></td><td>Persegi panjang</td></tr>
+    <tr><td><code>&lt;circle&gt;</code></td><td>Lingkaran</td></tr>
+    <tr><td><code>&lt;ellipse&gt;</code></td><td>Elips / oval</td></tr>
+    <tr><td><code>&lt;line&gt;</code></td><td>Garis lurus</td></tr>
+    <tr><td><code>&lt;polyline&gt;</code></td><td>Rangkaian garis terbuka</td></tr>
+    <tr><td><code>&lt;polygon&gt;</code></td><td>Bentuk tertutup multi-sisi</td></tr>
+    <tr><td><code>&lt;path&gt;</code></td><td>Jalur kustom (paling fleksibel)</td></tr>
+    <tr><td><code>&lt;text&gt;</code></td><td>Teks dalam SVG</td></tr>
+    <tr><td><code>&lt;tspan&gt;</code></td><td>Span teks dengan style berbeda</td></tr>
+    <tr><td><code>&lt;defs&gt;</code></td><td>Definisi elemen yang dapat digunakan ulang</td></tr>
+    <tr><td><code>&lt;g&gt;</code></td><td>Grup elemen SVG</td></tr>
+    <tr><td><code>&lt;use&gt;</code></td><td>Gunakan ulang elemen dari defs</td></tr>
+    <tr><td><code>&lt;image&gt;</code></td><td>Gambar raster di dalam SVG</td></tr>
+    <tr><td><code>&lt;animate&gt;</code></td><td>Animasi atribut SVG</td></tr>
+    <tr><td><code>&lt;linearGradient&gt;</code></td><td>Gradien linear</td></tr>
+    <tr><td><code>&lt;radialGradient&gt;</code></td><td>Gradien radial</td></tr>
+    <tr><td><code>&lt;filter&gt;</code></td><td>Filter efek (blur, shadow, dll.)</td></tr>
+    <tr><td><code>&lt;clipPath&gt;</code></td><td>Clipping mask</td></tr>
+  </table>
+
+  <div class="section-nav">
+    <a href="canvas.html">← Canvas</a>
+    <a href="index.html">Graphics Index →</a>
+  </div>
+</div>
+
+</body>
+</html>

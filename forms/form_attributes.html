@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>HTML Form Attributes - W3Schools Bahasa Indonesia</title>
+  <style>
+    body { font-family: 'Segoe UI', sans-serif; margin: 0; background: #f9f9f9; color: #333; }
+    nav { background: #04AA6D; padding: 10px 20px; display: flex; align-items: center; flex-wrap: wrap; gap: 8px; }
+    nav a { color: white; text-decoration: none; margin-right: 15px; font-weight: 500; }
+    nav a:hover { text-decoration: underline; }
+    .content { max-width: 900px; margin: 30px auto; background: white; padding: 30px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+    h1 { color: #04AA6D; border-left: 5px solid #04AA6D; padding-left: 15px; }
+    h2 { color: #333; margin-top: 30px; border-bottom: 2px solid #e8f8f1; padding-bottom: 6px; }
+    h3 { color: #04AA6D; margin-top: 20px; }
+    .example { background: #f1f1f1; border-left: 4px solid #04AA6D; padding: 15px; margin: 15px 0; border-radius: 4px; font-family: monospace; white-space: pre-wrap; font-size: 14px; line-height: 1.6; }
+    .note { background: #ffffcc; padding: 12px; border-left: 4px solid #ffc107; margin: 15px 0; border-radius: 4px; }
+    .tip { background: #e8f8f1; padding: 12px; border-left: 4px solid #04AA6D; margin: 15px 0; border-radius: 4px; }
+    .back-btn { display: inline-block; margin-bottom: 20px; padding: 8px 16px; background: #04AA6D; color: white; text-decoration: none; border-radius: 4px; }
+    .back-btn:hover { background: #037f55; }
+    table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+    th { background: #04AA6D; color: white; padding: 10px; text-align: left; }
+    td { padding: 8px 10px; border-bottom: 1px solid #ddd; vertical-align: top; }
+    tr:nth-child(even) { background: #f9f9f9; }
+    .result-box { background: #fff; border: 2px solid #04AA6D; border-radius: 6px; padding: 20px; margin: 15px 0; }
+    .result-box label { display: block; margin-bottom: 5px; font-weight: 600; }
+    .result-box input[type="text"],
+    .result-box input[type="email"],
+    .result-box select,
+    .result-box textarea { width: 100%; padding: 8px 10px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; margin-bottom: 12px; font-size: 14px; }
+    .result-box input[type="submit"] { background: #04AA6D; color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer; font-size: 14px; }
+    .tag { background: #04AA6D; color: white; padding: 1px 6px; border-radius: 3px; font-family: monospace; font-size: 13px; }
+    .attr { background: #e8f8f1; color: #037f55; padding: 1px 6px; border-radius: 3px; font-family: monospace; font-size: 13px; border: 1px solid #b2dfdb; }
+    .attr-card { background: #f9f9f9; border: 1px solid #ddd; border-radius: 6px; padding: 18px; margin: 15px 0; border-left: 5px solid #04AA6D; }
+    .attr-card h3 { margin-top: 0; }
+    footer { text-align: center; padding: 20px; color: #888; font-size: 13px; margin-top: 20px; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html">&#8962; Beranda</a>
+  <a href="index.html">&#128193; Forms</a>
+  <a href="form.html">&larr; Prev: HTML Form</a>
+  <a href="form_elements.html">Next: Form Elements &rarr;</a>
+</nav>
+
+<div class="content">
+  <a href="../index.html" class="back-btn">&#8592; Kembali ke Indeks Utama</a>
+
+  <h1>HTML Form Attributes</h1>
+  <p>
+    Elemen <span class="tag">&lt;form&gt;</span> memiliki berbagai atribut yang mengontrol
+    bagaimana form bekerja — mulai dari ke mana data dikirim, metode pengiriman,
+    hingga pengaturan keamanan dan tampilan. Mari kita pelajari satu per satu.
+  </p>
+
+  <!-- ======================== RINGKASAN ATRIBUT ======================== -->
+  <h2>&#128203; Ringkasan Semua Atribut Form</h2>
+  <table>
+    <tr>
+      <th>Atribut</th>
+      <th>Nilai</th>
+      <th>Fungsi</th>
+    </tr>
+    <tr><td><code>action</code></td><td>URL</td><td>URL tujuan pengiriman data form</td></tr>
+    <tr><td><code>method</code></td><td>get | post</td><td>Metode HTTP untuk mengirim data</td></tr>
+    <tr><td><code>autocomplete</code></td><td>on | off</td><td>Mengaktifkan/menonaktifkan pelengkapan otomatis</td></tr>
+    <tr><td><code>novalidate</code></td><td>(boolean)</td><td>Menonaktifkan validasi browser</td></tr>
+    <tr><td><code>enctype</code></td><td>lihat nilai di bawah</td><td>Enkoding data saat dikirim</td></tr>
+    <tr><td><code>name</code></td><td>teks</td><td>Nama form untuk referensi JavaScript</td></tr>
+    <tr><td><code>target</code></td><td>_blank | _self | _parent | _top</td><td>Di mana respons ditampilkan</td></tr>
+    <tr><td><code>rel</code></td><td>noopener | noreferrer | dll.</td><td>Relasi antara dokumen saat ini dan yang dituju</td></tr>
+  </table>
+
+  <!-- ======================== ACTION ======================== -->
+  <div class="attr-card">
+    <h3>1. Atribut <span class="attr">action</span></h3>
+    <p>
+      Atribut <code>action</code> menentukan <strong>di mana data form dikirim</strong> setelah pengguna
+      menekan tombol Submit. Nilainya adalah URL file server yang akan memproses data.
+    </p>
+    <div class="example">&lt;!-- Kirim data ke file PHP di server --&gt;
+&lt;form action="/proses_form.php" method="post"&gt;
+  &lt;input type="text" name="nama" placeholder="Nama Anda"&gt;
+  &lt;input type="submit" value="Kirim"&gt;
+&lt;/form&gt;
+
+&lt;!-- Tanpa action = kirim ke halaman yang sama --&gt;
+&lt;form method="post"&gt;
+  &lt;input type="text" name="cari"&gt;
+  &lt;input type="submit" value="Cari"&gt;
+&lt;/form&gt;</div>
+    <div class="note">&#9888; Jika atribut <code>action</code> dihilangkan, data dikirim ke URL halaman saat ini.</div>
+  </div>
+
+  <!-- ======================== METHOD ======================== -->
+  <div class="attr-card">
+    <h3>2. Atribut <span class="attr">method</span></h3>
+    <p>
+      Atribut <code>method</code> menentukan <strong>metode HTTP</strong> yang digunakan untuk mengirim data form.
+    </p>
+    <div class="example">&lt;!-- Metode GET: data tampil di URL --&gt;
+&lt;form action="/cari.php" method="get"&gt;
+  &lt;input type="text" name="q" placeholder="Kata kunci..."&gt;
+  &lt;input type="submit" value="Cari"&gt;
+&lt;/form&gt;
+&lt;!-- URL hasil: /cari.php?q=kata+kunci --&gt;
+
+&lt;!-- Metode POST: data tersembunyi --&gt;
+&lt;form action="/login.php" method="post"&gt;
+  &lt;input type="text" name="username"&gt;
+  &lt;input type="password" name="password"&gt;
+  &lt;input type="submit" value="Masuk"&gt;
+&lt;/form&gt;</div>
+  </div>
+
+  <!-- ======================== AUTOCOMPLETE ======================== -->
+  <div class="attr-card">
+    <h3>3. Atribut <span class="attr">autocomplete</span></h3>
+    <p>
+      Atribut <code>autocomplete</code> menentukan apakah browser boleh <strong>melengkapi nilai input secara otomatis</strong>
+      berdasarkan nilai yang pernah dimasukkan pengguna sebelumnya.
+    </p>
+    <div class="example">&lt;!-- Autocomplete aktif (default) --&gt;
+&lt;form action="/aksi.php" method="post" autocomplete="on"&gt;
+  &lt;label&gt;Nama: &lt;input type="text" name="nama"&gt;&lt;/label&gt;
+  &lt;label&gt;Email: &lt;input type="email" name="email"&gt;&lt;/label&gt;
+  &lt;input type="submit"&gt;
+&lt;/form&gt;
+
+&lt;!-- Autocomplete dinonaktifkan --&gt;
+&lt;form action="/aksi.php" method="post" autocomplete="off"&gt;
+  &lt;label&gt;Kode OTP: &lt;input type="text" name="otp"&gt;&lt;/label&gt;
+  &lt;input type="submit"&gt;
+&lt;/form&gt;</div>
+    <div class="tip">&#128161; Nonaktifkan autocomplete untuk kolom yang bersifat sensitif atau sekali pakai seperti kode OTP.</div>
+  </div>
+
+  <!-- ======================== NOVALIDATE ======================== -->
+  <div class="attr-card">
+    <h3>4. Atribut <span class="attr">novalidate</span></h3>
+    <p>
+      Atribut <code>novalidate</code> adalah atribut boolean yang bila ada, menginstruksikan browser
+      untuk <strong>tidak melakukan validasi</strong> data form saat form dikirim.
+    </p>
+    <div class="example">&lt;!-- Browser tidak akan memvalidasi input email --&gt;
+&lt;form action="/aksi.php" method="post" novalidate&gt;
+  &lt;label&gt;Email:
+    &lt;input type="email" name="email" placeholder="masukkan email"&gt;
+  &lt;/label&gt;
+  &lt;input type="submit" value="Kirim (tanpa validasi)"&gt;
+&lt;/form&gt;</div>
+    <div class="note">&#9888; Tanpa <code>novalidate</code>, browser akan menolak pengiriman jika email tidak valid.</div>
+  </div>
+
+  <!-- ======================== ENCTYPE ======================== -->
+  <div class="attr-card">
+    <h3>5. Atribut <span class="attr">enctype</span></h3>
+    <p>
+      Atribut <code>enctype</code> menentukan <strong>bagaimana data form dikodekan</strong> saat dikirim ke server.
+      Atribut ini hanya berlaku untuk method <code>post</code>.
+    </p>
+    <table>
+      <tr><th>Nilai</th><th>Keterangan</th></tr>
+      <tr><td><code>application/x-www-form-urlencoded</code></td><td>Default. Semua karakter dikodekan sebelum dikirim</td></tr>
+      <tr><td><code>multipart/form-data</code></td><td>Wajib digunakan jika form menyertakan upload file</td></tr>
+      <tr><td><code>text/plain</code></td><td>Data dikirim tanpa encoding (tidak disarankan)</td></tr>
+    </table>
+    <div class="example">&lt;!-- Form untuk upload file - wajib multipart/form-data --&gt;
+&lt;form action="/upload.php" method="post"
+      enctype="multipart/form-data"&gt;
+  &lt;label&gt;Pilih file:
+    &lt;input type="file" name="berkas"&gt;
+  &lt;/label&gt;
+  &lt;input type="submit" value="Upload"&gt;
+&lt;/form&gt;</div>
+  </div>
+
+  <!-- ======================== NAME ======================== -->
+  <div class="attr-card">
+    <h3>6. Atribut <span class="attr">name</span></h3>
+    <p>
+      Atribut <code>name</code> pada elemen <code>&lt;form&gt;</code> memberikan <strong>nama unik pada form</strong>
+      sehingga dapat direferensikan oleh JavaScript atau diidentifikasi dalam dokumen dengan beberapa form.
+    </p>
+    <div class="example">&lt;form name="formLogin" action="/login.php" method="post"&gt;
+  &lt;input type="text" name="username"&gt;
+  &lt;input type="password" name="password"&gt;
+  &lt;input type="submit" value="Masuk"&gt;
+&lt;/form&gt;
+
+&lt;script&gt;
+  // Mengakses form lewat nama di JavaScript
+  var form = document.forms["formLogin"];
+  var user = form["username"].value;
+&lt;/script&gt;</div>
+  </div>
+
+  <!-- ======================== TARGET ======================== -->
+  <div class="attr-card">
+    <h3>7. Atribut <span class="attr">target</span></h3>
+    <p>
+      Atribut <code>target</code> menentukan <strong>di mana respons dari form ditampilkan</strong>
+      setelah form dikirim.
+    </p>
+    <table>
+      <tr><th>Nilai</th><th>Keterangan</th></tr>
+      <tr><td><code>_self</code></td><td>Default. Respons ditampilkan di tab/jendela yang sama</td></tr>
+      <tr><td><code>_blank</code></td><td>Respons dibuka di tab/jendela baru</td></tr>
+      <tr><td><code>_parent</code></td><td>Respons ditampilkan di frame induk</td></tr>
+      <tr><td><code>_top</code></td><td>Respons ditampilkan di seluruh jendela browser</td></tr>
+    </table>
+    <div class="example">&lt;!-- Buka hasil di tab baru --&gt;
+&lt;form action="/hasil.php" method="get" target="_blank"&gt;
+  &lt;input type="text" name="q" placeholder="Cari..."&gt;
+  &lt;input type="submit" value="Cari di Tab Baru"&gt;
+&lt;/form&gt;</div>
+  </div>
+
+  <!-- ======================== CONTOH LENGKAP ======================== -->
+  <h2>&#127775; Contoh Form dengan Berbagai Atribut</h2>
+  <div class="example">&lt;form
+  action="/daftar.php"
+  method="post"
+  autocomplete="on"
+  enctype="multipart/form-data"
+  name="formDaftar"
+  target="_self"&gt;
+
+  &lt;label for="nama"&gt;Nama Lengkap:&lt;/label&gt;
+  &lt;input type="text" id="nama" name="nama" required&gt;
+
+  &lt;label for="email"&gt;Email:&lt;/label&gt;
+  &lt;input type="email" id="email" name="email" required&gt;
+
+  &lt;label for="foto"&gt;Foto Profil:&lt;/label&gt;
+  &lt;input type="file" id="foto" name="foto" accept="image/*"&gt;
+
+  &lt;input type="submit" value="Daftar Sekarang"&gt;
+&lt;/form&gt;</div>
+
+  <h3>&#128064; Preview:</h3>
+  <div class="result-box">
+    <form action="#" method="post" autocomplete="on" onsubmit="return false;">
+      <label for="nama2">Nama Lengkap:</label>
+      <input type="text" id="nama2" name="nama" placeholder="Masukkan nama lengkap">
+      <label for="email2">Email:</label>
+      <input type="email" id="email2" name="email" placeholder="email@contoh.com">
+      <label for="foto2">Foto Profil:</label>
+      <input type="file" id="foto2" name="foto" accept="image/*" style="margin-bottom:12px;display:block;">
+      <input type="submit" value="Daftar Sekarang">
+    </form>
+  </div>
+
+  <h2>&#128203; Ringkasan</h2>
+  <ul>
+    <li><strong>action</strong> &mdash; URL tujuan pengiriman data</li>
+    <li><strong>method</strong> &mdash; GET (data di URL) atau POST (data tersembunyi)</li>
+    <li><strong>autocomplete</strong> &mdash; on/off untuk pelengkapan otomatis</li>
+    <li><strong>novalidate</strong> &mdash; menonaktifkan validasi browser</li>
+    <li><strong>enctype</strong> &mdash; wajib <code>multipart/form-data</code> untuk upload file</li>
+    <li><strong>name</strong> &mdash; nama form untuk referensi JavaScript</li>
+    <li><strong>target</strong> &mdash; lokasi tampil respons (<code>_blank</code>, <code>_self</code>, dll.)</li>
+  </ul>
+</div>
+
+<footer>
+  Materi HTML Forms &mdash; Referensi: W3Schools &mdash; Bahasa Indonesia
+</footer>
+
+</body>
+</html>

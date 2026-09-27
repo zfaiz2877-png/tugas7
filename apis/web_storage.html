@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>HTML Web Storage API</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', sans-serif; background: #f9f9f9; color: #333; }
+    nav { background: #04AA6D; padding: 12px 24px; display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+    nav a { color: white; text-decoration: none; font-weight: 600; font-size: 15px; padding: 5px 10px; border-radius: 4px; transition: background 0.2s; }
+    nav a:hover { background: rgba(255,255,255,0.2); }
+    .content { max-width: 900px; margin: 40px auto; background: white; padding: 36px; border-radius: 10px; box-shadow: 0 3px 14px rgba(0,0,0,0.1); }
+    h1 { color: #04AA6D; border-left: 6px solid #04AA6D; padding-left: 16px; margin-bottom: 20px; font-size: 1.9rem; }
+    h2 { color: #222; margin-top: 30px; margin-bottom: 10px; font-size: 1.25rem; }
+    h3 { color: #04AA6D; margin-top: 20px; margin-bottom: 8px; }
+    p { line-height: 1.7; margin-bottom: 12px; font-size: 0.97rem; }
+    ul, ol { padding-left: 22px; margin-bottom: 12px; }
+    li { margin-bottom: 7px; line-height: 1.6; font-size: 0.96rem; }
+    .back-btn { display: inline-block; margin-bottom: 24px; padding: 9px 20px; background: #04AA6D; color: white; text-decoration: none; border-radius: 5px; font-weight: 600; transition: background 0.2s; }
+    .back-btn:hover { background: #038a56; }
+    .example { background: #1e1e1e; color: #dcdcdc; border-left: 4px solid #04AA6D; padding: 18px 20px; margin: 16px 0; border-radius: 6px; font-family: 'Courier New', monospace; font-size: 0.88rem; white-space: pre; overflow-x: auto; line-height: 1.6; }
+    .example .kw { color: #569cd6; }
+    .example .fn { color: #dcdcaa; }
+    .example .str { color: #ce9178; }
+    .example .cm { color: #6a9955; }
+    .example .num { color: #b5cea8; }
+    .note { background: #fffbea; padding: 13px 16px; border-left: 4px solid #ffc107; margin: 16px 0; border-radius: 5px; font-size: 0.93rem; }
+    .note strong { color: #b8860b; }
+    .info { background: #e8f8f2; padding: 13px 16px; border-left: 4px solid #04AA6D; margin: 16px 0; border-radius: 5px; font-size: 0.93rem; }
+    table { width: 100%; border-collapse: collapse; margin: 16px 0; }
+    th { background: #04AA6D; color: white; padding: 10px 14px; text-align: left; }
+    td { padding: 9px 14px; border-bottom: 1px solid #e0e0e0; font-size: 0.93rem; vertical-align: top; }
+    tr:nth-child(even) { background: #f5fdf9; }
+    code { background: #f0f0f0; padding: 2px 6px; border-radius: 3px; font-family: 'Courier New', monospace; font-size: 0.88em; color: #c7254e; }
+    .section-divider { border: none; border-top: 2px dashed #d4f4e8; margin: 28px 0; }
+    .demo-box { background: #f0fff8; border: 2px solid #04AA6D; border-radius: 8px; padding: 24px; margin: 20px 0; }
+    .demo-box h3 { color: #04AA6D; margin-bottom: 14px; margin-top: 0; font-size: 1.1rem; }
+    .demo-tabs { display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap; }
+    .tab-btn { padding: 8px 18px; border: 2px solid #04AA6D; background: white; color: #04AA6D; border-radius: 5px; cursor: pointer; font-weight: 600; font-size: 0.9rem; transition: all 0.2s; }
+    .tab-btn.active, .tab-btn:hover { background: #04AA6D; color: white; }
+    .demo-controls { display: flex; gap: 10px; flex-wrap: wrap; align-items: flex-end; margin-bottom: 12px; }
+    .demo-controls label { font-size: 0.88rem; font-weight: 600; color: #555; display: block; margin-bottom: 4px; }
+    .demo-controls input { padding: 8px 12px; border: 1px solid #ccc; border-radius: 5px; font-size: 0.9rem; width: 160px; }
+    .demo-controls button { padding: 9px 16px; background: #04AA6D; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: 600; font-size: 0.88rem; transition: background 0.2s; white-space: nowrap; }
+    .demo-controls button:hover { background: #038a56; }
+    .btn-danger { background: #dc3545 !important; }
+    .btn-danger:hover { background: #b02a37 !important; }
+    .btn-warn { background: #ffc107 !important; color: #333 !important; }
+    .btn-warn:hover { background: #e0a800 !important; }
+    .storage-display { background: #1e1e1e; color: #7ec8a0; border-radius: 6px; padding: 14px 16px; font-family: 'Courier New', monospace; font-size: 0.85rem; min-height: 80px; line-height: 1.8; white-space: pre-wrap; }
+    .compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin: 16px 0; }
+    .compare-card { border-radius: 8px; padding: 18px; }
+    .compare-card.local { background: #e8f5e9; border: 2px solid #4caf50; }
+    .compare-card.session { background: #e3f2fd; border: 2px solid #2196f3; }
+    .compare-card h4 { margin-bottom: 10px; font-size: 1rem; }
+    .compare-card.local h4 { color: #2e7d32; }
+    .compare-card.session h4 { color: #1565c0; }
+    .compare-card ul { padding-left: 18px; }
+    .compare-card li { font-size: 0.88rem; margin-bottom: 5px; line-height: 1.5; }
+    .nav-bottom { display: flex; justify-content: space-between; margin-top: 36px; padding-top: 20px; border-top: 2px solid #e0e0e0; }
+    .nav-bottom a { padding: 9px 20px; background: #04AA6D; color: white; text-decoration: none; border-radius: 5px; font-weight: 600; transition: background 0.2s; }
+    .nav-bottom a:hover { background: #038a56; }
+    @media (max-width: 600px) { .compare-grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html">🏠 Beranda</a>
+  <a href="index.html">APIs Index</a>
+  <a href="drag_drop.html">← Drag &amp; Drop</a>
+  <a href="web_workers.html">Web Workers →</a>
+</nav>
+
+<div class="content">
+  <a href="../index.html" class="back-btn">← Kembali ke Indeks Utama</a>
+
+  <h1>💾 HTML Web Storage API</h1>
+
+  <p>
+    <strong>HTML Web Storage API</strong> memungkinkan aplikasi web menyimpan data secara lokal di browser pengguna. Berbeda dengan cookies, Web Storage lebih aman, lebih cepat, lebih mudah digunakan, dan dapat menyimpan data dalam jumlah yang lebih besar (umumnya 5–10 MB per origin).
+  </p>
+
+  <div class="info">
+    <strong>💡 Keunggulan vs Cookies:</strong> Web Storage tidak dikirim ke server pada setiap request HTTP (tidak seperti cookies), sehingga lebih efisien dan aman untuk menyimpan data sisi klien.
+  </div>
+
+  <hr class="section-divider">
+
+  <h2>1. Dua Jenis Web Storage</h2>
+  <div class="compare-grid">
+    <div class="compare-card local">
+      <h4>🗄️ localStorage</h4>
+      <ul>
+        <li>Data <strong>tidak hilang</strong> saat browser ditutup</li>
+        <li>Data bertahan <strong>tanpa batas waktu</strong> (permanen sampai dihapus manual)</li>
+        <li>Dapat diakses dari semua tab dan jendela browser pada domain yang sama</li>
+        <li>Kapasitas: ~5–10 MB</li>
+        <li>Cocok untuk: preferensi pengguna, tema, keranjang belanja</li>
+      </ul>
+    </div>
+    <div class="compare-card session">
+      <h4>🕐 sessionStorage</h4>
+      <ul>
+        <li>Data <strong>hilang</strong> ketika tab atau browser ditutup</li>
+        <li>Hanya berlaku selama <strong>satu sesi browser</strong></li>
+        <li>Terisolasi per tab (tab lain tidak bisa mengakses)</li>
+        <li>Kapasitas: ~5–10 MB</li>
+        <li>Cocok untuk: data form sementara, status navigasi, token sesi</li>
+      </ul>
+    </div>
+  </div>
+
+  <hr class="section-divider">
+
+  <h2>2. Metode Web Storage</h2>
+  <table>
+    <tr><th>Metode / Properti</th><th>Keterangan</th><th>Contoh</th></tr>
+    <tr>
+      <td><code>setItem(key, value)</code></td>
+      <td>Menyimpan data dengan kunci tertentu</td>
+      <td><code>localStorage.setItem("nama", "Budi")</code></td>
+    </tr>
+    <tr>
+      <td><code>getItem(key)</code></td>
+      <td>Mengambil data berdasarkan kunci</td>
+      <td><code>localStorage.getItem("nama")</code></td>
+    </tr>
+    <tr>
+      <td><code>removeItem(key)</code></td>
+      <td>Menghapus satu item berdasarkan kunci</td>
+      <td><code>localStorage.removeItem("nama")</code></td>
+    </tr>
+    <tr>
+      <td><code>clear()</code></td>
+      <td>Menghapus semua item dalam storage</td>
+      <td><code>localStorage.clear()</code></td>
+    </tr>
+    <tr>
+      <td><code>key(index)</code></td>
+      <td>Mendapatkan nama kunci berdasarkan indeks</td>
+      <td><code>localStorage.key(0)</code></td>
+    </tr>
+    <tr>
+      <td><code>length</code></td>
+      <td>Jumlah item yang tersimpan</td>
+      <td><code>localStorage.length</code></td>
+    </tr>
+  </table>
+
+  <hr class="section-divider">
+
+  <h2>3. Memeriksa Dukungan Browser</h2>
+
+  <div class="example"><span class="kw">if</span> (<span class="kw">typeof</span>(Storage) !== <span class="str">"undefined"</span>) {
+  console.<span class="fn">log</span>(<span class="str">"Web Storage didukung! ✅"</span>);
+} <span class="kw">else</span> {
+  console.<span class="fn">log</span>(<span class="str">"Browser tidak mendukung Web Storage ❌"</span>);
+}</div>
+
+  <hr class="section-divider">
+
+  <h2>4. Contoh localStorage</h2>
+
+  <div class="example"><span class="cm">// Menyimpan data</span>
+localStorage.<span class="fn">setItem</span>(<span class="str">"username"</span>, <span class="str">"Budi Santoso"</span>);
+localStorage.<span class="fn">setItem</span>(<span class="str">"tema"</span>, <span class="str">"gelap"</span>);
+localStorage.<span class="fn">setItem</span>(<span class="str">"score"</span>, <span class="num">1500</span>);
+
+<span class="cm">// Mengambil data</span>
+<span class="kw">let</span> nama = localStorage.<span class="fn">getItem</span>(<span class="str">"username"</span>); <span class="cm">// "Budi Santoso"</span>
+<span class="kw">let</span> tema = localStorage.<span class="fn">getItem</span>(<span class="str">"tema"</span>);     <span class="cm">// "gelap"</span>
+
+<span class="cm">// Menghapus satu item</span>
+localStorage.<span class="fn">removeItem</span>(<span class="str">"tema"</span>);
+
+<span class="cm">// Menghapus semua item</span>
+localStorage.<span class="fn">clear</span>();
+
+<span class="cm">// Menyimpan objek (harus di-JSON stringify)</span>
+<span class="kw">const</span> user = { nama: <span class="str">"Budi"</span>, umur: <span class="num">25</span>, kota: <span class="str">"Jakarta"</span> };
+localStorage.<span class="fn">setItem</span>(<span class="str">"user"</span>, JSON.<span class="fn">stringify</span>(user));
+
+<span class="cm">// Membaca objek (harus di-JSON parse)</span>
+<span class="kw">const</span> userObj = JSON.<span class="fn">parse</span>(localStorage.<span class="fn">getItem</span>(<span class="str">"user"</span>));
+console.<span class="fn">log</span>(userObj.nama); <span class="cm">// "Budi"</span></div>
+
+  <hr class="section-divider">
+
+  <h2>5. Contoh sessionStorage</h2>
+
+  <div class="example"><span class="cm">// Penggunaan sessionStorage identik dengan localStorage</span>
+sessionStorage.<span class="fn">setItem</span>(<span class="str">"token"</span>, <span class="str">"abc123xyz"</span>);
+sessionStorage.<span class="fn">setItem</span>(<span class="str">"halaman_terakhir"</span>, <span class="str">"produk/detail/42"</span>);
+
+<span class="kw">let</span> token = sessionStorage.<span class="fn">getItem</span>(<span class="str">"token"</span>);
+console.<span class="fn">log</span>(token); <span class="cm">// "abc123xyz"</span>
+
+<span class="cm">// Data akan hilang saat tab ditutup!</span>
+sessionStorage.<span class="fn">removeItem</span>(<span class="str">"token"</span>);
+sessionStorage.<span class="fn">clear</span>();</div>
+
+  <hr class="section-divider">
+
+  <h2>6. Event Storage</h2>
+  <p>Event <code>storage</code> dipicu ketika data Web Storage berubah dari tab lain (khusus localStorage):</p>
+
+  <div class="example"><span class="cm">// Dengarkan perubahan storage dari tab lain</span>
+window.<span class="fn">addEventListener</span>(<span class="str">"storage"</span>, <span class="kw">function</span>(event) {
+  console.<span class="fn">log</span>(<span class="str">"Kunci berubah:"</span>, event.key);
+  console.<span class="fn">log</span>(<span class="str">"Nilai lama:"</span>, event.oldValue);
+  console.<span class="fn">log</span>(<span class="str">"Nilai baru:"</span>, event.newValue);
+  console.<span class="fn">log</span>(<span class="str">"URL halaman:"</span>, event.url);
+});</div>
+
+  <hr class="section-divider">
+
+  <h2>🧪 Demo Langsung</h2>
+  <div class="demo-box">
+    <h3>Coba Web Storage API</h3>
+    <div class="demo-tabs">
+      <button class="tab-btn active" onclick="switchStorage('local', this)">🗄️ localStorage</button>
+      <button class="tab-btn" onclick="switchStorage('session', this)">🕐 sessionStorage</button>
+    </div>
+    <div class="demo-controls">
+      <div>
+        <label>Kunci (Key):</label>
+        <input type="text" id="keyInput" placeholder="contoh: nama" />
+      </div>
+      <div>
+        <label>Nilai (Value):</label>
+        <input type="text" id="valInput" placeholder="contoh: Budi" />
+      </div>
+      <button onclick="doSet()">💾 Set Item</button>
+      <button onclick="doGet()">🔍 Get Item</button>
+      <button class="btn-warn" onclick="doRemove()">🗑️ Remove Item</button>
+      <button class="btn-danger" onclick="doClear()">❌ Clear All</button>
+    </div>
+    <p style="font-size:0.88rem;color:#555;margin-bottom:8px;">📦 Isi Storage saat ini:</p>
+    <div class="storage-display" id="storageDisplay">Memuat...</div>
+  </div>
+
+  <div class="note">
+    <strong>⚠️ Perhatian:</strong> Web Storage hanya menyimpan data dalam format <strong>string</strong>. Untuk menyimpan angka, array, atau objek, gunakan <code>JSON.stringify()</code> saat menyimpan dan <code>JSON.parse()</code> saat membaca.
+  </div>
+
+  <div class="nav-bottom">
+    <a href="drag_drop.html">← Drag &amp; Drop</a>
+    <a href="web_workers.html">Web Workers →</a>
+  </div>
+</div>
+
+<script>
+  let currentStorage = localStorage;
+  let currentLabel = 'localStorage';
+
+  function switchStorage(type, btn) {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    if (type === 'local') {
+      currentStorage = localStorage;
+      currentLabel = 'localStorage';
+    } else {
+      currentStorage = sessionStorage;
+      currentLabel = 'sessionStorage';
+    }
+    refreshDisplay();
+  }
+
+  function refreshDisplay() {
+    const display = document.getElementById('storageDisplay');
+    const len = currentStorage.length;
+    if (len === 0) {
+      display.textContent = '// ' + currentLabel + ' kosong.';
+      return;
+    }
+    let lines = '// ' + currentLabel + ' (' + len + ' item):\n\n';
+    for (let i = 0; i < len; i++) {
+      const k = currentStorage.key(i);
+      const v = currentStorage.getItem(k);
+      lines += '"' + k + '"  →  "' + v + '"\n';
+    }
+    display.textContent = lines;
+  }
+
+  function doSet() {
+    const k = document.getElementById('keyInput').value.trim();
+    const v = document.getElementById('valInput').value.trim();
+    if (!k) { alert('Masukkan nama kunci (key)!'); return; }
+    currentStorage.setItem(k, v);
+    refreshDisplay();
+  }
+
+  function doGet() {
+    const k = document.getElementById('keyInput').value.trim();
+    if (!k) { alert('Masukkan nama kunci (key)!'); return; }
+    const v = currentStorage.getItem(k);
+    if (v === null) {
+      alert('Kunci "' + k + '" tidak ditemukan di ' + currentLabel + '.');
+    } else {
+      alert('✅ ' + currentLabel + '.getItem("' + k + '") = "' + v + '"');
+    }
+  }
+
+  function doRemove() {
+    const k = document.getElementById('keyInput').value.trim();
+    if (!k) { alert('Masukkan nama kunci (key) yang ingin dihapus!'); return; }
+    currentStorage.removeItem(k);
+    refreshDisplay();
+  }
+
+  function doClear() {
+    if (confirm('Hapus semua data dari ' + currentLabel + '?')) {
+      currentStorage.clear();
+      refreshDisplay();
+    }
+  }
+
+  // Seed some default data for demo
+  if (!localStorage.getItem('_demo_seeded')) {
+    localStorage.setItem('tema', 'terang');
+    localStorage.setItem('bahasa', 'Indonesia');
+    localStorage.setItem('_demo_seeded', '1');
+  }
+
+  refreshDisplay();
+</script>
+
+</body>
+</html>

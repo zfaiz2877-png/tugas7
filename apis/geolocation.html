@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>HTML Geolocation API</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', sans-serif; background: #f9f9f9; color: #333; }
+    nav { background: #04AA6D; padding: 12px 24px; display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+    nav a { color: white; text-decoration: none; font-weight: 600; font-size: 15px; padding: 5px 10px; border-radius: 4px; transition: background 0.2s; }
+    nav a:hover { background: rgba(255,255,255,0.2); }
+    .content { max-width: 900px; margin: 40px auto; background: white; padding: 36px; border-radius: 10px; box-shadow: 0 3px 14px rgba(0,0,0,0.1); }
+    h1 { color: #04AA6D; border-left: 6px solid #04AA6D; padding-left: 16px; margin-bottom: 20px; font-size: 1.9rem; }
+    h2 { color: #222; margin-top: 30px; margin-bottom: 10px; font-size: 1.25rem; }
+    h3 { color: #04AA6D; margin-top: 20px; margin-bottom: 8px; }
+    p { line-height: 1.7; margin-bottom: 12px; font-size: 0.97rem; }
+    .back-btn { display: inline-block; margin-bottom: 24px; padding: 9px 20px; background: #04AA6D; color: white; text-decoration: none; border-radius: 5px; font-weight: 600; transition: background 0.2s; }
+    .back-btn:hover { background: #038a56; }
+    .example { background: #1e1e1e; color: #dcdcdc; border-left: 4px solid #04AA6D; padding: 18px 20px; margin: 16px 0; border-radius: 6px; font-family: 'Courier New', monospace; font-size: 0.88rem; white-space: pre; overflow-x: auto; line-height: 1.6; }
+    .example .kw { color: #569cd6; }
+    .example .fn { color: #dcdcaa; }
+    .example .str { color: #ce9178; }
+    .example .cm { color: #6a9955; }
+    .example .num { color: #b5cea8; }
+    .note { background: #fffbea; padding: 13px 16px; border-left: 4px solid #ffc107; margin: 16px 0; border-radius: 5px; font-size: 0.93rem; }
+    .note strong { color: #b8860b; }
+    .info { background: #e8f8f2; padding: 13px 16px; border-left: 4px solid #04AA6D; margin: 16px 0; border-radius: 5px; font-size: 0.93rem; }
+    table { width: 100%; border-collapse: collapse; margin: 16px 0; }
+    th { background: #04AA6D; color: white; padding: 10px 14px; text-align: left; }
+    td { padding: 9px 14px; border-bottom: 1px solid #e0e0e0; font-size: 0.93rem; }
+    tr:nth-child(even) { background: #f5fdf9; }
+    .demo-box { background: #f0fff8; border: 2px solid #04AA6D; border-radius: 8px; padding: 22px; margin: 20px 0; }
+    .demo-box h3 { color: #04AA6D; margin-bottom: 12px; margin-top: 0; }
+    button { background: #04AA6D; color: white; border: none; padding: 10px 22px; border-radius: 5px; font-size: 0.95rem; cursor: pointer; font-weight: 600; transition: background 0.2s; margin-right: 8px; margin-bottom: 8px; }
+    button:hover { background: #038a56; }
+    #result { margin-top: 14px; padding: 14px; background: white; border-radius: 6px; border: 1px solid #c8e6d8; font-family: 'Courier New', monospace; font-size: 0.9rem; min-height: 48px; color: #333; line-height: 1.7; }
+    .nav-bottom { display: flex; justify-content: space-between; margin-top: 36px; padding-top: 20px; border-top: 2px solid #e0e0e0; }
+    .nav-bottom a { padding: 9px 20px; background: #04AA6D; color: white; text-decoration: none; border-radius: 5px; font-weight: 600; transition: background 0.2s; }
+    .nav-bottom a:hover { background: #038a56; }
+    .section-divider { border: none; border-top: 2px dashed #d4f4e8; margin: 28px 0; }
+    .prop-name { color: #04AA6D; font-family: monospace; font-weight: bold; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html">🏠 Beranda</a>
+  <a href="index.html">← APIs Index</a>
+  <a href="drag_drop.html">Drag &amp; Drop →</a>
+</nav>
+
+<div class="content">
+  <a href="../index.html" class="back-btn">← Kembali ke Indeks Utama</a>
+
+  <h1>📍 HTML Geolocation API</h1>
+
+  <p>
+    <strong>HTML Geolocation API</strong> memungkinkan halaman web untuk mendapatkan informasi lokasi geografis pengguna, seperti <em>latitude</em> (garis lintang) dan <em>longitude</em> (garis bujur). API ini sangat berguna untuk aplikasi berbasis lokasi seperti peta, pencarian tempat terdekat, atau cuaca berdasarkan lokasi.
+  </p>
+
+  <div class="note">
+    <strong>⚠️ Privasi Pengguna:</strong> Browser akan selalu meminta izin kepada pengguna sebelum mengakses lokasi mereka. Pengguna berhak menolak permintaan ini. Geolocation hanya bekerja di halaman yang menggunakan <strong>HTTPS</strong> (atau localhost saat development).
+  </div>
+
+  <hr class="section-divider">
+
+  <h2>1. Memeriksa Dukungan Browser</h2>
+  <p>Sebelum menggunakan Geolocation, selalu periksa apakah browser mendukungnya:</p>
+
+  <div class="example"><span class="kw">if</span> (<span class="str">"geolocation"</span> <span class="kw">in</span> navigator) {
+  <span class="cm">// Browser mendukung Geolocation</span>
+  console.<span class="fn">log</span>(<span class="str">"Geolocation tersedia!"</span>);
+} <span class="kw">else</span> {
+  <span class="cm">// Browser tidak mendukung Geolocation</span>
+  console.<span class="fn">log</span>(<span class="str">"Geolocation tidak didukung oleh browser ini."</span>);
+}</div>
+
+  <hr class="section-divider">
+
+  <h2>2. Mendapatkan Posisi Saat Ini</h2>
+  <p>Gunakan metode <span class="prop-name">getCurrentPosition()</span> untuk mendapatkan lokasi pengguna sekali saja:</p>
+
+  <div class="example">navigator.geolocation.<span class="fn">getCurrentPosition</span>(successCallback, errorCallback, options);
+
+<span class="cm">// Contoh lengkap:</span>
+navigator.geolocation.<span class="fn">getCurrentPosition</span>(
+  <span class="kw">function</span>(<span class="fn">position</span>) {
+    <span class="kw">let</span> lat = position.coords.latitude;
+    <span class="kw">let</span> lon = position.coords.longitude;
+    console.<span class="fn">log</span>(<span class="str">"Latitude: "</span> + lat);
+    console.<span class="fn">log</span>(<span class="str">"Longitude: "</span> + lon);
+  },
+  <span class="kw">function</span>(<span class="fn">error</span>) {
+    console.<span class="fn">log</span>(<span class="str">"Error: "</span> + error.message);
+  }
+);</div>
+
+  <h3>Properti Objek Position</h3>
+  <table>
+    <tr><th>Properti</th><th>Tipe</th><th>Keterangan</th></tr>
+    <tr><td><code>coords.latitude</code></td><td>Number</td><td>Garis lintang dalam derajat desimal</td></tr>
+    <tr><td><code>coords.longitude</code></td><td>Number</td><td>Garis bujur dalam derajat desimal</td></tr>
+    <tr><td><code>coords.accuracy</code></td><td>Number</td><td>Akurasi posisi dalam meter</td></tr>
+    <tr><td><code>coords.altitude</code></td><td>Number/null</td><td>Ketinggian di atas permukaan laut (meter)</td></tr>
+    <tr><td><code>coords.altitudeAccuracy</code></td><td>Number/null</td><td>Akurasi ketinggian dalam meter</td></tr>
+    <tr><td><code>coords.heading</code></td><td>Number/null</td><td>Arah pergerakan (derajat dari utara)</td></tr>
+    <tr><td><code>coords.speed</code></td><td>Number/null</td><td>Kecepatan pergerakan (meter/detik)</td></tr>
+    <tr><td><code>timestamp</code></td><td>Number</td><td>Waktu pengambilan posisi (Unix timestamp)</td></tr>
+  </table>
+
+  <hr class="section-divider">
+
+  <h2>3. Memantau Posisi (Watch Position)</h2>
+  <p>Gunakan <span class="prop-name">watchPosition()</span> untuk terus memantau pergerakan pengguna secara real-time. Metode ini terus memanggil callback setiap kali posisi berubah:</p>
+
+  <div class="example"><span class="cm">// Mulai memantau lokasi</span>
+<span class="kw">let</span> watchId = navigator.geolocation.<span class="fn">watchPosition</span>(
+  <span class="kw">function</span>(position) {
+    <span class="kw">let</span> lat = position.coords.latitude;
+    <span class="kw">let</span> lon = position.coords.longitude;
+    document.<span class="fn">getElementById</span>(<span class="str">"live-location"</span>).innerHTML =
+      <span class="str">"Lat: "</span> + lat + <span class="str">", Lon: "</span> + lon;
+  },
+  <span class="kw">function</span>(error) {
+    console.<span class="fn">log</span>(error.message);
+  }
+);
+
+<span class="cm">// Menghentikan pemantauan</span>
+navigator.geolocation.<span class="fn">clearWatch</span>(watchId);</div>
+
+  <hr class="section-divider">
+
+  <h2>4. Menangani Error</h2>
+  <p>Objek error yang diterima di callback error memiliki properti <code>code</code> dan <code>message</code>:</p>
+
+  <div class="example"><span class="kw">function</span> <span class="fn">handleError</span>(error) {
+  <span class="kw">switch</span>(error.code) {
+    <span class="kw">case</span> error.PERMISSION_DENIED:
+      <span class="fn">alert</span>(<span class="str">"Pengguna menolak permintaan lokasi."</span>);
+      <span class="kw">break</span>;
+    <span class="kw">case</span> error.POSITION_UNAVAILABLE:
+      <span class="fn">alert</span>(<span class="str">"Informasi lokasi tidak tersedia."</span>);
+      <span class="kw">break</span>;
+    <span class="kw">case</span> error.TIMEOUT:
+      <span class="fn">alert</span>(<span class="str">"Waktu permintaan lokasi habis."</span>);
+      <span class="kw">break</span>;
+    <span class="kw">default</span>:
+      <span class="fn">alert</span>(<span class="str">"Terjadi error yang tidak diketahui."</span>);
+      <span class="kw">break</span>;
+  }
+}</div>
+
+  <h3>Kode Error Geolocation</h3>
+  <table>
+    <tr><th>Kode</th><th>Konstanta</th><th>Keterangan</th></tr>
+    <tr><td>1</td><td>PERMISSION_DENIED</td><td>Pengguna menolak izin akses lokasi</td></tr>
+    <tr><td>2</td><td>POSITION_UNAVAILABLE</td><td>Lokasi tidak dapat ditentukan</td></tr>
+    <tr><td>3</td><td>TIMEOUT</td><td>Waktu mendapatkan lokasi habis</td></tr>
+  </table>
+
+  <hr class="section-divider">
+
+  <h2>5. Opsi Tambahan (PositionOptions)</h2>
+  <p>Anda dapat menyetel opsi saat memanggil <code>getCurrentPosition()</code> atau <code>watchPosition()</code>:</p>
+
+  <div class="example"><span class="kw">const</span> options = {
+  enableHighAccuracy: <span class="kw">true</span>,   <span class="cm">// Gunakan GPS jika tersedia (baterai lebih boros)</span>
+  timeout: <span class="num">10000</span>,             <span class="cm">// Batas waktu 10 detik (milidetik)</span>
+  maximumAge: <span class="num">0</span>              <span class="cm">// Jangan gunakan data cache (0 = selalu segar)</span>
+};
+
+navigator.geolocation.<span class="fn">getCurrentPosition</span>(onSuccess, onError, options);</div>
+
+  <hr class="section-divider">
+
+  <h2>🧪 Demo Langsung</h2>
+  <div class="demo-box">
+    <h3>Coba Geolocation API</h3>
+    <p>Klik tombol di bawah untuk mendapatkan koordinat lokasi Anda saat ini:</p>
+    <button onclick="getLocation()">📍 Dapatkan Lokasi Saya</button>
+    <button onclick="watchLocation()">👁️ Pantau Lokasi</button>
+    <button onclick="stopWatch()">⏹️ Hentikan Pemantauan</button>
+    <div id="result">Klik tombol untuk melihat hasilnya...</div>
+  </div>
+
+  <div class="info">
+    <strong>💡 Tips:</strong> Geolocation API paling akurat pada perangkat dengan GPS aktif. Pada komputer desktop, akurasi mungkin lebih rendah karena menggunakan perkiraan berdasarkan alamat IP atau jaringan Wi-Fi.
+  </div>
+
+  <div class="nav-bottom">
+    <a href="index.html">← APIs Index</a>
+    <a href="drag_drop.html">Drag &amp; Drop →</a>
+  </div>
+</div>
+
+<script>
+  let watchId = null;
+
+  function getLocation() {
+    const result = document.getElementById('result');
+    result.innerHTML = '⏳ Sedang mendapatkan lokasi...';
+
+    if (!("geolocation" in navigator)) {
+      result.innerHTML = '❌ Browser Anda tidak mendukung Geolocation API.';
+      return;
+    }
+
+    const options = { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 };
+
+    navigator.geolocation.getCurrentPosition(
+      function(position) {
+        const lat = position.coords.latitude.toFixed(6);
+        const lon = position.coords.longitude.toFixed(6);
+        const acc = position.coords.accuracy.toFixed(1);
+        const ts  = new Date(position.timestamp).toLocaleString('id-ID');
+        result.innerHTML =
+          '✅ Lokasi berhasil didapatkan!\n\n' +
+          '📍 Latitude      : ' + lat + '°\n' +
+          '📍 Longitude     : ' + lon + '°\n' +
+          '🎯 Akurasi       : ±' + acc + ' meter\n' +
+          '🕐 Waktu         : ' + ts + '\n\n' +
+          '🗺️ Google Maps   : https://maps.google.com/?q=' + lat + ',' + lon;
+      },
+      function(error) {
+        let msg = '';
+        switch(error.code) {
+          case error.PERMISSION_DENIED:
+            msg = '🚫 Anda menolak izin akses lokasi.'; break;
+          case error.POSITION_UNAVAILABLE:
+            msg = '📡 Informasi lokasi tidak tersedia.'; break;
+          case error.TIMEOUT:
+            msg = '⏰ Waktu mendapatkan lokasi habis.'; break;
+          default:
+            msg = '❓ Error tidak diketahui: ' + error.message;
+        }
+        result.innerHTML = '❌ Error: ' + msg;
+      },
+      options
+    );
+  }
+
+  function watchLocation() {
+    const result = document.getElementById('result');
+    if (!("geolocation" in navigator)) {
+      result.innerHTML = '❌ Browser Anda tidak mendukung Geolocation API.';
+      return;
+    }
+    if (watchId !== null) {
+      result.innerHTML = '⚠️ Pemantauan sudah berjalan. Klik Hentikan Pemantauan terlebih dahulu.';
+      return;
+    }
+    result.innerHTML = '👁️ Memantau lokasi...';
+    watchId = navigator.geolocation.watchPosition(
+      function(position) {
+        const lat = position.coords.latitude.toFixed(6);
+        const lon = position.coords.longitude.toFixed(6);
+        const acc = position.coords.accuracy.toFixed(1);
+        result.innerHTML =
+          '👁️ Memantau lokasi secara real-time...\n\n' +
+          '📍 Latitude  : ' + lat + '°\n' +
+          '📍 Longitude : ' + lon + '°\n' +
+          '🎯 Akurasi   : ±' + acc + ' meter\n' +
+          '🕐 Update    : ' + new Date().toLocaleTimeString('id-ID');
+      },
+      function(error) {
+        result.innerHTML = '❌ Error: ' + error.message;
+        watchId = null;
+      }
+    );
+  }
+
+  function stopWatch() {
+    const result = document.getElementById('result');
+    if (watchId !== null) {
+      navigator.geolocation.clearWatch(watchId);
+      watchId = null;
+      result.innerHTML = '⏹️ Pemantauan dihentikan.';
+    } else {
+      result.innerHTML = '⚠️ Tidak ada pemantauan yang aktif.';
+    }
+  }
+</script>
+
+</body>
+</html>

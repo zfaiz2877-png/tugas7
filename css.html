@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>HTML CSS - Belajar HTML</title>
+  <style>
+    body { font-family: 'Segoe UI', sans-serif; margin: 0; background: #f9f9f9; color: #333; }
+    nav { background: #04AA6D; padding: 10px 20px; }
+    nav a { color: white; text-decoration: none; margin-right: 15px; font-weight: bold; }
+    nav a:hover { text-decoration: underline; }
+    .content { max-width: 900px; margin: 30px auto; background: white; padding: 30px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+    h1 { color: #04AA6D; border-left: 5px solid #04AA6D; padding-left: 15px; }
+    h2 { color: #333; margin-top: 30px; border-bottom: 2px solid #f1f1f1; padding-bottom: 5px; }
+    h3 { color: #04AA6D; }
+    .example { background: #f1f1f1; border-left: 4px solid #04AA6D; padding: 15px; margin: 15px 0; border-radius: 4px; font-family: monospace; white-space: pre; overflow-x: auto; line-height: 1.6; }
+    .result { background: #fff; border: 1px solid #ccc; padding: 15px; margin: 0 0 15px 0; border-radius: 4px; }
+    .result-label { font-size: 12px; font-weight: bold; color: #888; margin-bottom: 5px; text-transform: uppercase; }
+    .note { background: #ffffcc; padding: 12px; border-left: 4px solid #ffc107; margin: 15px 0; border-radius: 4px; }
+    .tip { background: #e8f5e9; padding: 12px; border-left: 4px solid #04AA6D; margin: 15px 0; border-radius: 4px; }
+    .warning { background: #fff3e0; padding: 12px; border-left: 4px solid #ff9800; margin: 15px 0; border-radius: 4px; }
+    .back-btn { display: inline-block; margin-bottom: 20px; padding: 8px 16px; background: #04AA6D; color: white; text-decoration: none; border-radius: 4px; }
+    .back-btn:hover { background: #037f55; }
+    table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+    th { background: #04AA6D; color: white; padding: 10px; text-align: left; }
+    td { padding: 8px 10px; border-bottom: 1px solid #ddd; }
+    tr:nth-child(even) { background: #f9f9f9; }
+    .tag { background: #e8f5e9; color: #2e7d32; padding: 2px 6px; border-radius: 3px; font-family: monospace; font-weight: bold; }
+
+    /* Cards for 3 CSS types */
+    .css-types { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px; margin: 20px 0; }
+    .css-card { border-radius: 8px; padding: 20px; text-align: center; border: 2px solid; }
+    .css-card.inline { border-color: #f44336; background: #ffebee; }
+    .css-card.internal { border-color: #2196f3; background: #e3f2fd; }
+    .css-card.external { border-color: #04AA6D; background: #e8f5e9; }
+    .css-card h3 { margin-top: 0; }
+    .css-card.inline h3 { color: #f44336; }
+    .css-card.internal h3 { color: #2196f3; }
+    .css-card.external h3 { color: #04AA6D; }
+    .css-card .icon { font-size: 40px; margin-bottom: 10px; }
+
+    /* Priority diagram */
+    .priority { display: flex; align-items: center; gap: 10px; margin: 15px 0; flex-wrap: wrap; }
+    .priority-item { padding: 10px 15px; border-radius: 6px; font-weight: bold; text-align: center; }
+    .priority-arrow { font-size: 20px; color: #666; }
+
+    /* CSS property demo */
+    .props-demo p { padding: 8px; margin: 5px 0; border-radius: 4px; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html">🏠 Home</a>
+  <a href="colors.html">⬅ Sebelumnya: Colors</a>
+  <a href="links.html">Selanjutnya: Links ➡</a>
+</nav>
+
+<div class="content">
+  <a href="index.html" class="back-btn">← Kembali ke Index</a>
+
+  <h1>HTML CSS (Cascading Style Sheets)</h1>
+  <p><strong>CSS</strong> (Cascading Style Sheets) digunakan untuk memformat tampilan halaman web. CSS berfungsi untuk mengontrol warna, font, ukuran teks, jarak antar elemen, cara elemen diposisikan/ditampilkan, gambar latar, dan masih banyak lagi.</p>
+  <p>Kata <em>"cascading"</em> (bertingkat/berjenjang) berarti bahwa sebuah style dapat mengalir dari parent element ke child element, dan aturan dengan spesifisitas lebih tinggi akan mengalahkan aturan yang lebih umum.</p>
+
+  <!-- ==================== OVERVIEW ==================== -->
+  <h2>1. Tiga Cara Menggunakan CSS</h2>
+  <p>Ada <strong>tiga cara</strong> untuk menambahkan CSS ke dalam dokumen HTML:</p>
+
+  <div class="css-types">
+    <div class="css-card inline">
+      <div class="icon">🖊️</div>
+      <h3>Inline CSS</h3>
+      <p>Ditulis langsung di dalam atribut <code>style</code> pada elemen HTML</p>
+    </div>
+    <div class="css-card internal">
+      <div class="icon">📄</div>
+      <h3>Internal CSS</h3>
+      <p>Ditulis di dalam tag <code>&lt;style&gt;</code> di dalam bagian <code>&lt;head&gt;</code></p>
+    </div>
+    <div class="css-card external">
+      <div class="icon">📁</div>
+      <h3>External CSS</h3>
+      <p>Ditulis di file terpisah (.css) dan dihubungkan via tag <code>&lt;link&gt;</code></p>
+    </div>
+  </div>
+
+  <!-- ==================== SECTION 2: INLINE CSS ==================== -->
+  <h2>2. Inline CSS — CSS Langsung di Tag</h2>
+  <p>Inline CSS digunakan untuk menerapkan style unik pada <strong>satu elemen tunggal</strong>. Caranya dengan menambahkan atribut <code>style</code> langsung ke tag HTML tersebut. Nilai dari atribut <code>style</code> dapat berisi properti CSS apa pun.</p>
+
+  <div class="example">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+  &lt;h1 style="color: blue; text-align: center;"&gt;
+    Judul Berwarna Biru
+  &lt;/h1&gt;
+
+  &lt;p style="color: red; font-size: 18px; font-family: Verdana;"&gt;
+    Paragraf ini berwarna merah dengan font Verdana ukuran 18px.
+  &lt;/p&gt;
+
+  &lt;p style="background-color: #FFD700; padding: 15px; border-radius: 8px;"&gt;
+    Paragraf ini memiliki latar kuning dengan padding dan sudut melengkung.
+  &lt;/p&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</div>
+
+  <div class="result-label">Hasil:</div>
+  <div class="result">
+    <h1 style="color: blue; text-align: center;">Judul Berwarna Biru</h1>
+    <p style="color: red; font-size: 18px; font-family: Verdana;">Paragraf ini berwarna merah dengan font Verdana ukuran 18px.</p>
+    <p style="background-color: #FFD700; padding: 15px; border-radius: 8px;">Paragraf ini memiliki latar kuning dengan padding dan sudut melengkung.</p>
+  </div>
+
+  <div class="warning">
+    <strong>⚠️ Kekurangan Inline CSS:</strong>
+    <ul>
+      <li>Tidak efisien — harus ditulis ulang di setiap elemen yang sama.</li>
+      <li>Sulit dikelola — bayangkan harus mengubah 100 paragraf satu per satu.</li>
+      <li>Mencampur konten (HTML) dengan presentasi (CSS), melanggar prinsip pemisahan kekhawatiran.</li>
+    </ul>
+    <strong>Gunakan hanya untuk:</strong> Override style pada elemen spesifik, email HTML, atau quick testing.
+  </div>
+
+  <!-- ==================== SECTION 3: INTERNAL CSS ==================== -->
+  <h2>3. Internal CSS — CSS di Dalam &lt;style&gt;</h2>
+  <p>Internal CSS (atau Embedded CSS) mendefinisikan style untuk <strong>satu halaman HTML tunggal</strong>. Style ditulis di dalam elemen <span class="tag">&lt;style&gt;</span> yang ditempatkan di bagian <code>&lt;head&gt;</code> dokumen HTML.</p>
+  <p>Keunggulan Internal CSS adalah kamu bisa mengatur style untuk banyak elemen sekaligus cukup dalam satu tempat.</p>
+
+  <div class="example">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;
+    body {
+      background-color: #f0f8ff;
+      font-family: 'Segoe UI', Arial, sans-serif;
+    }
+
+    h1 {
+      color: #04AA6D;
+      text-align: center;
+      border-bottom: 3px solid #04AA6D;
+      padding-bottom: 10px;
+    }
+
+    p {
+      color: #444;
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+    .highlight {
+      background-color: yellow;
+      padding: 2px 5px;
+    }
+
+    .box {
+      background-color: white;
+      border: 1px solid #ccc;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+  &lt;div class="box"&gt;
+    &lt;h1&gt;Website Saya&lt;/h1&gt;
+    &lt;p&gt;Ini adalah paragraf pertama.&lt;/p&gt;
+    &lt;p&gt;Kata &lt;span class="highlight"&gt;penting&lt;/span&gt; disorot.&lt;/p&gt;
+  &lt;/div&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</div>
+
+  <div class="result-label">Hasil:</div>
+  <div class="result" style="background-color: #f0f8ff; padding: 20px;">
+    <div style="background-color: white; border: 1px solid #ccc; padding: 20px; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.1);">
+      <h1 style="color: #04AA6D; text-align: center; border-bottom: 3px solid #04AA6D; padding-bottom: 10px;">Website Saya</h1>
+      <p style="color: #444; font-size: 16px; line-height: 1.7; font-family: 'Segoe UI', Arial, sans-serif;">Ini adalah paragraf pertama.</p>
+      <p style="color: #444; font-size: 16px; line-height: 1.7; font-family: 'Segoe UI', Arial, sans-serif;">Kata <span style="background-color: yellow; padding: 2px 5px;">penting</span> disorot.</p>
+    </div>
+  </div>
+
+  <h3>Sintaks Aturan CSS:</h3>
+  <div class="example">selector {
+  property: value;
+  property: value;
+}</div>
+
+  <table>
+    <tr>
+      <th>Bagian</th>
+      <th>Penjelasan</th>
+      <th>Contoh</th>
+    </tr>
+    <tr>
+      <td><strong>Selector</strong></td>
+      <td>Menentukan elemen HTML mana yang akan diberi style</td>
+      <td><code>h1</code>, <code>p</code>, <code>.kelas</code>, <code>#id</code></td>
+    </tr>
+    <tr>
+      <td><strong>Property</strong></td>
+      <td>Aspek tampilan yang ingin diubah</td>
+      <td><code>color</code>, <code>font-size</code>, <code>background</code></td>
+    </tr>
+    <tr>
+      <td><strong>Value</strong></td>
+      <td>Nilai yang diterapkan untuk properti tersebut</td>
+      <td><code>red</code>, <code>16px</code>, <code>#FF0000</code></td>
+    </tr>
+  </table>
+
+  <!-- ==================== SECTION 4: EXTERNAL CSS ==================== -->
+  <h2>4. External CSS — CSS di File Terpisah</h2>
+  <p>External CSS adalah metode yang paling direkomendasikan untuk website nyata. Style ditulis di <strong>file terpisah</strong> dengan ekstensi <code>.css</code>, lalu dihubungkan ke file HTML menggunakan tag <span class="tag">&lt;link&gt;</span>.</p>
+
+  <p>Keunggulan utama: <strong>Satu file CSS bisa digunakan oleh banyak halaman HTML</strong>. Jika ingin mengubah tampilan, cukup edit file CSS-nya saja, semua halaman akan berubah.</p>
+
+  <h3>Langkah 1 — Buat file CSS (mystyle.css):</h3>
+  <div class="example">/* File: mystyle.css */
+
+body {
+  background-color: #f4f4f4;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  color: #04AA6D;
+  text-align: center;
+  font-size: 2.5em;
+}
+
+h2 {
+  color: #333;
+  border-left: 4px solid #04AA6D;
+  padding-left: 10px;
+}
+
+p {
+  color: #555;
+  line-height: 1.8;
+  font-size: 16px;
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+  background: white;
+}
+
+.btn {
+  display: inline-block;
+  padding: 10px 25px;
+  background-color: #04AA6D;
+  color: white;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+}</div>
+
+  <h3>Langkah 2 — Hubungkan ke file HTML dengan tag &lt;link&gt;:</h3>
+  <div class="example">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;title&gt;Website Saya&lt;/title&gt;
+
+  &lt;!-- Menghubungkan file CSS eksternal --&gt;
+  &lt;link rel="stylesheet" href="mystyle.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+  &lt;div class="container"&gt;
+    &lt;h1&gt;Selamat Datang!&lt;/h1&gt;
+    &lt;h2&gt;Tentang Kami&lt;/h2&gt;
+    &lt;p&gt;Website ini menggunakan External CSS untuk styling.&lt;/p&gt;
+    &lt;a href="kontak.html" class="btn"&gt;Hubungi Kami&lt;/a&gt;
+  &lt;/div&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</div>
+
+  <div class="result-label">Hasil (simulasi):</div>
+  <div class="result" style="background: #f4f4f4; padding: 15px;">
+    <div style="max-width: 100%; background: white; padding: 20px; border-radius: 4px;">
+      <h1 style="color: #04AA6D; text-align: center; font-size: 2em;">Selamat Datang!</h1>
+      <h2 style="color: #333; border-left: 4px solid #04AA6D; padding-left: 10px;">Tentang Kami</h2>
+      <p style="color: #555; line-height: 1.8;">Website ini menggunakan External CSS untuk styling.</p>
+      <a href="#" style="display: inline-block; padding: 10px 25px; background-color: #04AA6D; color: white; border-radius: 5px; text-decoration: none; font-weight: bold;">Hubungi Kami</a>
+    </div>
+  </div>
+
+  <div class="note">
+    <strong>📌 Atribut Tag &lt;link&gt;:</strong>
+    <ul>
+      <li><code>rel="stylesheet"</code> — menyatakan hubungan file dengan dokumen HTML (stylesheet)</li>
+      <li><code>href="mystyle.css"</code> — path/lokasi menuju file CSS</li>
+      <li>Tag <code>&lt;link&gt;</code> selalu ditempatkan di dalam elemen <code>&lt;head&gt;</code></li>
+    </ul>
+  </div>
+
+  <!-- ==================== SECTION 5: COMMON CSS PROPERTIES ==================== -->
+  <h2>5. Properti CSS yang Sering Digunakan</h2>
+  <div class="props-demo">
+    <div class="example">/* Warna Teks dan Latar */
+color: #333;
+background-color: #f0f0f0;
+
+/* Font */
+font-family: 'Arial', sans-serif;
+font-size: 16px;
+font-weight: bold;
+font-style: italic;
+
+/* Teks */
+text-align: center;
+text-decoration: underline;
+line-height: 1.6;
+letter-spacing: 1px;
+
+/* Box Model */
+width: 100%;
+max-width: 900px;
+height: auto;
+padding: 20px;
+margin: 10px auto;
+border: 1px solid #ccc;
+border-radius: 8px;
+
+/* Display */
+display: block;
+display: inline;
+display: inline-block;
+display: flex;
+display: grid;
+display: none;</div>
+  </div>
+
+  <div class="result-label">Contoh Beberapa Properti:</div>
+  <div class="result props-demo">
+    <p style="color: #c0392b; font-weight: bold;">color: #c0392b; font-weight: bold;</p>
+    <p style="background-color: #3498db; color: white; padding: 8px;">background-color: #3498db;</p>
+    <p style="font-family: Georgia, serif; font-style: italic; font-size: 18px;">font-family: Georgia; font-style: italic;</p>
+    <p style="text-align: center; letter-spacing: 3px; border-bottom: 2px solid #04AA6D;">text-align: center; letter-spacing: 3px;</p>
+    <p style="padding: 15px; margin: 5px 0; border: 2px dashed #e74c3c; border-radius: 10px;">padding: 15px; border: 2px dashed #e74c3c; border-radius: 10px;</p>
+  </div>
+
+  <!-- ==================== SECTION 6: COMPARISON ==================== -->
+  <h2>6. Perbandingan Ketiga Metode CSS</h2>
+  <table>
+    <tr>
+      <th>Aspek</th>
+      <th>Inline CSS</th>
+      <th>Internal CSS</th>
+      <th>External CSS</th>
+    </tr>
+    <tr>
+      <td>Lokasi</td>
+      <td>Atribut <code>style</code> di tag</td>
+      <td>Tag <code>&lt;style&gt;</code> di &lt;head&gt;</td>
+      <td>File .css terpisah</td>
+    </tr>
+    <tr>
+      <td>Jangkauan</td>
+      <td>Satu elemen saja</td>
+      <td>Satu halaman HTML</td>
+      <td>Banyak halaman HTML</td>
+    </tr>
+    <tr>
+      <td>Kemudahan</td>
+      <td>⭐⭐⭐ (mudah)</td>
+      <td>⭐⭐ (sedang)</td>
+      <td>⭐ (perlu file terpisah)</td>
+    </tr>
+    <tr>
+      <td>Perawatan</td>
+      <td>⭐ (sulit)</td>
+      <td>⭐⭐ (sedang)</td>
+      <td>⭐⭐⭐ (mudah)</td>
+    </tr>
+    <tr>
+      <td>Performa</td>
+      <td>⭐ (kurang baik)</td>
+      <td>⭐⭐ (sedang)</td>
+      <td>⭐⭐⭐ (cache browser)</td>
+    </tr>
+    <tr>
+      <td>Rekomendasi</td>
+      <td>Testing/override cepat</td>
+      <td>Halaman tunggal kecil</td>
+      <td>✅ Direkomendasikan untuk semua project</td>
+    </tr>
+  </table>
+
+  <!-- ==================== SECTION 7: CASCADE PRIORITY ==================== -->
+  <h2>7. Prioritas CSS (Cascading Order)</h2>
+  <p>Ketika beberapa style diterapkan pada elemen yang sama, CSS menggunakan aturan <em>cascade</em> untuk menentukan style mana yang dipakai. Urutan prioritasnya dari <strong>tertinggi ke terendah</strong>:</p>
+
+  <div class="priority">
+    <div class="priority-item" style="background: #f44336; color: white;">Inline CSS<br><small>(Prioritas Tertinggi)</small></div>
+    <div class="priority-arrow">→ menimpa</div>
+    <div class="priority-item" style="background: #2196f3; color: white;">Internal CSS<br><small>(Prioritas Sedang)</small></div>
+    <div class="priority-arrow">→ menimpa</div>
+    <div class="priority-item" style="background: #04AA6D; color: white;">External CSS<br><small>(Prioritas Rendah)</small></div>
+    <div class="priority-arrow">→ menimpa</div>
+    <div class="priority-item" style="background: #9e9e9e; color: white;">Browser Default<br><small>(Prioritas Terendah)</small></div>
+  </div>
+
+  <div class="example">&lt;!-- File: style.css berisi: h1 { color: green; } --&gt;
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;link rel="stylesheet" href="style.css"&gt; &lt;!-- External: hijau --&gt;
+  &lt;style&gt;
+    h1 { color: blue; } /* Internal: biru — menimpa external */
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1 style="color: red;"&gt;Judul Ini Akan Berwarna Merah&lt;/h1&gt;
+  &lt;!-- Inline CSS (merah) menimpa Internal (biru) dan External (hijau) --&gt;
+&lt;/body&gt;
+&lt;/html&gt;</div>
+
+  <!-- ==================== SECTION 8: FULL EXAMPLE ==================== -->
+  <h2>8. Contoh Lengkap — Halaman Profil dengan Internal CSS</h2>
+  <div class="example">&lt;!DOCTYPE html&gt;
+&lt;html lang="id"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;title&gt;Profil Saya&lt;/title&gt;
+  &lt;style&gt;
+    /* Reset dan Body */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Card Profil */
+    .card {
+      background: white;
+      border-radius: 16px;
+      padding: 40px;
+      text-align: center;
+      max-width: 350px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    }
+
+    .avatar {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #04AA6D, #007a50);
+      margin: 0 auto 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 40px;
+    }
+
+    h1 { color: #333; font-size: 24px; margin-bottom: 5px; }
+    .role { color: #04AA6D; font-size: 14px; margin-bottom: 20px; }
+    p { color: #666; font-size: 14px; line-height: 1.6; }
+
+    .btn {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 12px 30px;
+      background: #04AA6D;
+      color: white;
+      border-radius: 25px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+  &lt;div class="card"&gt;
+    &lt;div class="avatar"&gt;👨‍💻&lt;/div&gt;
+    &lt;h1&gt;Budi Santoso&lt;/h1&gt;
+    &lt;p class="role"&gt;Web Developer &amp; Designer&lt;/p&gt;
+    &lt;p&gt;Seorang pengembang web yang passionate
+    dalam membuat pengalaman digital yang indah
+    dan fungsional.&lt;/p&gt;
+    &lt;a href="#" class="btn"&gt;Hubungi Saya&lt;/a&gt;
+  &lt;/div&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</div>
+
+  <div class="result-label">Hasil:</div>
+  <div class="result" style="background: linear-gradient(135deg, #667eea, #764ba2); padding: 40px; text-align: center;">
+    <div style="background: white; border-radius: 16px; padding: 40px; text-align: center; max-width: 350px; margin: 0 auto; box-shadow: 0 20px 60px rgba(0,0,0,0.3);">
+      <div style="width: 100px; height: 100px; border-radius: 50%; background: linear-gradient(135deg, #04AA6D, #007a50); margin: 0 auto 20px; display: flex; align-items: center; justify-content: center; font-size: 40px;">👨‍💻</div>
+      <h1 style="color: #333; font-size: 24px; margin-bottom: 5px;">Budi Santoso</h1>
+      <p style="color: #04AA6D; font-size: 14px; margin-bottom: 20px;">Web Developer &amp; Designer</p>
+      <p style="color: #666; font-size: 14px; line-height: 1.6;">Seorang pengembang web yang passionate dalam membuat pengalaman digital yang indah dan fungsional.</p>
+      <a href="#" style="display: inline-block; margin-top: 20px; padding: 12px 30px; background: #04AA6D; color: white; border-radius: 25px; text-decoration: none; font-weight: bold;">Hubungi Saya</a>
+    </div>
+  </div>
+
+  <div class="tip">
+    <strong>💡 Tips Belajar CSS:</strong>
+    <ul>
+      <li>Mulai dengan <strong>Internal CSS</strong> saat belajar — semuanya dalam satu file, mudah dilihat.</li>
+      <li>Pindah ke <strong>External CSS</strong> saat project mulai berkembang.</li>
+      <li>Hindari terlalu banyak <strong>Inline CSS</strong> dalam kode produksi.</li>
+      <li>Gunakan <strong>DevTools browser</strong> (F12) untuk bereksperimen dengan CSS secara langsung.</li>
+      <li>Pelajari <strong>CSS Selectors</strong>: tag, class (<code>.kelas</code>), dan ID (<code>#id</code>).</li>
+    </ul>
+  </div>
+
+  <div style="margin-top: 40px; display: flex; justify-content: space-between;">
+    <a href="colors.html" class="back-btn">⬅ Sebelumnya: Colors</a>
+    <a href="links.html" class="back-btn">Selanjutnya: Links ➡</a>
+  </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HTML Plug-ins - W3Schools</title>
+  <style>
+    body { font-family: 'Segoe UI', sans-serif; margin: 0; background: #f9f9f9; color: #333; }
+    nav { background: #04AA6D; padding: 10px 20px; }
+    nav a { color: white; text-decoration: none; margin-right: 15px; }
+    .content { max-width: 900px; margin: 30px auto; background: white; padding: 30px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+    h1 { color: #04AA6D; border-left: 5px solid #04AA6D; padding-left: 15px; }
+    h2 { color: #333; margin-top: 25px; }
+    .example { background: #f1f1f1; border-left: 4px solid #04AA6D; padding: 15px; margin: 15px 0; border-radius: 4px; font-family: monospace; white-space: pre-wrap; }
+    .note { background: #ffffcc; padding: 12px; border-left: 4px solid #ffc107; margin: 15px 0; border-radius: 4px; }
+    .back-btn { display: inline-block; margin-bottom: 20px; padding: 8px 16px; background: #04AA6D; color: white; text-decoration: none; border-radius: 4px; }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="../index.html">🏠 Home Utama</a>
+    <a href="index.html">📂 Index Media</a>
+    <a href="audio.html">❮ Audio</a>
+    <a href="youtube.html">Next: YouTube ❯</a>
+  </nav>
+  <div class="content">
+    <a class="back-btn" href="index.html">← Kembali ke Submateri Media</a>
+    <h1>HTML Plug-ins (&lt;object&gt; dan &lt;embed&gt;)</h1>
+
+    <h2>Apa itu Plug-ins?</h2>
+    <p>Plug-ins adalah program komputer yang memperluas fungsionalitas standar browser (misalnya memutar audio, video, menampilkan dokumen PDF, atau menjalankan applet).</p>
+
+    <h2>1. Elemen &lt;object&gt;</h2>
+    <p>Elemen <code>&lt;object&gt;</code> didukung oleh semua browser dan digunakan untuk menyematkan objek multimedia seperti audio, video, Java applet, PDF, dan Flash ke dalam halaman web.</p>
+    
+    <h3>Menyematkan Gambar atau Dokumen HTML</h3>
+    <div class="example">&lt;object data="snippet.html" width="400" height="200"&gt;&lt;/object&gt;</div>
+
+    <h3>Menyematkan Dokumen PDF</h3>
+    <div class="example">&lt;object data="document.pdf" type="application/pdf" width="100%" height="500px"&gt;
+  &lt;p&gt;Browser Anda tidak mendukung preview PDF. &lt;a href="document.pdf"&gt;Unduh PDF di sini&lt;/a&gt;.&lt;/p&gt;
+&lt;/object&gt;</div>
+
+    <h2>2. Elemen &lt;embed&gt;</h2>
+    <p>Elemen <code>&lt;embed&gt;</code> mendefinisikan wadah (container) untuk sumber daya eksternal (aplikasi eksternal atau konten interaktif).</p>
+    
+    <div class="example">&lt;embed src="audioclip.mp3" width="300" height="50"&gt;
+&lt;embed src="animation.swf" width="400" height="300"&gt;</div>
+
+    <div class="note">
+      <strong>Catatan Modern:</strong> Sebagian besar browser modern tidak lagi mendukung plugin lawas seperti Adobe Flash atau Java Applet demi keamanan dan performa. Gunakan elemen HTML5 standar (<code>&lt;video&gt;</code>, <code>&lt;audio&gt;</code>, <code>&lt;canvas&gt;</code>, <code>&lt;svg&gt;</code>) jika memungkinkan.
+    </div>
+  </div>
+</body>
+</html>

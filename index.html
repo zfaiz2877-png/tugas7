@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tugas W3Schools - HTML Tutorial</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f4f4f4; color: #333; line-height: 1.6; }
+    header { background: #04AA6D; color: white; padding: 25px 40px; box-shadow: 0 2px 8px rgba(0,0,0,0.15); }
+    header h1 { font-size: 2.2em; display: flex; align-items: center; gap: 10px; }
+    header p { margin-top: 8px; opacity: 0.95; font-size: 1.05em; }
+    .container { max-width: 1200px; margin: 30px auto; padding: 0 20px; }
+    h2 { color: #04AA6D; border-bottom: 2px solid #04AA6D; padding-bottom: 8px; margin: 35px 0 20px; font-size: 1.5em; display: flex; align-items: center; gap: 8px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 15px; }
+    .card { background: white; border-radius: 8px; padding: 18px; box-shadow: 0 2px 6px rgba(0,0,0,0.08); text-decoration: none; color: #333; transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s; display: flex; flex-direction: column; justify-content: space-between; border-left: 4px solid #04AA6D; }
+    .card:hover { transform: translateY(-4px); box-shadow: 0 6px 18px rgba(4,170,109,0.2); }
+    .card .num { color: #888; font-size: 0.85em; font-weight: bold; margin-bottom: 5px; }
+    .card .title { font-weight: bold; color: #04AA6D; font-size: 1.1em; }
+    .card .desc { font-size: 0.85em; color: #666; margin-top: 5px; }
+    
+    .subfolder-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 20px; }
+    .subfolder-card { background: #ffffff; border-radius: 8px; padding: 22px; box-shadow: 0 3px 10px rgba(0,0,0,0.1); border-left: 5px solid #ff9800; text-decoration: none; color: #333; transition: transform 0.2s, box-shadow 0.2s; }
+    .subfolder-card:hover { transform: translateY(-4px); box-shadow: 0 8px 20px rgba(255,152,0,0.25); }
+    .subfolder-card .badge { display: inline-block; background: #fff3e0; color: #e65100; font-size: 0.75em; font-weight: bold; padding: 3px 8px; border-radius: 4px; margin-bottom: 8px; text-transform: uppercase; }
+    .subfolder-card h3 { color: #e65100; font-size: 1.3em; margin-bottom: 8px; display: flex; align-items: center; gap: 6px; }
+    .subfolder-card p { font-size: 0.9em; color: #555; }
+    
+    .stats-box { background: white; border-radius: 8px; padding: 20px; margin-bottom: 25px; box-shadow: 0 2px 6px rgba(0,0,0,0.08); display: flex; justify-content: space-around; text-align: center; flex-wrap: wrap; gap: 15px; }
+    .stat-item { flex: 1; min-width: 150px; }
+    .stat-num { font-size: 2em; font-weight: bold; color: #04AA6D; }
+    .stat-label { color: #666; font-size: 0.9em; margin-top: 4px; }
+    
+    footer { text-align: center; padding: 30px; color: #888; font-size: 0.9em; margin-top: 50px; border-top: 1px solid #ddd; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>📚 Tugas W3Schools - HTML Tutorial</h1>
+    <p>Kumpulan materi pembelajaran HTML lengkap berdasarkan kurikulum resmi <a href="https://www.w3schools.com/Html/" style="color:white; text-decoration:underline;">w3schools.com/Html/</a></p>
+  </header>
+
+  <div class="container">
+    <div class="stats-box">
+      <div class="stat-item">
+        <div class="stat-num">39</div>
+        <div class="stat-label">File Materi Utama</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">4</div>
+        <div class="stat-label">Subfolder Submateri</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">20+</div>
+        <div class="stat-label">File Submateri Khusus</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">100%</div>
+        <div class="stat-label">Sesuai W3Schools</div>
+      </div>
+    </div>
+
+    <h2>📁 Submateri Khusus (Subfolder)</h2>
+    <div class="subfolder-grid">
+      <a class="subfolder-card" href="forms/index.html">
+        <span class="badge">Subfolder</span>
+        <h3>📝 HTML Forms</h3>
+        <p>Formulir web, atribut form, elemen form, tipe input, atribut input, dan input form attributes.</p>
+      </a>
+      <a class="subfolder-card" href="media/index.html">
+        <span class="badge">Subfolder</span>
+        <h3>🎬 HTML Media</h3>
+        <p>Elemen pemutar video, audio, plug-ins (&lt;object&gt; / &lt;embed&gt;), serta sematan YouTube.</p>
+      </a>
+      <a class="subfolder-card" href="graphics/index.html">
+        <span class="badge">Subfolder</span>
+        <h3>🎨 HTML Graphics</h3>
+        <p>Grafik kanvas bitmap HTML5 Canvas dan grafik vektor resolusi tinggi HTML5 SVG.</p>
+      </a>
+      <a class="subfolder-card" href="apis/index.html">
+        <span class="badge">Subfolder</span>
+        <h3>⚙️ HTML APIs</h3>
+        <p>HTML5 Web APIs: Geolocation, Drag and Drop, Web Storage, Web Workers, dan Server-Sent Events (SSE).</p>
+      </a>
+    </div>
+
+    <h2>🌐 Materi Utama (HTML Tutorial)</h2>
+    <div class="grid">
+      <a class="card" href="introduction.html"><div class="num">01</div><div class="title">Introduction</div><div class="desc">Pengenalan &amp; struktur HTML dasar</div></a>
+      <a class="card" href="editors.html"><div class="num">02</div><div class="title">Editors</div><div class="desc">Editor teks untuk menulis HTML</div></a>
+      <a class="card" href="basic.html"><div class="num">03</div><div class="title">Basic</div><div class="desc">Contoh-contoh kode dasar HTML</div></a>
+      <a class="card" href="elements.html"><div class="num">04</div><div class="title">Elements</div><div class="desc">Tag pembuka, konten, penutup &amp; nested</div></a>
+      <a class="card" href="attributes.html"><div class="num">05</div><div class="title">Attributes</div><div class="desc">Atribut href, src, alt, style, lang, title</div></a>
+      <a class="card" href="headings.html"><div class="num">06</div><div class="title">Headings</div><div class="desc">Tingkatan heading &lt;h1&gt; sampai &lt;h6&gt;</div></a>
+      <a class="card" href="paragraphs.html"><div class="num">07</div><div class="title">Paragraphs</div><div class="desc">Paragraf &lt;p&gt;, &lt;br&gt;, &amp; &lt;hr&gt;</div></a>
+      <a class="card" href="styles.html"><div class="num">08</div><div class="title">Styles</div><div class="desc">Gaya inline CSS pada elemen HTML</div></a>
+      <a class="card" href="formatting.html"><div class="num">09</div><div class="title">Formatting</div><div class="desc">Format teks bold, italic, sub, sup, dll.</div></a>
+      <a class="card" href="quotations.html"><div class="num">10</div><div class="title">Quotations</div><div class="desc">Kutipan &lt;blockquote&gt;, &lt;q&gt;, &lt;abbr&gt;, dll.</div></a>
+      <a class="card" href="comments.html"><div class="num">11</div><div class="title">Comments</div><div class="desc">Komentar &lt;!-- --&gt; dalam HTML</div></a>
+      <a class="card" href="colors.html"><div class="num">12</div><div class="title">Colors</div><div class="desc">Nama warna, RGB, HEX, dan HSL</div></a>
+      <a class="card" href="css.html"><div class="num">13</div><div class="title">CSS</div><div class="desc">Inline, Internal, dan External CSS</div></a>
+      <a class="card" href="links.html"><div class="num">14</div><div class="title">Links</div><div class="desc">Hyperlink, target, warna link, bookmark</div></a>
+      <a class="card" href="images.html"><div class="num">15</div><div class="title">Images</div><div class="desc">Gambar, Image Map, Background &amp; Picture</div></a>
+      <a class="card" href="favicon.html"><div class="num">16</div><div class="title">Favicon</div><div class="desc">Ikon tab browser untuk situs web</div></a>
+      <a class="card" href="page_title.html"><div class="num">17</div><div class="title">Page Title</div><div class="desc">Judul dokumen pada &lt;title&gt;</div></a>
+      <a class="card" href="tables.html"><div class="num">18</div><div class="title">Tables</div><div class="desc">Tabel, baris, kolom, colspan &amp; rowspan</div></a>
+      <a class="card" href="lists.html"><div class="num">19</div><div class="title">Lists</div><div class="desc">Daftar terurut, tak terurut &amp; deskripsi</div></a>
+      <a class="card" href="block_inline.html"><div class="num">20</div><div class="title">Block &amp; Inline</div><div class="desc">Perilaku elemen block vs inline</div></a>
+      <a class="card" href="div.html"><div class="num">21</div><div class="title">Div</div><div class="desc">Kontainer generik &lt;div&gt; untuk layout</div></a>
+      <a class="card" href="classes.html"><div class="num">22</div><div class="title">Classes</div><div class="desc">Atribut class untuk styling &amp; JS</div></a>
+      <a class="card" href="id.html"><div class="num">23</div><div class="title">Id</div><div class="desc">Atribut id unik untuk elemen</div></a>
+      <a class="card" href="buttons.html"><div class="num">24</div><div class="title">Buttons</div><div class="desc">Elemen tombol interaktif &lt;button&gt;</div></a>
+      <a class="card" href="iframes.html"><div class="num">25</div><div class="title">Iframes</div><div class="desc">Menyematkan halaman web eksternal</div></a>
+      <a class="card" href="javascript.html"><div class="num">26</div><div class="title">JavaScript</div><div class="desc">Interaktivitas skrip klien &lt;script&gt;</div></a>
+      <a class="card" href="file_paths.html"><div class="num">27</div><div class="title">File Paths</div><div class="desc">Jalur file absolut vs relatif</div></a>
+      <a class="card" href="head.html"><div class="num">28</div><div class="title">Head</div><div class="desc">Elemen metadata &lt;head&gt;</div></a>
+      <a class="card" href="layout.html"><div class="num">29</div><div class="title">Layout</div><div class="desc">Tata letak semantik website</div></a>
+      <a class="card" href="responsive.html"><div class="num">30</div><div class="title">Responsive</div><div class="desc">Responsive Web Design (RWD) &amp; viewport</div></a>
+      <a class="card" href="computercode.html"><div class="num">31</div><div class="title">Computercode</div><div class="desc">Elemen kode &lt;code&gt;, &lt;kbd&gt;, &lt;pre&gt;</div></a>
+      <a class="card" href="semantics.html"><div class="num">32</div><div class="title">Semantics</div><div class="desc">Elemen semantik HTML5 yang bermakna</div></a>
+      <a class="card" href="style_guide.html"><div class="num">33</div><div class="title">Style Guide</div><div class="desc">Panduan gaya dan best practice HTML</div></a>
+      <a class="card" href="entities.html"><div class="num">34</div><div class="title">Entities</div><div class="desc">Entitas karakter simbol &amp; karakter khusus</div></a>
+      <a class="card" href="symbols.html"><div class="num">35</div><div class="title">Symbols</div><div class="desc">Simbol matematika, Yunani, dan kartu</div></a>
+      <a class="card" href="emojis.html"><div class="num">36</div><div class="title">Emojis</div><div class="desc">Karakter emoji UTF-8 dalam HTML</div></a>
+      <a class="card" href="charsets.html"><div class="num">37</div><div class="title">Charsets</div><div class="desc">Enkoding karakter ASCII, ANSI, UTF-8</div></a>
+      <a class="card" href="url_encode.html"><div class="num">38</div><div class="title">URL Encode</div><div class="desc">Enkoding karakter khusus pada URL</div></a>
+      <a class="card" href="vs_xhtml.html"><div class="num">39</div><div class="title">HTML vs XHTML</div><div class="desc">Perbedaan aturan sintaks HTML dan XHTML</div></a>
+    </div>
+  </div>
+
+  <footer>
+    <p>Tugas Tutorial HTML &mdash; Dibuat berdasarkan referensi resmi <a href="https://www.w3schools.com/Html/" style="color:#04AA6D;">W3Schools HTML</a></p>
+  </footer>
+</body>
+</html>
